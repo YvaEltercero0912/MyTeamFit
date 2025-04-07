@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Alumno</title>
+  <link rel="stylesheet" href="admin.css" />
+  <style>
+    body {
+      background-color: #17262b;
+      color: white;
+      font-family: "Roboto", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input {
+    padding: 10px;
+    border: 1px solid #14ced4;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #18d8dc;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover{
+  background-color: #14c0e5;
+}
+
+    .message {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .success {
+      color: #4caf50;
+    }
+
+    .error {
+      color: #f44336;
+    }
+
+    .logos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.mtf{
+    width: 250px;
+}
+
+a {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+  width: 150px;
+}
+  </style>
+</head>
+<body>
+  <div class="logos">
+
+    <a href="admin.html">
+        <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+        <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+    </a>
+
+</div>
+  <h1>Crear Alumno</h1>
+  <form id="crear-alumno-form">
+    <input type="text" id="nombre" placeholder="Nombre" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button type="submit">Crear</button>
+  </form>
+  <div id="mensaje" class="message"></div>
+
+  <script>
+    const form = document.getElementById("crear-alumno-form");
+    const mensaje = document.getElementById("mensaje");
+
+    const profesor = JSON.parse(sessionStorage.getItem("profesor"));
+    if (!profesor) {
+      alert("No hay sesión activa de profesor");
+      window.location.href = "login_profesor.html";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const alumno = {
+        nombre,
+        email,
+        password,
+        id_profesor: profesor.id
+      };
+
+      try {
+        const res = await fetch("http://localhost:3000/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(alumno)
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          mensaje.textContent = "✅ Alumno creado con éxito.";
+          mensaje.className = "message success";
+          setTimeout(() => {
+            window.location.href = "admin.html";
+          }, 2000);
+        } else {
+          mensaje.textContent = data.error || "❌ Error al crear el alumno";
+          mensaje.className = "message error";
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        mensaje.textContent = "❌ Error del servidor.";
+        mensaje.className = "message error";
+      }
+    });
+  </script>
+</body>
+</html>

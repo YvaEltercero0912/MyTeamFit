@@ -1,0 +1,133 @@
+body {
+    background-color: #17262b;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.usuario-header {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 78px;
+border-bottom: 3px solid #4e4c80;
+width: 40%;
+margin: auto;
+background: #1e1e1e;
+padding: 20px;
+border-radius: 30px;
+}
+
+.usuario-header img {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+object-fit: cover;
+border: 3px solid #4e4c80;
+}
+
+.usuario-header h1 {
+color: #4e4c80;
+margin: 10px 0 0;
+font-size: 1.8rem;
+}
+
+.divider {
+    height: 2px;
+    background-color: #14c0e5;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 2px;
+}
+
+.main-container {
+    flex-wrap: wrap;
+    gap: 83px;
+    justify-content: center;
+    display: flex;
+    width: 71%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.form-container, .lista-ejercicios {
+    flex: 1;
+    min-width: 300px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select {
+padding: 10px;
+border-radius: 5px;
+border: 2px solid #4e4c80;
+background-color: #1e1e1e;
+color: white;
+}
+
+button {
+background-color: transparent;
+color: white;
+border: none;
+padding: 10px;
+border-radius: 5px;
+cursor: pointer;
+border: 2px solid #4e4c80;
+transition: 0.5s;
+}
+
+button:hover{
+background-color: #4e4c80;
+}
+
+.ejercicio-item {
+background-color: #1e1e1e;
+border-radius: 5px;
+padding: 10px;
+margin-bottom: 10px;
+display: flex
+;
+justify-content: space-between;
+align-items: center;
+border-bottom: 2px solid #4e4c80;
+color: #ffffff;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+.acciones-ejercicio {
+    display: flex;
+    gap: 10px;
+}
+
+.acciones-ejercicio img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    transition: transform 0.2s ease;
+}
+
+.acciones-ejercicio img:hover {
+    transform: scale(1.2);
+}
+.logo {
+width: 92px;
+}
+
+.fila-basico {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .fila-accesorio {
+    color: white;
+  }
+
+  
+
+  

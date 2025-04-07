@@ -1,0 +1,166 @@
+main {
+    width: 30%;
+    display: flow;
+    margin: auto;
+}
+
+.seleccion {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    background: #00000000;
+    padding: 10px 10px;
+    border: 1px solid #14c0e5;
+    color: white;
+    margin-top: 10px;
+}
+
+.titulo-formulario {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 2rem;
+    color: white;
+  }
+  
+  .contenedor-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formulario-moderno {
+    background-color: #1e1e1e;
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 8%;
+}
+  
+.grupo-selects select {
+    background-color: #2a2a2a;
+    border: 1px solid #00ffff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 20%;
+    margin-bottom: 16px;
+}
+
+.grupo-selects {
+    display: flex
+;
+    width: 100%;
+}
+  
+.grupo-selects select {
+    background-color: #2a2a2a;
+    border: 1px solid #00ffff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 34%;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+  
+  .grupo-inputs label {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    display: block;
+    color: #ccc;
+  }
+  
+  .grupo-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+}
+  
+  button[type="submit"] {
+    background-color: #00ffff;
+    color: #000;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00cccc;
+  }
+
+  .grupo-selects select {
+    background-color: #2a2a2a;
+    border: 1px solid #00ffff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 45%;
+    margin-bottom: 16px;
+}
+
+.grupo-inputs select {
+    background-color: #2a2a2a;
+    border: 1px solid #00ffff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 40%;
+    margin-bottom: 16px;
+}
+  
+  .input-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-col label {
+    margin-bottom: 4px;
+    color: #ccc;
+  }
+  
+  .input-col select {
+    background-color: #2a2a2a;
+    border: 1px solid #00ffff;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    width: 92%;
+}
+
+  
+  .full-width {
+    grid-column: span 2;
+  }
+  
+  .full-width button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00ffff;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .full-width button:hover {
+    background-color: #00cccc;
+  }
+
+
+
+  form#form-datos {
+    width: 50%;
+    margin: auto;
+}

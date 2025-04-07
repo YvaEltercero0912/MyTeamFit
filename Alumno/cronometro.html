@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabata Personalizado</title>
+  <link rel="stylesheet" href="cronometro.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tabata Timer</h1>
+
+    <div class="config">
+      <label>⏱ Tiempo de ejercicio (seg): <input type="number" id="ejercicio" value="20" /></label>
+      <label>🛑 Descanso (seg): <input type="number" id="descanso" value="10" /></label>
+      <label>🔁 Transición (seg): <input type="number" id="transicion" value="5" /></label>
+      <label>🔄 Rondas: <input type="number" id="rondas" value="8" /></label>
+    </div>
+
+    <div class="display">
+      <h2 id="estado">Preparado</h2>
+      <h1 id="tiempo">00:00</h1>
+      <p>Ronda <span id="ronda">0</span></p>
+    </div>
+
+    <div class="botones">
+      <button id="iniciar">▶ Iniciar</button>
+      <button id="reiniciar">🔁 Reiniciar</button>
+    </div>
+  </div>
+
+  <!-- 🔊 Sonidos -->
+  <audio id="beep3" src="sounds/beep3.mp3"></audio>
+  <audio id="cambio" src="sounds/cambio.mp3"></audio>
+
+  <script src="cronometro.js"></script>
+</body>
+</html>
+

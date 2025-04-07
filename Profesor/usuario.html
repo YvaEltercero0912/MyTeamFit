@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="usuario.css">
+    <script defer src="usuario.js"></script>
+    
+</head>
+
+<body>
+    <a href="admin.html">
+      <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo" />
+    </a>
+  
+    <div class="usuario-header">
+      <img id="foto-usuario" src="" alt="Foto" />
+      <h1 id="nombre-usuario">Usuario</h1>
+    </div>
+  
+    <div class="main-container">
+      <div class="form-container">
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <select id="anio-select"></select>
+          <select id="mes-select"></select>
+          <select id="semana-select">
+            <option value="1">Semana 1</option>
+            <option value="2">Semana 2</option>
+            <option value="3">Semana 3</option>
+            <option value="4">Semana 4</option>
+          </select>
+          <select id="dia-select"></select>
+        </div>
+  
+        <form id="form-planificacion">
+          <input type="text" id="ejercicio" placeholder="Ejercicio" />
+  
+          <!-- Radio para tipo de ejercicio -->
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+            <label><input type="radio" name="tipo" value="basico" checked /> Básico</label>
+            <label><input type="radio" name="tipo" value="accesorio" /> Accesorio</label>
+          </div>
+  
+          <input type="text" id="series" placeholder="Series" />
+          <input type="text" id="repes" placeholder="Repeticiones" />
+          <input type="text" id="kg" placeholder="Kg" />
+          <input type="text" id="nota" placeholder="Nota (opcional)" />
+          <input type="text" id="video" placeholder="Enlace de video" />
+          <button type="submit">Agregar Ejercicio</button>
+        </form>
+  
+        <button id="btn-guardar" style="margin-top: 15px;">Guardar Planificación</button>
+      </div>
+  
+      <div class="lista-ejercicios">
+        <h2>Ejercicios agregados</h2>
+        <table style="width: 100%; border-collapse: collapse; background-color: #1e1e1e; color: white;">
+          <thead>
+            <tr style="background-color: #4e4c80;">
+              <th>Ejercicio</th>
+              <th>Series</th>
+              <th>Repeticiones</th>
+              <th>Kg</th>
+              <th>Nota</th>
+              <th>Video</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="lista-ejercicios">
+            <!-- Se llena con JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  </html>

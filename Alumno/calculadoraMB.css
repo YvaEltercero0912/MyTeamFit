@@ -1,0 +1,15 @@
+input, select {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #14c0e5;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+select#actividad {
+    width: 98.5%;
+    margin-right: 0px;
+    margin-left: 0px;
+}

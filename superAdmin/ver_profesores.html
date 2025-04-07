@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfiles de Profesores</title>
+  <link rel="stylesheet" href="ver_profesores.css" />
+</head>
+<body>
+  <header>
+    <img src="/img/logo.png" alt="Logo de la app" class="logo">
+    <h1>Entrenamiento Pro</h1>
+  </header>
+
+  <div class="container">
+    <input type="text" id="buscador" placeholder="Buscar profesor por nombre...">
+    <table id="tabla-profesores">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>DNI</th>
+          <th>Cupo</th>
+          <th>Alumnos</th>
+          <th>Bloqueo</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody id="lista-profesores">
+        <!-- Se llena dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let profesoresOriginal = [];
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("http://localhost:3000/profesores");
+        profesoresOriginal = await res.json();
+        mostrarProfesores(profesoresOriginal);
+      } catch (err) {
+        console.error("Error al cargar profesores:", err);
+      }
+
+      document.getElementById("buscador").addEventListener("input", (e) => {
+        const texto = e.target.value.toLowerCase();
+        const filtrados = profesoresOriginal.filter(p =>
+          p.nombre.toLowerCase().includes(texto)
+        );
+        mostrarProfesores(filtrados);
+      });
+    });
+
+    function mostrarProfesores(profesores) {
+      const cuerpo = document.getElementById("lista-profesores");
+      cuerpo.innerHTML = "";
+
+      profesores.forEach(prof => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${prof.nombre}</td>
+          <td>${prof.dni}</td>
+          <td>
+            <input type="number" id="cupo-${prof.id}" value="${prof.cupo_maximo}" min="0" style="width: 60px;">
+            <button onclick="actualizarCupo(${prof.id})">Actualizar</button>
+          </td>
+          <td>${prof.alumnos_actuales}</td>
+          <td>
+            <button onclick="toggleBloqueo(${prof.id}, ${prof.bloqueado})">
+              ${prof.bloqueado ? 'Desbloquear' : 'Bloquear'}
+            </button>
+          </td>
+          <td>
+            <button class="eliminar" onclick="eliminarProfesor(${prof.id})">Eliminar</button>
+          </td>
+        `;
+
+        document.getElementById("lista-profesores").appendChild(tr);
+      });
+    }
+
+    async function actualizarCupo(id_profesor) {
+      const nuevoCupo = document.getElementById(`cupo-${id_profesor}`).value;
+
+      try {
+        const res = await fetch("http://localhost:3000/actualizar-cupo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id_profesor, cupo: parseInt(nuevoCupo) })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("Cupo actualizado correctamente");
+        } else {
+          alert("Error: " + data.error);
+        }
+      } catch (err) {
+        console.error("Error al actualizar cupo:", err);
+      }
+    }
+
+    async function toggleBloqueo(id_profesor, bloqueadoActual) {
+      try {
+        const res = await fetch("http://localhost:3000/bloquear-profesor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id_profesor, bloquear: !bloqueadoActual })
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          alert(result.message);
+          location.reload();
+        } else {
+          alert("Error: " + result.error);
+        }
+      } catch (err) {
+        console.error("❌ Error al bloquear/desbloquear profesor:", err);
+      }
+    }
+
+    async function eliminarProfesor(id_profesor) {
+      if (!confirm("¿Seguro que deseas eliminar este profesor?")) return;
+
+      try {
+        const res = await fetch(`http://localhost:3000/eliminar-profesor/${id_profesor}`, {
+          method: "DELETE"
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          alert(result.message);
+          location.reload();
+        } else {
+          alert("Error: " + result.error);
+        }
+      } catch (err) {
+        console.error("❌ Error al eliminar profesor:", err);
+      }
+    }
+  </script>
+</body>
+</html>

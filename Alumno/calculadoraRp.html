@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Rutinas</title>
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #181818;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px 20px 10px;
+      color: #14c0e5;
+      font-size: 21px;
+    }
+
+    .container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-top: 60px;
+}
+
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      flex: 1;
+      min-width: 160px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #14c0e5;
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+    .input-group button {
+      padding: 12px 24px;
+      font-weight: bold;
+      background-color: #14c0e5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .input-group button:hover {
+      background-color: #0da2c3;
+    }
+
+    .results h2 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #14c0e5;
+    }
+
+    .rep-max {
+      text-align: center;
+      font-size: 1.3em;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .percent-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      text-align: center;
+      margin-top: 25px;
+      gap: 15px;
+    }
+
+    .percent-table div {
+      background-color: #2e2e2e;
+      border: 1px solid #14c0e5;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+
+    
+    .info-section {
+      margin-top: 40px;
+    padding: 16px;
+    background-color: #2e2e2e;
+    border: 1px solid #14c0e5;
+    border-radius: 6px;
+    color: white;
+    width: 80%;
+    margin: auto;
+    margin-top: 102px;
+}
+
+  .info-section h2 {
+    margin-bottom: 15px;
+    color: #14c0e5;
+    font-size: 1.5em;
+  }
+
+  .info-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+
+  /* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    padding: 10px 0;
+    list-style: none;
+    border-radius: 8px;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    padding: 8px 16px;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background-color: #444;
+}
+
+/* Mostrar el menú al pasar el mouse */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.user-display {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 12px;
+            border-radius: 30px;
+            gap: 10px;
+        }
+
+        .avatar-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .logout-btn img:hover {
+            transform: scale(1.1);
+        }
+
+        .user-display #username {
+            font-weight: bold;
+            color: white;
+        }
+
+        .routine-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #222;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .ejercicio-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #333;
+            border-radius: 6px;
+        }
+        @media screen and (max-width: 768px) {
+    /* Estilo general del header */
+    header {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      background-color: #111;
+      border-bottom: 2px solid #14c0e5;
+    }
+
+    .container {
+    max-width: 312px;
+    margin: 20px auto;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-top: 60px;
+}
+
+    .fill {
+        font-size: 16px;
+        padding: 10px;
+        width: 150px;
+        border: 2px solid var(--color-fill);
+        border-radius: 5px;
+        background: #111111;
+        color: #ffffff;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+  
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
+  
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      z-index: 1100;
+    }
+  
+    .menu-toggle img {
+      width: 30px;
+      filter: invert(1);
+    }
+  
+    .menu-toggle.hidden {
+      display: none;
+    }
+  
+    
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: auto; 
+        }
+    
+  
+    .logo {
+      width: 70px;
+    }
+  
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #222;
+        padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
+        gap: 20px;
+        border-right: 2px solid #14c0e5;
+        z-index: 1050;
+        transition: left 0.3s ease;
+        margin-top: 0;
+      }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .nav-links li {
+      list-style: none;
+    }
+  
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      border-radius: 0;
+      background: none;
+    }
+  
+    .dropdown-menu li {
+      text-align: left;
+      padding-left: 10px;
+    }
+  
+    /* Usuario dentro del menú */
+    .user-display {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding: 9px 31px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid #14c0e5;
+    }
+
+    .avatar-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  
+    #username {
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      white-space: nowrap;
+    }
+  
+    .logout-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .logout-btn img {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s;
+    }
+  
+    .logout-btn img:hover {
+      transform: scale(1.1);
+    }
+
+    nav {
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+
+    .nav-1{
+        width: 65%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-2{
+        width: 20%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .logo2{
+        width: 100px;
+        display: flex;
+    }
+    .main-txt{
+        display: flex;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .routine-box {
+        padding: 20px;
+        background: #222;
+        color: white;
+        border-radius: 10px;
+        width: 80%;
+        margin: auto;
+        margin-top: 15px;
+    }
+
+    div#menu-toggle {
+        display: flex;
+    }
+
+    .dropdown-menu {
+  display: none;
+  flex-direction: column;
+}
+
+.dropdown-menu.active {
+  display: flex;
+}
+  }
+
+  
+  </style>
+</head>
+
+<header>
+  <nav>
+    <div class="nav-1">
+      <a style="display: flex; align-items: center;" href="index.html">
+        <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo" />
+        <img class="logo2" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="" />
+      </a>
+    </div>
+
+    <div class="nav-2" id="menu-toggle">
+      <img class="hambu" src="/img/menu.png.png" alt="Menú" width="50" />
+    </div>
+
+    <ul class="nav-links">
+      <li>
+        <div class="user-display">
+          <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon" />
+          <span id="username">Usuario</span>
+          <button id="logout" class="logout-btn">
+            <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;" />
+          </button>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Datos del alumno</a>
+        <ul class="dropdown-menu">
+          <li><a href="binvenido.html">Bienvenido</a></li>
+          <li><a href="datosDiarios.html">Datos alumno</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Calculadora</a>
+        <ul class="dropdown-menu">
+          <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+          <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+          <li><a href="#">Calorías</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Cronómetro</a></li>
+      <li><a href="#">Marcas personales</a></li>
+      <li><a href="#">Nutrición</a></li>
+    </ul>
+  </nav>
+</header>
+<body>
+  <h1>CALCULADORA REPETICIÓN MÁXIMA</h1>
+
+  <div class="container">
+    <div class="input-group">
+      <input type="number" id="peso" placeholder="Peso levantado (kg)">
+      <input type="number" id="reps" placeholder="Repeticiones (1-10)" min="1" max="10">
+      <button onclick="calcular1RM()">CALCULAR</button>
+    </div>
+
+    <div class="results">
+      <div id="rep-max" class="rep-max"></div>
+      <h2>REPETICIÓN MÁXIMA ESTIMADA</h2>
+      <div class="percent-table" id="resultados"></div>
+    </div>
+  </div>
+
+
+  <div class="info-section">
+    <h2>¿Qué es el 1RM y para qué sirve?</h2>
+    <p>
+      El 1RM, o "repetición máxima", representa el peso máximo que una persona puede levantar en un solo esfuerzo, manteniendo una buena técnica. 
+      Conocer tu 1RM te ayuda a establecer objetivos de entrenamiento claros, calcular intensidades adecuadas para cada sesión y medir tu progreso a lo largo del tiempo. 
+      Además, sirve como base para estructurar rutinas de fuerza y potencia de forma eficiente, optimizando resultados y reduciendo el riesgo de lesiones.
+    </p>
+  </div>
+  
+
+  <script>
+    function calcular1RM() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const reps = parseInt(document.getElementById('reps').value);
+
+      if (isNaN(peso) || isNaN(reps) || reps < 1 || reps > 10) {
+        alert('Por favor, ingresa un peso válido y repeticiones entre 1 y 10.');
+        return;
+      }
+
+      const repMax = peso * (1 + reps / 30);
+      document.getElementById('rep-max').textContent = `1RM estimado: ${repMax.toFixed(1)} kg`;
+
+      const porcentajes = [95, 90, 85, 80, 75, 70, 65, 60, 55, 50];
+
+      const resultadosHTML = porcentajes.map(p => {
+        const valor = (repMax * (p / 100)).toFixed(1);
+        return `<div><strong>${p}%</strong><br>${valor} kg</div>`;
+      }).join('');
+
+      document.getElementById('resultados').innerHTML = resultadosHTML;
+    }
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            if (userData && userData.nombre) {
+                document.getElementById("username").textContent = userData.nombre;
+            }
+            if (userData && userData.foto) {
+                document.getElementById("avatar-img").src = `http://localhost:3000${userData.foto}`;
+            }
+            const username = localStorage.getItem("user") || "Usuario";
+            document.getElementById("username").textContent = username;
+
+            const logoutBtn = document.getElementById("logout");
+            logoutBtn.addEventListener("click", () => {
+                localStorage.removeItem("user");
+                localStorage.removeItem("userData");
+                window.location.href = "login.html";
+            });
+
+            const avatarInput = document.createElement("input");
+            avatarInput.type = "file";
+            avatarInput.accept = "image/*";
+            avatarInput.style.display = "none";
+            document.body.appendChild(avatarInput);
+
+            document.getElementById("avatar-img").addEventListener("click", () => {
+                avatarInput.click();
+            });
+
+            avatarInput.addEventListener("change", async () => {
+                const file = avatarInput.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append("foto", file);
+
+                try {
+                    const userData = JSON.parse(localStorage.getItem("userData"));
+                    if (!userData || !userData.id) throw new Error("ID de usuario no encontrado");
+
+                    const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        document.getElementById("avatar-img").src = `http://localhost:3000${result.ruta}`;
+                        userData.foto = result.ruta;
+                        localStorage.setItem("userData", JSON.stringify(userData));
+                    } else {
+                        alert("Error al subir la imagen: " + result.error);
+                    }
+                } catch (error) {
+                    console.error("Error al subir imagen:", error);
+                }
+            });
+
+            const selectMonth = document.getElementById("select-month");
+            const selectWeek = document.getElementById("select-week");
+            const selectYear = document.getElementById("select-year");
+            const searchButton = document.getElementById("btn-search");
+            const routineBox = document.querySelector(".routine-box");
+
+            const currentYear = new Date().getFullYear();
+            for (let y = 2025; y <= currentYear + 10; y++) {
+                const opt = document.createElement("option");
+                opt.value = y;
+                opt.textContent = y;
+                selectYear.appendChild(opt);
+            }
+            selectYear.value = currentYear;
+
+            const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            meses.forEach((mes, i) => {
+                const opt = document.createElement("option");
+                opt.value = i + 1;
+                opt.textContent = mes;
+                selectMonth.appendChild(opt);
+            });
+            selectMonth.value = new Date().getMonth() + 1;
+
+            for (let i = 1; i <= 4; i++) {
+                const opt = document.createElement("option");
+                opt.value = i;
+                opt.textContent = "Semana " + i;
+                selectWeek.appendChild(opt);
+            }
+
+            async function getRutina() {
+                const user = JSON.parse(localStorage.getItem("userData"));
+                const mes = selectMonth.value;
+                const semana = selectWeek.value;
+                const anio = selectYear.value;
+
+                if (!user || !user.id) return;
+
+                try {
+                    const res = await fetch(`http://localhost:3000/planificacion?id_alumno=${user.id}&mes=${mes}&semana=${semana}`);
+                    const data = await res.json();
+
+                    if (!Array.isArray(data) || data.length === 0) {
+                        routineBox.innerHTML = `<p>No hay planificación para ${meses[mes - 1]} ${anio}, semana ${semana}.</p>`;
+                    } else {
+                        let html = `<h3>Planificación: ${meses[mes - 1]} ${anio}, Semana ${semana}</h3>`;
+                        data.forEach(ej => {
+                            html += `<div class="ejercicio-item">
+                                <p><strong>${ej.ejercicio}</strong></p>
+                                <p>Series: ${ej.series}, Reps: ${ej.repes}, Kg: ${ej.kg}</p>
+                                <p><a href="${ej.video}" target="_blank">Video explicativo</a></p>
+                            </div>`;
+                        });
+                        routineBox.innerHTML = html;
+                    }
+                } catch (err) {
+                    console.error("Error al obtener rutina:", err);
+                    routineBox.innerHTML = `<p>Error al cargar la rutina.</p>`;
+                }
+            }
+
+            searchButton.addEventListener("click", getRutina);
+            getRutina();
+        });
+  </script>
+</body>
+</html>

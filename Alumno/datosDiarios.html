@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Rutinas</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="datosDiarios.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<style>
+
+main {
+    width: 759px;
+    display: flow;
+}
+.grupo-selects {
+    display: flex
+;
+}
+
+</style>
+
+
+<body>
+
+    
+    <header>
+        <nav>
+              <div class="nav-1">
+                  <a style="display: flex; align-items: center;" href="index.html">
+                    <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+                    <img class="logo2" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+                  </a>
+              </div>
+              
+              <div class="nav-2" class="menu-toggle" id="menu-toggle">
+                <img class="hambu" src="/img/menu.png.png" alt="Menú" width="50">
+              </div>
+              <ul class="nav-links">
+                
+              
+                <!-- Aquí se coloca el bloque del usuario -->
+                <li>
+                  <div class="user-display">
+                    <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
+                    <span id="username">Usuario</span>
+                    <button id="logout" class="logout-btn">
+                      <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
+                    </button>
+                  </div>
+                </li>
+              
+                <li class="dropdown">
+                <a href="#">Datos del alumno</a>
+                <ul class="dropdown-menu">
+                <li><a href="binvenido.html">bienvenido</a></li>
+                <li><a href="datosDiarios.html">Datos alumno</a></li>
+
+
+                </ul>
+              </li>
+                <li class="dropdown">
+                  <a href="#">Calculadora</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="calculadoraRp.html">Calcular RP maxima</a></li>
+                    <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+                    <li><a href="#">Calorías</a></li>
+                  </ul>
+                </li>
+              
+                <li><a href="#">Cronómetro</a></li>
+                
+                <li><a href="#">Marcas personales</a></li>
+                <li><a href="#">Nutrición</a></li>
+              </ul>
+              
+    </header>
+
+    <main>
+
+
+
+<div class="contenedor-formulario">
+  <form id="form-datos-diarios" class="formulario-moderno">
+
+    <h1 class="titulo-formulario">Datos Diarios del Alumno</h1>
+    
+    <div class="grupo-selects">
+      <select id="anio"></select>
+      <select id="mes"></select>
+      <select id="semana">
+        <option value="1">Semana 1</option>
+        <option value="2">Semana 2</option>
+        <option value="3">Semana 3</option>
+        <option value="4">Semana 4</option>
+      </select>
+      <select id="dia"></select>
+    </div>
+
+    <div class="grupo-inputs">
+      <div class="input-col">
+        <label for="fatiga">Fatiga</label>
+        <select id="fatiga">
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+          <option value="Muy poca">Muy poca</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="alimentacion">Alimentación</label>
+        <select id="alimentacion">
+          <option value="Muy bueno">Muy bueno</option>
+          <option value="Bueno">Bueno</option>
+          <option value="Regular">Regular</option>
+          <option value="Malo">Malo</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="estres">Estrés</label>
+        <select id="estres">
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+          <option value="Muy poco">Muy poco</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="sensacion">Sensación en SQ, DL, DW</label>
+        <select id="sensacion">
+          <option value="Muy bueno">Muy bueno</option>
+          <option value="Bueno">Bueno</option>
+          <option value="Regular">Regular</option>
+          <option value="Malo">Malo</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="descanso">Descanso</label>
+        <select id="descanso">
+          <option value="Muy bueno">Muy bueno</option>
+          <option value="Bueno">Bueno</option>
+          <option value="Regular">Regular</option>
+          <option value="Malo">Malo</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="hidratacion">Hidratación</label>
+        <select id="hidratacion">
+          <option value="Muy bueno">Muy bueno</option>
+          <option value="Bueno">Bueno</option>
+          <option value="Regular">Regular</option>
+          <option value="Malo">Malo</option>
+        </select>
+      </div>
+    
+      <div class="input-col">
+        <label for="hipe">Hipe</label>
+        <select id="hipe">
+          <option value="Muy bueno">Muy bueno</option>
+          <option value="Bueno">Bueno</option>
+          <option value="Regular">Regular</option>
+          <option value="Malo">Malo</option>
+        </select>
+      </div>
+    
+      <div class="input-col full-width">
+        <button type="submit">Guardar Datos</button>
+      </div>
+    </div>
+    
+  </form>
+</div>
+
+          
+    
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const username = document.getElementById("username");
+          const avatar = document.getElementById("avatar-img");
+          const logout = document.getElementById("logout");
+          const form = document.getElementById("form-datos-diarios");
+      
+          const userData = JSON.parse(localStorage.getItem("userData"));
+      
+          if (!userData || !userData.id || !userData.nombre) {
+            window.location.href = "login.html";
+            return;
+          }
+      
+          // Mostrar nombre y foto del usuario logueado
+          username.textContent = userData.nombre;
+          if (userData.foto) {
+            avatar.src = `http://localhost:3000${userData.foto}`;
+          }
+      
+          // Cerrar sesión
+          logout.addEventListener("click", () => {
+            localStorage.removeItem("userData");
+            window.location.href = "login.html";
+          });
+      
+          // 🔁 Cargar años
+          const anioSelect = document.getElementById("anio");
+          const currentYear = new Date().getFullYear();
+          for (let y = currentYear; y <= currentYear + 5; y++) {
+            const opt = document.createElement("option");
+            opt.value = y;
+            opt.textContent = y;
+            anioSelect.appendChild(opt);
+          }
+          anioSelect.value = currentYear;
+      
+          // 🔁 Cargar meses
+          const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+          ];
+          const mesSelect = document.getElementById("mes");
+          meses.forEach((mes, i) => {
+            const opt = document.createElement("option");
+            opt.value = i + 1;
+            opt.textContent = mes;
+            mesSelect.appendChild(opt);
+          });
+          mesSelect.value = new Date().getMonth() + 1;
+      
+          // 🔁 Cargar semanas
+          const semanaSelect = document.getElementById("semana");
+          for (let i = 1; i <= 4; i++) {
+            const opt = document.createElement("option");
+            opt.value = i;
+            opt.textContent = `Semana ${i}`;
+            semanaSelect.appendChild(opt);
+          }
+      
+          // 🔁 Cargar días
+          const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+          const diaSelect = document.getElementById("dia");
+          dias.forEach((d, i) => {
+            const opt = document.createElement("option");
+            opt.value = i + 1;
+            opt.textContent = d;
+            diaSelect.appendChild(opt);
+          });
+      
+          // 📌 Guardar datos al enviar formulario
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+      
+            const body = {
+              id_alumno: userData.id,
+              anio: parseInt(anioSelect.value),
+              mes: parseInt(mesSelect.value),
+              semana: parseInt(semanaSelect.value),
+              dia: parseInt(diaSelect.value),
+              fatiga: document.getElementById("fatiga").value,
+              alimentacion: document.getElementById("alimentacion").value,
+              estres: document.getElementById("estres").value,
+              sensacion: document.getElementById("sensacion").value,
+              descanso: document.getElementById("descanso").value,
+              hidratacion: document.getElementById("hidratacion").value,
+              hipe: document.getElementById("hipe").value
+            };
+      
+            try {
+              const res = await fetch("http://localhost:3000/guardar-datos-diarios", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+              });
+      
+              const result = await res.json();
+      
+              if (res.ok) {
+                alert("Datos guardados correctamente");
+                form.reset();
+              } else {
+                alert("Error: " + result.error);
+              }
+            } catch (err) {
+              console.error("❌ Error al guardar datos diarios:", err);
+              alert("Error inesperado");
+            }
+          });
+        });
+      </script>
+      
+
+</body>
+</html>

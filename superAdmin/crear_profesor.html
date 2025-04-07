@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Profesor</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+   body {
+    color: white;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #17262b;
+}
+    form {
+      background: #2c2c2c;
+      padding: 30px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 300px;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #05e4dd;
+      border-radius: 5px;
+      background: #1e1e1e;
+      color: white;
+    }
+    button {
+      background: #05e4dd;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logo {
+    width: 185px;
+}
+  </style>
+</head>
+<body>
+
+  <img class="logo" src="img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="">
+  <h1>Crear Profesor</h1>
+  <form id="form-crear-profesor">
+    <input type="text" id="nombre" placeholder="Nombre de usuario" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <input type="text" id="dni" placeholder="DNI" required>
+    <button type="submit">Crear</button>
+  </form>
+
+  <script>
+    document.getElementById("form-crear-profesor").addEventListener("submit", async e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const password = document.getElementById("password").value;
+      const dni = document.getElementById("dni").value;
+
+      try {
+        const res = await fetch("http://localhost:3000/crear-profesor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre, password, dni })
+        });
+
+        const data = await res.json();
+        alert(data.message || data.error);
+        if (res.ok) {
+          document.getElementById("form-crear-profesor").reset();
+        }
+      } catch (err) {
+        console.error("Error al crear profesor:", err);
+      }
+    });
+  </script>
+</body>
+</html>

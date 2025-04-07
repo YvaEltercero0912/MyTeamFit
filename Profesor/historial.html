@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial de Planificaciones</title>
+  <link rel="stylesheet" href="admin.css">
+  <script defer src="historial.js"></script>
+  <link rel="stylesheet" href="historial.css">
+    
+ </head>
+<body>
+  <div class="logos">
+
+    <a href="admin.html">
+        <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+        <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+    </a>
+
+</div>
+  <h1>Historial de Planificaciones</h1>
+
+  <div class="filtros">
+    <input type="text" id="buscar-nombre" placeholder="Buscar usuario...">
+    <button onclick="buscarUsuario()"><img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+    <select id="filtro-anio"></select>
+    <select id="filtro-mes">
+      <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+      <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+      <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+      <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+    </select>
+
+    <select id="filtro-semana">
+      <option value="1">Semana 1</option>
+      <option value="2">Semana 2</option>
+      <option value="3">Semana 3</option>
+      <option value="4">Semana 4</option>
+    </select>
+
+    <!-- Agregalo dentro de .filtros -->
+<select id="filtro-dia">
+  <option value="1">Lunes</option>
+  <option value="2">Martes</option>
+  <option value="3">Miércoles</option>
+  <option value="4">Jueves</option>
+  <option value="5">Viernes</option>
+  <option value="6">Sábado</option>
+  <option value="7">Domingo</option>
+</select>
+
+    <button onclick="buscarPlanificacion()"><img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+  </div>
+
+  <div class="usuario-header" style="display:none" id="usuario-header">
+    <img id="foto-usuario" src="" alt="Foto usuario">
+    <h2 id="nombre-usuario">Usuario</h2>
+  </div>
+
+  <div id="resultado-planificacion">
+    <p>Selecciona un usuario, mes y semana para ver la planificación.</p>
+  </div>
+
+  
+</body>
+</html>

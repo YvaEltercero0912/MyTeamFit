@@ -1,0 +1,619 @@
+body {
+    background-color: #181818;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    scrollbar-width: thin;
+    scrollbar-color: #14c0e5 #1e1e1e;
+}
+
+
+
+body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Fondo del scroll */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #14c0e5; /* Color del scroll */
+    border-radius: 10px;
+    border: 2px solid #1e1e1e; /* Espacio alrededor */
+  }
+  
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: #0da2c3;
+  }
+header {
+    background-color: #111;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #00b8e1;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 76px;
+    margin-top: 32px;
+    font-size: 24px;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.user-menu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+}
+
+#user-icon {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #00b8e1;
+    margin-right: 16px;
+}
+
+
+select {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+}
+
+/* Estilos generales */
+:root {
+    --color-fill: #00b8e1;
+    --hover-fill: #00b8e1;
+}
+
+/* Contenedor de selects */
+.select-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos para los selects */
+.fill {
+    font-size: 16px;
+    padding: 10px;
+    width: 150px;
+    border: 2px solid #14c0e5;
+    border-radius: 5px;
+    background: #091416;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto de "Fill" en Hover */
+.fill:hover,
+.fill:focus {
+    box-shadow: inset 0 0 0 2em var(--hover-fill);
+    color: white;
+}
+
+select#select-year {
+    color: rgb(255, 254, 254);
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
+}
+
+select#select-month {
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
+}
+
+
+select#select-week {
+    color: rgb(253, 252, 252);
+    font-weight: 800;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Estilos para los enlaces sociales */
+.social-links-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.social-links {
+    padding: 0;
+    transform: translate(270px, 0);
+}
+
+.social-links li {
+    display: block;
+    margin: 5px;
+    background: rgba(0, 0, 0, 0.36);
+    width: 300px;
+    text-align: right;
+    padding: 10px;
+    border-radius: 0 30px 30px 0;
+    transition: all 1s;
+}
+
+.social-links li:hover {
+    transform: translate(-110px, 0);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.social-links li:hover a {
+    color: #000;
+}
+
+.social-links li:hover i {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.36);
+    transform: rotate(360deg);
+    transition: all 1s;
+}
+
+.social-links li i {
+    margin-left: 10px;
+    color: #000;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    transform: rotate(0deg);
+}
+
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo {
+    width: 92px;
+}
+nav {
+    display: flex
+;
+}
+
+.lupa{
+    width: 30px;
+}
+
+button#btn-search {
+    border: 2px solid #00b8e1;
+    width: 50px;
+    height: 50px;
+    background: #111111;
+    border-radius: 12px;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-container {
+    display: flex
+;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    padding: 10px 0;
+    list-style: none;
+    border-radius: 8px;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    padding: 8px 16px;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li:hover {
+    background-color: #444;
+}
+
+/* Mostrar el menú al pasar el mouse */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.user-display {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 12px;
+    border-radius: 30px;
+    gap: 10px;
+    width: 200px;
+}
+
+.avatar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.logout-btn img:hover {
+    transform: scale(1.1);
+}
+
+.user-display #username {
+    font-weight: bold;
+    color: white;
+}
+
+.routine-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+}
+
+.ejercicio-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #333;
+    border-radius: 6px;
+}
+
+/* Ocultar por defecto */
+.menu-toggle {
+    display: none;
+  }
+
+.logo2{
+    display: none;
+}
+
+div#menu-toggle {
+    display: none;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0px;
+}
+  
+
+
+  @media screen and (max-width: 768px) {
+    /* Estilo general del header */
+    header {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      background-color: #111;
+      border-bottom: 2px solid #14c0e5;
+    }
+
+    .fill {
+        font-size: 16px;
+        padding: 10px;
+        width: 150px;
+        border: 2px solid var(--color-fill);
+        border-radius: 5px;
+        background: #111111;
+        color: #ffffff;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+  
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
+  
+    .menu-toggle {
+      display: block;
+      cursor: pointer;
+      z-index: 1100;
+    }
+  
+    .menu-toggle img {
+      width: 30px;
+      filter: invert(1);
+    }
+  
+    .menu-toggle.hidden {
+      display: none;
+    }
+  
+    
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: auto; 
+        }
+    
+  
+    .logo {
+      width: 70px;
+    }
+  
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #222;
+        padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
+        gap: 20px;
+        border-right: 2px solid #14c0e5;
+        z-index: 1050;
+        transition: left 0.3s ease;
+        margin-top: 0;
+      }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .nav-links li {
+      list-style: none;
+    }
+  
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      border-radius: 0;
+      background: none;
+    }
+  
+    .dropdown-menu li {
+      text-align: left;
+      padding-left: 10px;
+    }
+  
+    /* Usuario dentro del menú */
+    .user-display {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding: 9px 31px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid #14c0e5;
+    }
+
+    .avatar-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  
+    #username {
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      white-space: nowrap;
+    }
+  
+    .logout-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .logout-btn img {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s;
+    }
+  
+    .logout-btn img:hover {
+      transform: scale(1.1);
+    }
+
+    nav {
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+
+    .nav-1{
+        width: 65%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-2{
+        width: 20%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .logo2{
+        width: 100px;
+        display: flex;
+    }
+    .main-txt {
+        display: flex;
+        width: 90%;
+        justify-content: center;
+        margin-top: 46px;
+    }
+
+    .select-container {
+        display: flex
+    ;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+        width: 452px;
+    }
+}
+
+.routine-box {
+    padding: 20px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+    width: 45%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+    div#menu-toggle {
+        display: flex;
+    }
+
+
+    .dropdown-menu {
+        display: none;
+        flex-direction: column;
+      }
+      
+      .dropdown-menu.active {
+        display: flex;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #222;
+        border-radius: 10px;
+        padding: 30px 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 650px;
+    }
+
+    input, select {
+        width: 97%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #14c0e5;
+        border-radius: 5px;
+        background-color: #1e1e1e;
+        color: white;
+    }
+  
+    .tabla-rutina {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: white;
+        font-family: "Roboto", sans-serif;
+        box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      }
+      
+      .tabla-rutina th {
+        background-color: #88cedd;
+        color: black;
+        padding: 10px;
+        text-align: center;
+        font-weight: 800;
+    }
+      
+      .tabla-rutina td {
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 1px solid #00b8e1;
+        background-color: black;
+    }
+
+    
+    
+    
+      
+      /* Colores personalizados por tipo */
+      .rojo     { background-color: #e53935; color: white; }
+      .negro    { background-color: #000; color: white; }
+      .verde    { background-color: #4caf50; color: white; }
+      
+      /* Filas normales alternadas */
+      .tabla-rutina tr:not(.rojo):not(.negro):not(.verde):nth-child(even) {
+        background-color: #f5f5f5;
+      }
+      
+      .icono-play {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        filter: brightness(0) invert(1); /* opcional para fondo oscuro */
+      }
+      
+      .icono-play:hover {
+        transform: scale(1.2);
+      }
+
+      .hambu {
+        display: none;
+
+      }
