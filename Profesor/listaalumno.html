@@ -3,49 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Alumnos</title>
+  <link rel="stylesheet" href="listaalumno.css">
   <style>
     body {
       background-color: #1a1a1a;
       color: white;
       font-family: Arial, sans-serif;
-      padding: 20px;
     }
 
-    h1 {
-      text-align: center;
-      color: #00e0e0;
-    }
 
     .buscador {
       text-align: center;
       margin-bottom: 20px;
     }
 
-    .buscador input {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 300px;
-      background-color: #2c2c2c;
-      color: white;
-      border: 2px solid #00e0e0;
-    }
 
-    .alumno {
-      background-color: #2c2c2c;
-      border: 1px solid #00e0e0;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 15px;
-      width: 16%;
-    }
-
-    div#lista-alumnos {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: start;
-    }
 
     .alumno h3 {
       margin: 0 0 10px;
@@ -72,15 +44,6 @@
       border: 1px solid #00e0e0;
     }
 
-    button.guardar {
-      background-color: #00e0e0;
-      color: black;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
 
     button.guardar:hover {
       background-color: #00baba;
@@ -92,31 +55,61 @@
       color: #00e0e0;
     }
 
-    .btn-eliminar {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 5px;
-    }
 
-    .btn-eliminar:hover {
-      background-color: #c0392b;
-    }
   </style>
 </head>
 <body>
 
-  <h1>Lista de Alumnos</h1>
+  <nav class="nav-contenedor">
 
-  <div class="buscador">
-    <input type="text" id="busqueda" placeholder="Buscar alumno por nombre...">
-  </div>
+    <div class="nav-1">
 
-  <div id="lista-alumnos">
-    <!-- Se llena por JavaScript -->
+        <a style="display: flex; justify-content: center; align-items: center;" href="admin.html">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
+
+    </div>
+
+    <div class="nav-2">
+
+        <button class="boton-nav" onclick="window.location.href='crear_usuario.html'">Crear Usuario</button>
+        <button class="boton-nav" onclick="window.location.href='listaalumno.html'">Lista de Alumnos</button>
+        <button class="boton-nav" onclick="window.location.href='historial.html'">Historial de planificaciones</button>
+        <button class="boton-nav" onclick="window.location.href='bienvenido_profesor.html'">Datos del alumno</button> 
+        <button class="boton-nav" onclick="window.location.href='nutrcionista_admin.html'">Nutrición</button>
+
+    </div>
+
+    <div class="nav-3">
+
+        <!-- Parte superior: nombre del profesor y logout -->
+    <div id="encabezado" class="encabezado">
+        <img class="perfil" src="/img/profe.avif" alt="">
+        <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
+      </div>
+
+    </div>
+
+  </nav>
+
+  <div class="contenedor-1">
+
+    <div>
+
+      <h1>Lista de Alumnos</h1>
+
+      <div class="buscador">
+        <input type="text" id="busqueda" placeholder="Buscar alumno por nombre...">
+        <img src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="Buscar">
+      </div>
+    
+      <div id="lista-alumnos">
+        <!-- Se llena por JavaScript -->
+      </div>
+      
+    </div>
+
   </div>
 
   <script>
@@ -149,24 +142,27 @@
     }
   
     function mostrarAlumnos(alumnos) {
-  lista.innerHTML = "";
+  lista.innerHTML = `
+    <div class="tabla-excel">
+      <div class="celda encabezado">Nombre</div>
+      <div class="celda encabezado">Fecha de inicio</div>
+      <div class="celda encabezado">Fecha de vencimiento</div>
+      <div class="celda encabezado">Acciones</div>
+    </div>
+  `;
+
+  const tabla = lista.querySelector(".tabla-excel");
+
   alumnos.forEach(al => {
-    const div = document.createElement("div");
-    div.className = "alumno";
-    div.innerHTML = `
-      <h3>${al.nombre}</h3>
-      <div class="fechas">
-        <label>Fecha de inicio:
-          <input type="date" id="inicio-${al.id}" value="${formatearFecha(al.fecha_inicio)}">
-        </label>
-        <label>Fecha de vencimiento:
-          <input type="date" id="vencimiento-${al.id}" value="${formatearFecha(al.fecha_vencimiento)}">
-        </label>
+    tabla.innerHTML += `
+      <div class="celda">${al.nombre}</div>
+      <div class="celda"><input type="date" id="inicio-${al.id}" value="${formatearFecha(al.fecha_inicio)}"></div>
+      <div class="celda"><input type="date" id="vencimiento-${al.id}" value="${formatearFecha(al.fecha_vencimiento)}"></div>
+      <div class="celda">
+        <button class="guardar" onclick="guardarFechas(${al.id})">Guardar</button>
+        <button class="btn-eliminar" onclick="eliminarAlumno(${al.id})">Eliminar</button>
       </div>
-      <button class="guardar" onclick="guardarFechas(${al.id})">Guardar</button>
-      <button class="btn-eliminar" onclick="eliminarAlumno(${al.id})">Eliminar</button>
     `;
-    lista.appendChild(div);
   });
 }
   

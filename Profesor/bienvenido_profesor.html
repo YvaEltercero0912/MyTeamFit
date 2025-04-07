@@ -5,26 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Datos del Alumno</title>
   <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="bienvenido_profesor.css">
   <style>
-    body {
-    background-color: #0f1115;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0px 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-h1, h3 {
-    color: #3fe0f8;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
-}
 
-    select, button {
+
+    select {
       background-color: #1f1f1f;
       color: #fff;
       border: 2px solid #3fe0f8;
@@ -92,17 +78,9 @@ h1, h3 {
     padding-bottom: 35px;
 }
 
-img.logo {
-    width: 92px;
-}
-
-img.mtf {
-    width: 150px;
-}
 
 a {
-    display: flex
-;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -125,89 +103,105 @@ h1, h3 {
 </head>
 <body>
 
-  <header>
-    <div id="encabezado" style="text-align: right; padding: 10px 30px; display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
-      <span id="profesor-nombre" style="font-weight: bold;">Profesor: </span>
-      <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" style="width: 30px; height: 30px; cursor: pointer;" />
-    </div>
-      </div>
 
-    <div class="logos">
+
+  <nav class="nav-contenedor">
+
+    <div class="nav-1">
 
         <a href="admin.html">
             <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
-        </a>
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
 
     </div>
-    <div class="header-container">
-        <h1>Panel de Administrador</h1>    
+
+    <div class="nav-2">
+
+        <button class="boton-nav" id="btn-create-user">Crear Usuario</button>
+        <button class="boton-nav" onclick="window.location.href='listaalumno.html'">Lista de Alumnos</button>
+        <button class="boton-nav" onclick="window.location.href='historial.html'">Historial de planificaciones</button>
+        <button class="boton-nav" onclick="window.location.href='bienvenido_profesor.html'">Datos del alumno</button> 
+        <button class="boton-nav" onclick="window.location.href='nutrcionista_admin.html'">Nutrición</button>
+
     </div>
 
-    <div class="top-bar">
-        <button onclick="window.location.href='crear_usuario.html'" >Crear Usuario</button>
-        <button onclick="window.location.href='listaalumno.html'">Lista de Alumnos</button>
-        <button onclick="window.location.href='historial.html'">Historial de planificaciones</button>
-        <button onclick="window.location.href='bienvenido_profesor.html'">Datos del alumno</button> 
-        <button onclick="window.location.href='nutrcionista_admin.html'">Nutrición</button>
+    <div class="nav-3">
 
+        <!-- Parte superior: nombre del profesor y logout -->
+    <div id="encabezado" class="encabezado">
+        <img class="perfil" src="/img/profe.avif" alt="">
+        <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
       </div>
-</header>
 
-  <div class="contenedor-principal">
-
-    <h1>Datos del Alumno</h1>
-
-    <div style="text-align:center;">
-      <select id="alumno-select">
-        <option value="">Seleccione un alumno</option>
-      </select>
     </div>
+
+  </nav>
+
+    <!-- Encabezado del panel -->
+<div class="header-container">
+  <h1>Panel de Administrador</h1>    
+</div>
+
+<!-- Contenedor principal -->
+<div class="contenedor-principal">
   
-    <div class="datos-container" id="datos-alumno" style="display: none;">
-      <p><label>Coach:</label> <span id="coach"></span></p>
-      <p><label>Objetivo:</label> <span id="objetivo"></span></p>
-      <p><label>Sexo:</label> <span id="sexo"></span></p>
-      <p><label>RMS:</label> <span id="rms"></span></p>
-      <p><label>Modalidad:</label> <span id="modalidad"></span></p>
-      <p><label>Profesión:</label> <span id="profesion"></span></p>
-      <p><label>Lesiones o Patologías:</label> <span id="lesiones"></span></p>
-    </div>
-  
-  
-    <div id="seleccion-fecha" style="display: none; text-align: center; margin-top: 20px;">
-      <select id="anio"></select>
-      <select id="mes"></select>
-      <select id="semana">
-        <option value="1">Semana 1</option>
-        <option value="2">Semana 2</option>
-        <option value="3">Semana 3</option>
-        <option value="4">Semana 4</option>
-      </select>
-      <select id="dia">
-        <option value="1">Lunes</option>
-        <option value="2">Martes</option>
-        <option value="3">Miércoles</option>
-        <option value="4">Jueves</option>
-        <option value="5">Viernes</option>
-        <option value="6">Sábado</option>
-        <option value="7">Domingo</option>
-      </select>
-      <button id="btn-buscar-datos">Buscar datos diarios</button>
-    </div>
-    
-    <div id="datos-diarios" class="datos-container" style="display: none;">
-      <h3>Datos Diarios</h3>
-      <p><strong>Fatiga:</strong> <span id="fatiga"></span></p>
-      <p><strong>Alimentación:</strong> <span id="alimentacion"></span></p>
-      <p><strong>Estrés:</strong> <span id="estres"></span></p>
-      <p><strong>Sensación:</strong> <span id="sensacion"></span></p>
-      <p><strong>Descanso:</strong> <span id="descanso"></span></p>
-      <p><strong>Hidratación:</strong> <span id="hidratacion"></span></p>
-      <p><strong>Hipe:</strong> <span id="hipe"></span></p>
-    </div>
+  <h1>Datos del Alumno</h1>
 
+  <!-- Selector de alumno -->
+  <div style="text-align: center;">
+    <select id="alumno-select">
+      <option value="">Seleccione un alumno</option>
+    </select>
   </div>
+
+  <!-- Datos personales del alumno -->
+  <div class="datos-container" id="datos-alumno" style="display: none;">
+    <p><label>Coach:</label> <span id="coach"></span></p>
+    <p><label>Objetivo:</label> <span id="objetivo"></span></p>
+    <p><label>Sexo:</label> <span id="sexo"></span></p>
+    <p><label>RMS:</label> <span id="rms"></span></p>
+    <p><label>Modalidad:</label> <span id="modalidad"></span></p>
+    <p><label>Profesión:</label> <span id="profesion"></span></p>
+    <p><label>Lesiones o Patologías:</label> <span id="lesiones"></span></p>
+  </div>
+
+  <!-- Filtros para fecha -->
+  <div id="seleccion-fecha" style="display: none; text-align: center; margin-top: 20px;">
+    <select id="anio"></select>
+    <select id="mes"></select>
+    <select id="semana">
+      <option value="1">Semana 1</option>
+      <option value="2">Semana 2</option>
+      <option value="3">Semana 3</option>
+      <option value="4">Semana 4</option>
+    </select>
+    <select id="dia">
+      <option value="1">Lunes</option>
+      <option value="2">Martes</option>
+      <option value="3">Miércoles</option>
+      <option value="4">Jueves</option>
+      <option value="5">Viernes</option>
+      <option value="6">Sábado</option>
+      <option value="7">Domingo</option>
+    </select>
+    <button id="btn-buscar-datos">Buscar datos diarios</button>
+  </div>
+
+  <!-- Datos diarios del alumno -->
+  <div id="datos-diarios" class="datos-container" style="display: none;">
+    <h3>Datos Diarios</h3>
+    <p><strong>Fatiga:</strong> <span id="fatiga"></span></p>
+    <p><strong>Alimentación:</strong> <span id="alimentacion"></span></p>
+    <p><strong>Estrés:</strong> <span id="estres"></span></p>
+    <p><strong>Sensación:</strong> <span id="sensacion"></span></p>
+    <p><strong>Descanso:</strong> <span id="descanso"></span></p>
+    <p><strong>Hidratación:</strong> <span id="hidratacion"></span></p>
+    <p><strong>Hipe:</strong> <span id="hipe"></span></p>
+  </div>
+
+</div>
+
 
 
   <script>

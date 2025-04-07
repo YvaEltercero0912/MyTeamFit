@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    background-color: rgb(37, 37, 37);
+  }
+
+  .nav-contenedor{
+    width: 100%;
+    background-color: #363636;
+    height: 60px;
+    display: flex;
+  }
+
+  .nav-1 {
+    display: flex
+;
+    width: 15%;
+    justify-content: center;
+}
+
+  .nav-2 {
+    width: 65%;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.nav-3 {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .logo {
+    width: 60px;
+}
+
+.mtf {
+    width: 150px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.boton-nav {
+    padding: 10px 20px;
+    gap: 10px;
+    background: #00dcd517;
+    border: 0px solid;
+    border-radius: 13px;
+    color: #fffffff3;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.boton-nav:hover{
+    background-color: #05e4dd;
+}
+
+img#logout-btn {
+    width: 20px;
+}
+
+.perfil{
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid #05e4dd91;
+    transition: 0,5s;
+}
+
+.perfil:hover{
+    border: 2px solid #05e4dd91;
+}
+
+div#encabezado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+div#lista-alumnos {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+span#profesor-nombre {
+    color: #ffffffe3;
+}
+
+.contenedor-1{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+.tabla-excel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+  }
+  
+  .celda {
+    border: 1px solid #333;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  input[type="date"] {
+    background-color: #2c2c2c;
+    color: white;
+    border: 1px solid #444;
+    padding: 6px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .guardar {
+    background-color: #00c9a7;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .btn-eliminar {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .guardar:hover,
+  .btn-eliminar:hover {
+    opacity: 0.9;
+  }
+
+  button.guardar {
+    background-color: #00e0e0;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-eliminar {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.buscador {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  .buscador input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* espacio a la izquierda para la lupa */
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .buscador img {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* permite hacer clic en el input aunque esté encima la imagen */
+  }
+
+  button.guardar {
+    background-color: #00e0e0;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0px;
+}
+
+.celda {
+    border: 1px solid #333;
+    padding: 12px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+  

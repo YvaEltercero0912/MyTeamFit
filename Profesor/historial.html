@@ -10,56 +10,112 @@
     
  </head>
 <body>
-  <div class="logos">
 
-    <a href="admin.html">
-        <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-        <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
-    </a>
+
+
+  <nav class="nav-contenedor">
+
+    <div class="nav-1">
+
+        <a href="admin.html">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
+
+    </div>
+
+    <div class="nav-2">
+
+        <button class="boton-nav" id="btn-create-user">Crear Usuario</button>
+        <button class="boton-nav" onclick="window.location.href='listaalumno.html'">Lista de Alumnos</button>
+        <button class="boton-nav" onclick="window.location.href='historial.html'">Historial de planificaciones</button>
+        <button class="boton-nav" onclick="window.location.href='bienvenido_profesor.html'">Datos del alumno</button> 
+        <button class="boton-nav" onclick="window.location.href='nutrcionista_admin.html'">Nutrición</button>
+
+    </div>
+
+    <div class="nav-3">
+
+        <!-- Parte superior: nombre del profesor y logout -->
+    <div id="encabezado" class="encabezado">
+        <img class="perfil" src="/img/profe.avif" alt="">
+        <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
+      </div>
+
+    </div>
+
+  </nav>
+
 
 </div>
-  <h1>Historial de Planificaciones</h1>
+
+
+<h1>Historial de Planificaciones</h1>
+
+<div class="contenedor-1">
 
   <div class="filtros">
-    <input type="text" id="buscar-nombre" placeholder="Buscar usuario...">
-    <button onclick="buscarUsuario()"><img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+    <!-- Buscador de usuario -->
+    <div class="campo-busqueda">
+      <img src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="Buscar">
+      <input type="text" id="buscar-nombre" placeholder="Buscar usuario...">
+    </div>
+    
+  
+    <!-- Filtros de año, mes, semana y día -->
     <select id="filtro-anio"></select>
+  
     <select id="filtro-mes">
-      <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
-      <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
-      <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
-      <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+      <option value="1">Enero</option>
+      <option value="2">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
     </select>
-
+  
     <select id="filtro-semana">
       <option value="1">Semana 1</option>
       <option value="2">Semana 2</option>
       <option value="3">Semana 3</option>
       <option value="4">Semana 4</option>
     </select>
-
-    <!-- Agregalo dentro de .filtros -->
-<select id="filtro-dia">
-  <option value="1">Lunes</option>
-  <option value="2">Martes</option>
-  <option value="3">Miércoles</option>
-  <option value="4">Jueves</option>
-  <option value="5">Viernes</option>
-  <option value="6">Sábado</option>
-  <option value="7">Domingo</option>
-</select>
-
-    <button onclick="buscarPlanificacion()"><img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-  </div>
-
-  <div class="usuario-header" style="display:none" id="usuario-header">
+  
+    <select id="filtro-dia">
+      <option value="1">Lunes</option>
+      <option value="2">Martes</option>
+      <option value="3">Miércoles</option>
+      <option value="4">Jueves</option>
+      <option value="5">Viernes</option>
+      <option value="6">Sábado</option>
+      <option value="7">Domingo</option>
+    </select>
+  
+    <div class="campo-busqueda-planificacion">
+      <img src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="Buscar">
+      <input type="text" id="buscar-planificacion" placeholder="Buscar planificación...">
+    </div>
+    
+  
+  <!-- Información del usuario (visible cuando se selecciona) -->
+  <div class="usuario-header" id="usuario-header" style="display: none;">
     <img id="foto-usuario" src="" alt="Foto usuario">
     <h2 id="nombre-usuario">Usuario</h2>
   </div>
-
+  
+  <!-- Resultado de la planificación -->
   <div id="resultado-planificacion">
     <p>Selecciona un usuario, mes y semana para ver la planificación.</p>
   </div>
+
+</div>
+
 
   
 </body>

@@ -11,6 +11,7 @@ for (let i = 2025; i <= currentYear + 5; i++) {
   selectAnio.appendChild(option);
 }
 
+
 // Cargar mes actual automáticamente
 document.getElementById("filtro-mes").value = new Date().getMonth() + 1;
 
@@ -136,3 +137,10 @@ async function eliminarTodaPlanificacion(id_alumno, anio, mes, semana, dia) {
     console.error("Error al eliminar planificación:", err);
   }
 }
+
+document.getElementById("buscar-nombre").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    buscarUsuario();
+  }
+});
+
