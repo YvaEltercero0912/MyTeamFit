@@ -1,0 +1,111 @@
+CREATE DATABASE IF NOT EXISTS entrenamiento;
+USE entrenamiento;
+
+
+CREATE TABLE IF NOT EXISTS profesores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    cupo_maximo INT DEFAULT 10,
+    alumnos_actuales INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS alumnos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_profesor INT NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  foto VARCHAR(255),
+  password VARCHAR(255) NOT NULL,
+  fecha_inicio DATE,
+  fecha_vencimiento DATE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  
+
+  FOREIGN KEY (id_profesor) REFERENCES profesores(id)
+);
+
+CREATE TABLE IF NOT EXISTS planificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_alumno INT NOT NULL,
+    anio INT NOT NULL,
+    mes INT NOT NULL,
+    semana INT NOT NULL,
+    dia TINYINT NOT NULL CHECK (dia BETWEEN 1 AND 7),
+    ejercicio VARCHAR(100),
+    series INT,
+    repes INT,
+    kg INT,
+    nota TEXT,
+    video VARCHAR(255),
+    tipo ENUM('basico', 'accesorio') DEFAULT 'accesorio',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_alumno) REFERENCES alumnos(id)
+);
+
+CREATE TABLE IF NOT EXISTS datos_alumno (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_alumno INT NOT NULL,
+    coach VARCHAR(100),
+    objetivo VARCHAR(255),
+    sexo ENUM('Masculino', 'Femenino', 'Otro'),
+    rms VARCHAR(100),
+    modalidad VARCHAR(100),
+    profesion VARCHAR(100),
+    lesiones TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_alumno) REFERENCES alumnos(id)
+);
+
+CREATE TABLE IF NOT EXISTS datos_diarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_alumno INT NOT NULL,
+  anio INT NOT NULL,
+  mes INT NOT NULL,
+  semana INT NOT NULL,
+  dia TINYINT NOT NULL,
+  fatiga VARCHAR(20),
+  alimentacion VARCHAR(20),
+  estres VARCHAR(20),
+  sensacion VARCHAR(20),
+  descanso VARCHAR(20),
+  hidratacion VARCHAR(20),
+  hipe VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_alumno) REFERENCES alumnos(id)
+);
+ALTER TABLE planificaciones
+ADD COLUMN tipo ENUM('basico', 'accesorio') DEFAULT 'accesorio';
+
+
+ALTER TABLE planificaciones ADD COLUMN anio INT NOT NULL AFTER id_alumno;
+ALTER TABLE planificaciones ADD COLUMN dia INT NOT NULL AFTER id_alumno;
+ALTER TABLE planificaciones ADD COLUMN nota TEXT AFTER kg;
+ALTER TABLE profesores ADD COLUMN activo BOOLEAN DEFAULT TRUE;
+ALTER TABLE profesores ADD COLUMN bloqueado BOOLEAN DEFAULT 0;
+
+
+ALTER TABLE alumnos ADD COLUMN fecha_inscripcion DATE,
+ADD COLUMN fecha_vencimiento DATE;
+
+
+DROP TABLE alumnos;
+
+SHOW TABLES;
+
+
+DESCRIBE usuarios;
+DESCRIBE planificaciones;
+describe profeores;
+describe datos_alumno;
+describe datos_diarios;
+
+
+
+SELECT * FROM profesores;
+SELECT * FROM alumnos;
+SELECT * FROM planificaciones;
+SELECT * FROM datos_alumno;
+SELECT * FROM datos_diarios;
