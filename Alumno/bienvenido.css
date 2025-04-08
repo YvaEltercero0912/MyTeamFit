@@ -34,29 +34,16 @@ main {
   
   .form-container {
     background-color: #1f1f1f;
-    padding: 30px 40px;
+    padding: 25px 23px;
     border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-    width: 100%;
-    max-width: 500px;
-    display: flex;
+    box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+    max-width: 370px;
+    display: flex
+;
     flex-direction: column;
     gap: 20px;
-  }
+}
   
-  .form-container input,
-  .form-container select,
-  .form-container textarea {
-    background-color: #2a2a2a;
-    border: 1px solid #00ffff;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 1rem;
-    color: #fff;
-    outline: none;
-    width: 100%;
-    resize: none;
-  }
   
   .form-container select option {
     background-color: #2a2a2a;
@@ -79,30 +66,7 @@ main {
     background-color: #00cccc;
   }
 
-  .form-container {
-    background-color: #1f1f1f;
-    padding: 30px 40px;
-    border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
-.form-container {
-    background-color: #1f1f1f;
-    padding: 25px 23px;
-    border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
-    width: 100%;
-    max-width: 370px;
-    display: flex
-;
-    flex-direction: column;
-    gap: 20px;
-}
 select#sexo {
     margin-left: 0px;
     margin-right: 0px;

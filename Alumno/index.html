@@ -12,57 +12,78 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-              <div class="nav-1">
-                  <a style="display: flex; align-items: center;" href="index.html">
-                    <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-                    <img class="logo2" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
-                  </a>
-              </div>
-              
-              <div class="nav-2" class="menu-toggle" id="menu-toggle">
-                <img class="hambu" src="/img/menu.png.png" alt="Menú" width="50">
-              </div>
-              <ul class="nav-links">
-                
-              
-                <!-- Aquí se coloca el bloque del usuario -->
-                <li>
-                  <div class="user-display">
-                    <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
-                    <span id="username">Usuario</span>
-                    <button id="logout" class="logout-btn">
-                      <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
-                    </button>
-                  </div>
-                </li>
-              
-                <li class="dropdown">
-                <a href="#">Datos del alumno</a>
-                <ul class="dropdown-menu">
-                <li><a href="binvenido.html">bienvenido</a></li>
-                <li><a href="datosDiarios.html">Datos alumno</a></li>
 
 
-                </ul>
-              </li>
-                <li class="dropdown">
-                  <a href="#">Calculadora</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="calculadoraRp.html">Calcular RP maxima</a></li>
-                    <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
-                    <li><a href="#">Calorías</a></li>
-                  </ul>
-                </li>
-              
-                <li><a href="cronometro.html">Cronómetro</a></li>
-                
-                <li><a href="#">Marcas personales</a></li>
-                <li><a href="#">Nutrición</a></li>
-              </ul>
-              
-    </header>
+
+
+
+<nav class="nav-contenedor">
+
+    <div class="nav-1">
+
+        <a style="display: flex
+        ;
+            justify-content: center;
+            align-items: center;" href="admin.html">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
+
+    </div>
+
+    <div class="nav-2">
+      <!-- Botón con dropdown: Datos del alumno -->
+      <button class="boton-nav dropdown">
+        Datos del alumno
+        <ul class="dropdown-menu">
+          <li><a href="binvenido.html">Bienvenido</a></li>
+          <li><a href="datosDiarios.html">Datos alumno</a></li>
+        </ul>
+      </button>
+    
+      <!-- Botón con dropdown: Calculadora -->
+      <button class="boton-nav dropdown">
+        Calculadora
+        <ul class="dropdown-menu">
+          <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+          <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+          <li><a href="#">Calorías</a></li>
+        </ul>
+      </button>
+    
+      <!-- Botones sin dropdown -->
+      <button class="boton-nav" onclick="window.location.href='cronometro.html'">
+        Cronómetro
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Marcas personales
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Nutrición
+      </button>
+    </div>
+    
+
+    <div class="nav-3">
+
+        <!-- Aquí se coloca el bloque del usuario -->
+          <div class="user-display">
+            <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
+            <span id="username">Usuario</span>
+            <button id="logout" class="logout-btn">
+              <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
+            </button>
+          </div>
+
+    </div>
+
+  </nav>
+
+
+
+
+
+
 
     <main>
         <h2 class="main-txt">Tu rutina:</h2>
