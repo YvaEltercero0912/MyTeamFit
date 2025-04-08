@@ -43,9 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
   for (let i = 1; i <= 7; i++) {
     const option = document.createElement("option");
     option.value = i;
-    option.textContent = `${i} - ${days[i]}`;
+    option.textContent = days[i]; // Solo se muestra el nombre del día, no el número
     selectDia.appendChild(option);
   }
+
+  // Seleccionar el día actual automáticamente
+  const currentDay = new Date().getDay(); // Devuelve un número del 0 (domingo) al 6 (sábado)
+  const dayToSelect = currentDay === 0 ? 7 : currentDay; // Si es domingo, selecciona el lunes
+  selectDia.value = dayToSelect;
 
   const usernameDisplay = document.getElementById("username");
   const avatarImg = document.getElementById("avatar-img");
@@ -168,24 +173,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchButton.addEventListener("click", getRutina);
   getRutina();
-});
-
-// Menú hamburguesa
-const toggleMenu = document.getElementById('menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-toggleMenu.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  toggleMenu.classList.toggle('hidden');
-});
-
-document.addEventListener('click', function (event) {
-  const isClickInsideMenu = navLinks.contains(event.target);
-  const isClickOnToggle = toggleMenu.contains(event.target);
-  const isClickOnLink = event.target.closest('.nav-links a');
-
-  if (!isClickInsideMenu && !isClickOnToggle || isClickOnLink) {
-    navLinks.classList.remove('active');
-    toggleMenu.classList.remove('hidden');
-  }
 });

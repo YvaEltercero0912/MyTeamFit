@@ -81,13 +81,11 @@
 
     </div>
 
-    <div class="nav-3">
-
-        <!-- Parte superior: nombre del profesor y logout -->
     <div id="encabezado" class="encabezado">
-        <img class="perfil" src="/img/profe.avif" alt="">
-        <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
-      </div>
+            
+      <span id="profesor-nombre" style="font-weight: bold;"></span>
+      <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
+  </div>
 
     </div>
 
@@ -125,6 +123,21 @@
         return;
       }
   
+      // Mostrar nombre del profesor en la parte superior
+      const profesorNombre = document.getElementById("profesor-nombre");
+      if (profesorNombre) {
+        profesorNombre.textContent = `Profesor: ${profesor.nombre}`;
+      }
+  
+      // Configurar el botón de logout
+      const logoutBtn = document.getElementById("logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          sessionStorage.removeItem('profesor');  // Elimina la sesión del profesor
+          window.location.href = "login.html";  // Redirige al login
+        });
+      }
+  
       try {
         const res = await fetch(`http://localhost:3000/alumnos-profesor/${profesor.id}`);
         const alumnos = await res.json();
@@ -138,33 +151,33 @@
     function formatearFecha(fechaStr) {
       if (!fechaStr) return "";
       const fecha = new Date(fechaStr);
-      return fecha.toISOString().split("T")[0]; // Devuelve formato yyyy-MM-dd
+      return fecha.toISOString().split("T")[0];  // Devuelve formato yyyy-MM-dd
     }
   
     function mostrarAlumnos(alumnos) {
-  lista.innerHTML = `
-    <div class="tabla-excel">
-      <div class="celda encabezado">Nombre</div>
-      <div class="celda encabezado">Fecha de inicio</div>
-      <div class="celda encabezado">Fecha de vencimiento</div>
-      <div class="celda encabezado">Acciones</div>
-    </div>
-  `;
-
-  const tabla = lista.querySelector(".tabla-excel");
-
-  alumnos.forEach(al => {
-    tabla.innerHTML += `
-      <div class="celda">${al.nombre}</div>
-      <div class="celda"><input type="date" id="inicio-${al.id}" value="${formatearFecha(al.fecha_inicio)}"></div>
-      <div class="celda"><input type="date" id="vencimiento-${al.id}" value="${formatearFecha(al.fecha_vencimiento)}"></div>
-      <div class="celda">
-        <button class="guardar" onclick="guardarFechas(${al.id})">Guardar</button>
-        <button class="btn-eliminar" onclick="eliminarAlumno(${al.id})">Eliminar</button>
-      </div>
-    `;
-  });
-}
+      lista.innerHTML = `
+        <div class="tabla-excel">
+          <div class="celda encabezado">Nombre</div>
+          <div class="celda encabezado">Fecha de inicio</div>
+          <div class="celda encabezado">Fecha de vencimiento</div>
+          <div class="celda encabezado">Acciones</div>
+        </div>
+      `;
+  
+      const tabla = lista.querySelector(".tabla-excel");
+  
+      alumnos.forEach(al => {
+        tabla.innerHTML += `
+          <div class="celda">${al.nombre}</div>
+          <div class="celda"><input type="date" id="inicio-${al.id}" value="${formatearFecha(al.fecha_inicio)}"></div>
+          <div class="celda"><input type="date" id="vencimiento-${al.id}" value="${formatearFecha(al.fecha_vencimiento)}"></div>
+          <div class="celda">
+            <button class="guardar" onclick="guardarFechas(${al.id})">Guardar</button>
+            <button class="btn-eliminar" onclick="eliminarAlumno(${al.id})">Eliminar</button>
+          </div>
+        `;
+      });
+    }
   
     inputBusqueda.addEventListener("input", () => {
       const valor = inputBusqueda.value.toLowerCase();
@@ -223,6 +236,7 @@
       }
     }
   </script>
+  
   
 
 </body>
