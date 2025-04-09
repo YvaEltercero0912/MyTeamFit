@@ -159,6 +159,25 @@ a {
 
 
 
+      <!-- MODAL -->
+      <div id="modal-create-user" class="modal hidden">
+        <div class="modal-content">
+          <div class="logos">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+          </div>
+          <h1>Crear Alumno</h1>
+          <form id="crear-alumno-form">
+            <input type="text" id="nombre" placeholder="Nombre" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button class="crear" type="submit">Crear</button>
+          </form>
+          <div id="mensaje" class="message"></div>
+        </div>
+      </div>
+      
+  
 
     
       <main>
@@ -173,5 +192,80 @@ a {
           <!-- Resultados de usuarios -->
         </div>
       </main>
+
+
+
+
+
+
+
+      <script>
+        document.getElementById("btn-create-user").addEventListener("click", () => {
+          document.getElementById("modal-create-user").classList.remove("hidden");
+        });
+        
+        const form = document.getElementById("crear-alumno-form");
+        const mensaje = document.getElementById("mensaje");
+        
+        const profesor = JSON.parse(sessionStorage.getItem("profesor"));
+        if (!profesor) {
+          alert("No hay sesión activa de profesor");
+          window.location.href = "login_profesor.html";
+        }
+        
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+        
+          const nombre = document.getElementById("nombre").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
+        
+          const alumno = {
+            nombre,
+            email,
+            password,
+            id_profesor: profesor.id
+          };
+        
+          try {
+            const res = await fetch("http://localhost:3000/register", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(alumno)
+            });
+        
+            const data = await res.json();
+        
+            if (res.ok) {
+              mensaje.textContent = "✅ Alumno creado con éxito.";
+              mensaje.className = "message success";
+              form.reset();
+            } else {
+              mensaje.textContent = data.error || "❌ Error al crear el alumno";
+              mensaje.className = "message error";
+            }
+          } catch (err) {
+            console.error("Error:", err);
+            mensaje.textContent = "❌ Error del servidor.";
+            mensaje.className = "message error";
+          }
+        });
+
+        // Cerrar el modal al hacer clic fuera del contenido
+window.addEventListener("click", function (e) {
+  const modal = document.getElementById("modal-create-user");
+  const modalContent = modal.querySelector(".modal-content");
+
+  if (e.target === modal && !modalContent.contains(e.target)) {
+    modal.classList.add("hidden");
+    // También limpiamos el mensaje y el formulario
+    document.getElementById("mensaje").textContent = "";
+    form.reset();
+  }
+});
+
+        </script>
+        
+        
 </body>
 </html>

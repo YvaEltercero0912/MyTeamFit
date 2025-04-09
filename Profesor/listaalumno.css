@@ -50,18 +50,18 @@
 }
 
 .boton-nav {
-    padding: 10px 20px;
-    gap: 10px;
-    background: #00dcd517;
-    border: 0px solid;
-    border-radius: 13px;
-    color: #fffffff3;
-    cursor: pointer;
-    transition: 0.5s;
+  padding: 10px 20px;
+  gap: 10px;
+  background: transparent;
+  border: 2px solid transparent;
+  color: #fffffff3;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 18px;
 }
 
 .boton-nav:hover{
-    background-color: #05e4dd;
+  border-bottom: 2px solid #05e4dd;
 }
 
 img#logout-btn {

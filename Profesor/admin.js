@@ -26,10 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Redirigir a crear_usuario.html
-  createUserBtn.addEventListener("click", () => {
-    window.location.href = "crear_usuario.html";
-  });
 
   // Buscar usuarios
   searchBtn.addEventListener("click", async () => {

@@ -11,9 +11,41 @@
 </head>
 
 <body>
-    <a href="admin.html">
-      <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo" />
-    </a>
+
+
+
+
+
+
+  <nav class="nav-contenedor">
+
+    <div class="nav-1">
+
+        <a href="admin.html">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
+
+    </div>
+
+    <div class="nav-2">
+
+        <button class="boton-nav" id="btn-create-user">Crear Usuario</button>
+        <button class="boton-nav" onclick="window.location.href='listaalumno.html'">Lista de Alumnos</button>
+        <button class="boton-nav" onclick="window.location.href='historial.html'">Historial de planificaciones</button>
+        <button class="boton-nav" onclick="window.location.href='bienvenido_profesor.html'">Datos del alumno</button> 
+        <button class="boton-nav" onclick="window.location.href='nutrcionista_admin.html'">Nutrición</button>
+
+    </div>
+
+    <div id="encabezado" class="encabezado">
+        
+        <span id="profesor-nombre" style="font-weight: bold;"></span>
+        <img id="logout-btn" src="/img/salida.png" alt="Cerrar sesión" />
+    </div>
+
+  </nav>
+
   
     <div class="usuario-header">
       <img id="foto-usuario" src="" alt="Foto" />
@@ -48,10 +80,10 @@
           <input type="text" id="kg" placeholder="Kg" />
           <input type="text" id="nota" placeholder="Nota (opcional)" />
           <input type="text" id="video" placeholder="Enlace de video" />
-          <button type="submit">Agregar Ejercicio</button>
+          <button class="btn-agregar" type="submit">Agregar Ejercicio</button>
         </form>
   
-        <button id="btn-guardar" style="margin-top: 15px;">Guardar Planificación</button>
+        <button class="btn-guardar" id="btn-guardar" style="margin-top: 15px;">Guardar Planificación</button>
       </div>
   
       <div class="lista-ejercicios">

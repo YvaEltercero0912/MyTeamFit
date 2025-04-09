@@ -1,22 +1,50 @@
 body {
-    background-color: #17262b;
+    background-color: #252525;
     color: white;
     font-family: "Roboto", sans-serif;
     margin: 0;
-    padding: 20px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.mtf {
+    width: 150px;
+}
+
+a {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
 }
 
 .usuario-header {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 78px;
-border-bottom: 3px solid #4e4c80;
-width: 40%;
-margin: auto;
-background: #1e1e1e;
-padding: 20px;
-border-radius: 30px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 78px;
+    border-bottom: 3px solid #14ced4;
+    width: 40%;
+    margin: auto;
+    margin-top: 15px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.form-container {
+    background: #1e1e1e;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+.lista-ejercicios {
+    background: #1e1e1e;
+    padding: 50px;
+    border-radius: 25px;
 }
 
 .usuario-header img {
@@ -24,11 +52,12 @@ width: 120px;
 height: 120px;
 border-radius: 50%;
 object-fit: cover;
-border: 3px solid #4e4c80;
+border: 3px solid #14ced4;
 }
 
+
 .usuario-header h1 {
-color: #4e4c80;
+color: #14ced4;
 margin: 10px 0 0;
 font-size: 1.8rem;
 }
@@ -49,11 +78,13 @@ font-size: 1.8rem;
     width: 71%;
     margin: auto;
     margin-top: 30px;
+    
 }
 
 .form-container, .lista-ejercicios {
     flex: 1;
     min-width: 300px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .form-container form {
@@ -65,7 +96,7 @@ font-size: 1.8rem;
 input, select {
 padding: 10px;
 border-radius: 5px;
-border: 2px solid #4e4c80;
+border: 2px solid #14ced4;
 background-color: #1e1e1e;
 color: white;
 }
@@ -77,13 +108,28 @@ border: none;
 padding: 10px;
 border-radius: 5px;
 cursor: pointer;
-border: 2px solid #4e4c80;
+border: 2px solid transparent;
 transition: 0.5s;
 }
 
-button:hover{
-background-color: #4e4c80;
+.btn-agregar {
+    border: 2px solid #14ced4;
+    width: 28%;
 }
+
+.btn-agregar:hover{
+    background-color: #14ced4;
+}
+
+.btn-guardar {
+    border: 2px solid #14ced4;
+    width: 100%;
+}
+
+.btn-guardar:hover{
+    background-color: #14ced4;
+}
+
 
 .ejercicio-item {
 background-color: #1e1e1e;
@@ -94,7 +140,7 @@ display: flex
 ;
 justify-content: space-between;
 align-items: center;
-border-bottom: 2px solid #4e4c80;
+border-bottom: 2px solid #14ced4;
 color: #ffffff;
 border-bottom-left-radius: 15px;
 border-bottom-right-radius: 15px;
@@ -115,9 +161,7 @@ border-bottom-right-radius: 15px;
 .acciones-ejercicio img:hover {
     transform: scale(1.2);
 }
-.logo {
-width: 92px;
-}
+
 
 .fila-basico {
     color: red;

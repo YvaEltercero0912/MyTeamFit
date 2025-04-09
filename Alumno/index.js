@@ -174,3 +174,50 @@ document.addEventListener("DOMContentLoaded", () => {
   searchButton.addEventListener("click", getRutina);
   getRutina();
 });
+
+
+
+
+let idProfesor = null;
+let idAlumno = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const alumno = JSON.parse(sessionStorage.getItem('alumno'));
+  if (!alumno) {
+    alert("No se ha encontrado la sesión del alumno.");
+    window.location.href = "login.html"; // Redirigir si no se encuentra la sesión
+    return;
+  }
+
+  idAlumno = alumno.id;
+
+  const profesor = JSON.parse(sessionStorage.getItem('profesor')); // Cargar el profesor asociado al alumno
+  idProfesor = profesor.id; 
+
+  document.getElementById("nombre-alumno").textContent = alumno.nombre;
+  
+  loadMessages();
+});
+
+// Llamar a los mensajes correspondientes con el profesor
+async function loadMessages() {
+  if (!idProfesor || !idAlumno) return; // Si no se ha seleccionado ningún alumno
+
+  try {
+    const response = await fetch(`http://localhost:3000/chat?id_profesor=${idProfesor}&id_alumno=${idAlumno}`);
+    const messages = await response.json();
+
+    const chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML = ''; // Limpiar los mensajes anteriores
+
+    messages.forEach(msg => {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add('chat-message');
+      messageDiv.classList.add(msg.emisor);
+      messageDiv.textContent = msg.mensaje;
+      chatBox.appendChild(messageDiv);
+    });
+  } catch (error) {
+    console.error("Error al cargar mensajes:", error);
+  }
+}

@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 mensaje.textContent = responseData.message;
                 mensaje.style.color = 'green';
 
-                // Guardar datos completos del usuario (con id y foto)
-                localStorage.setItem("user", nombre);
-                localStorage.setItem("userData", JSON.stringify(responseData.user));
+                // Guardar los datos del usuario en sessionStorage
+                sessionStorage.setItem("user", nombre);
+                sessionStorage.setItem("userData", JSON.stringify(responseData.user));
 
-                // Redirigir
+                // Redirigir a la página principal del alumno
                 setTimeout(() => window.location.href = 'index.html', 1000);
             } else {
                 mensaje.textContent = responseData.error || 'Error en el inicio de sesión';
