@@ -1,0 +1,14 @@
+.logo{
+    width: 200px;
+}
+
+.mtf {
+    width: 300px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

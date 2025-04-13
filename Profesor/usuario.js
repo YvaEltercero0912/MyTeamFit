@@ -183,3 +183,24 @@ function eliminarEjercicio(index) {
         actualizarLista();
     }
 }
+
+
+// Mostrar nombre del profesor
+const profesorData = JSON.parse(sessionStorage.getItem("profesor"));
+if (profesorData && profesorData.nombre) {
+  document.getElementById("profesor-nombre").textContent = `Profesor: ${profesorData.nombre}`;
+}
+
+// Cerrar sesión
+document.getElementById("logout-btn").addEventListener("click", () => {
+  fetch("http://localhost:3000/logout", {
+    method: "POST",
+  })
+    .then(() => {
+      sessionStorage.removeItem("profesor");
+      window.location.href = "login_profesor.html";
+    })
+    .catch((err) => {
+      console.error("Error al cerrar sesión:", err);
+    });
+});

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Profesor/admin.css">
+    <link rel="stylesheet" href="css.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="nav-contenedor">
+
+        <div class="nav-1">
+
+            <a href="admin.html">
+                <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+                <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+              </a>
+
+        </div>
+
+       
+
+      </nav>
+
+      <div class="banner">
+
+      </div>
+
+      <!-- Modal -->
+<div id="modalLogin" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar">&times;</span>
+      
+      <div class="titulo">
+        <div class="titulo1">
+          <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="">
+        </div>
+        <div class="titulo2">
+          <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+        </div>
+      </div>
+  
+      <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <form id="formLogin">
+          <input type="text" id="nombre" name="nombre" placeholder="Usuario" required>
+  
+          <input type="password" id="password" name="password" placeholder="Contraseña" required>
+  
+          <button class="btn-seccion" type="submit">Iniciar sesión</button>
+        </form>
+  
+        <p id="mensaje"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Login Profesor -->
+<div id="modalProfesor" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar">&times;</span>
+  
+      <div class="titulo">
+        <div class="titulo1">
+          <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="">
+        </div>
+        <div class="titulo2">
+          <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="">
+        </div>
+      </div>
+  
+      <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <form id="form-login-profesor">
+          <input type="text" name="dni" id="dni" placeholder="DNI" required>
+          <input type="password" name="password" id="password-2" placeholder="Contraseña" required>
+          <button class="btn-seccion" type="submit">Iniciar sesión</button>
+        </form>
+        <div class="error" id="error-msg"></div>
+      </div>
+    </div>
+  </div>
+
+      <div class="seccion-1">
+
+        <div class="seccion-1-1">
+
+            <div class="seccion-1-1-img">
+            </div>
+
+            <div class="seccion-1-1-texto">
+                <h1>Alumnos</h1>
+                <button id="abrirModal" class="btn-seccion">Iniciar Sesion</button>
+            </div>
+
+        </div>
+
+
+
+        <div class="seccion-1-2">
+
+            <div class="seccion-1-2-img">
+            </div>
+
+            <div class="seccion-1-2-texto">
+                <h1>Profesores</h1>
+                <button id="abrirModalProfesor" class="btn-seccion">Iniciar Sesion</button>
+            </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="background">
+
+        <div class="seccion-2">
+
+            <div class="seccion-2-1">
+    
+                <div class="seccion-2-1-titulo">
+                    <h1>Funciones del Alumno</h1>
+                </div>
+    
+                <div class="seccion-2-1-descripcion">
+                    <p> Los alumnos tienen acceso a su perfil personal, donde pueden ver sus rutinas, realizar seguimientos de su progreso y comunicarse con su profesor. La plataforma permite a los alumnos interactuar, registrar sus actividades diarias y recibir recomendaciones personalizadas basadas en su rendimiento.</p>
+                </div>
+            
+            </div>
+    
+            <div class="seccion-2-2">
+    
+                <div class="seccion-2-2-titulo">
+                    <h1>Funciones del Profesor</h1>
+                </div>
+    
+                <div class="seccion-2-2-descripcion">
+                    <p>Los profesores pueden crear y gestionar planificaciones de los alumnos, así como acceder a la información relacionada con su rendimiento y progreso. También tienen la capacidad de interactuar directamente con los alumnos a través del chat y revisar sus resultados.</p>
+                </div>
+    
+    
+            </div>
+        
+          </div>
+    
+          <div style="display: flex; justify-content: space-between;">
+    
+            <div class="seccion-3">
+    
+                <div class="seccion-3-1">
+        
+                    <div class="seccion-3-1-imagen">
+                        <img class="imagen" src="/img/tewst.png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-1-texto">
+                        <h3 style="text-align: center;">Ver y seguir las rutinas de entrenamiento asignadas.</h3>
+                    </div>
+        
+                </div>
+        
+                <div class="seccion-3-2">
+        
+                    <div class="seccion-3-2-imagen">
+                        <img class="imagen" src="/img/ChatGPT Image 12 abr 2025, 04_51_32 p.m..png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-2-texto">
+                        <h3 style="text-align: center;">Registrar su progreso y datos personales (fatiga, estrés, hidratación, etc.).</h3>
+                    </div>
+        
+                </div>
+        
+                <div class="seccion-3-3">
+        
+                    <div class="seccion-3-2-imagen">
+                        <img class="imagen" src="/img/ChatGPT Image 12 abr 2025, 04_54_29 p.m..png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-2-texto">
+                        <h3 style="text-align: center;">Consultar estadísticas de su rendimiento a lo largo del tiempo.</h3>
+                    </div>
+        
+        
+                </div>
+              </div>
+    
+              <div class="seccion-3">
+    
+                <div class="seccion-3-1">
+        
+                    <div class="seccion-3-1-imagen">
+                        <img class="imagen" src="/img/agagg.png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-1-texto">
+                        <h3 style="text-align: center;">Crear, editar y eliminar planificaciones de los alumnos.</h3>
+                    </div>
+        
+                </div>
+        
+                <div class="seccion-3-2">
+        
+                    <div class="seccion-3-2-imagen">
+                        <img class="imagen" src="/img/3555.png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-2-texto">
+                        <h3 style="text-align: center;">Visualizar el progreso y las estadísticas de sus alumnos.</h3>
+                    </div>
+        
+                </div>
+        
+                <div class="seccion-3-3">
+        
+                    <div class="seccion-3-2-imagen">
+                        <img class="imagen" src="/img/ChatGPT Image 12 abr 2025, 04_53_15 p.m..png" alt="">
+                    </div>
+        
+                    <div class="seccion-3-2-texto">
+                        <h3 style="text-align: center;">Gestionar las fechas de inicio y vencimiento de los planes de entrenamiento.</h3>
+                    </div>
+        
+        
+                </div>
+              </div>
+    
+          </div>
+
+      </div>
+
+      <div class="seccion-4">
+
+        <div class="seccion-4-1">
+
+            <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d885.2834064205665!2d-65.62980295743893!3d-27.433946005551636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9423c56315173869%3A0xc323e512913ac3dd!2sOlympia%20Fit%20Box%20Center!5e0!3m2!1ses-419!2sar!4v1744497475391!5m2!1ses-419!2sar" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+
+        </div>
+        <div class="seccion-4-2">
+            <h1>¡Nos ubicamos aquí!</h1>
+        </div>
+
+      </div>
+
+
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-logo">
+            <img src="img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="MyTeamFit Logo">
+            <p>MyTeamFit © 2025</p>
+          </div>
+      
+          <div class="social">
+            <a href="#">
+                <img src="img/whatsapp_5968841.png" alt="Contacto" />
+            </a>
+            <a href="#">
+                <img src="img/instagram_2111463.png" alt="Instagram" />
+            </a>
+            <a href="#">
+                <img src="img/facebook_2504903.png" alt="Facebook" />
+            </a>
+           
+
+            <a href="#">
+              <img src="img/icons8-www-50.png" alt="correo" />
+          </a>
+        </div>
+
+        <div>
+          
+          <p>Correo: bytecraft.25.05@gmail.com</p>
+          <p>Tel: 3865698890</p>
+
+      </div>
+      
+          <div class="footer-copy">
+            <p>Desarrollado por ByteCraft | Todos los derechos reservados</p>
+            <a href="/superAdmin/login.html">
+              <img class="secreto" src="img/avatar (1).png" alt="Ir a login">
+            </a>
+          </div>
+          </div>
+        </div>
+      </footer>
+
+
+
+
+      <script>
+        const modal = document.getElementById("modalLogin");
+        const btnAbrir = document.getElementById("abrirModal");
+        const btnCerrar = document.querySelector(".cerrar");
+      
+        btnAbrir.onclick = () => {
+          modal.style.display = "block";
+        }
+      
+        btnCerrar.onclick = () => {
+          modal.style.display = "none";
+        }
+      
+        window.onclick = (e) => {
+          if (e.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+
+<script>
+    const modalProfesor = document.getElementById("modalProfesor");
+    const btnAbrirProfesor = document.getElementById("abrirModalProfesor");
+    const cerrarBtns = document.querySelectorAll(".cerrar");
+  
+    btnAbrirProfesor.onclick = () => {
+      modalProfesor.style.display = "block";
+    };
+  
+    cerrarBtns.forEach(btn => {
+      btn.onclick = () => {
+        btn.closest(".modal").style.display = "none";
+      };
+    });
+  
+    window.onclick = (e) => {
+      if (e.target.classList.contains("modal")) {
+        e.target.style.display = "none";
+      }
+    };
+  </script>
+
+      
+
+      <script src="/Alumno/login.js"></script>
+      <script src="/Profesor/login.js"></script>
+      
+    
+
+
+      
+
+</body>
+</html>

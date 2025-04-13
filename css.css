@@ -1,0 +1,385 @@
+nav a{
+    display: flex;
+    align-items: center;
+}
+
+.nav-contenedor {
+    width: 100%;
+    background-color: #363636;
+    height: 60px;
+    display: flex;
+    position: fixed;
+}
+
+.banner{
+    width: 100%;
+    height: 600px;
+    background-image: url(/img/aaaaaa.webp); 
+    background-size: cover;
+    background-position: 10%;
+}
+
+.seccion-1 {
+    margin: 30px 0px;
+    display: flex;
+    height: 200px;
+    justify-content: space-around;
+}
+
+
+.seccion-1-1{
+    width: 35%;
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+    transition: 1s;
+}
+
+.seccion-1-1:hover{
+    width: 36%;
+}
+
+
+.seccion-1-1-img{
+    width: 50%;
+    background-image: url(/img/115-foto.png);
+    background-size: cover;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.seccion-1-1-texto {
+    width: 50%;
+    justify-content: center;
+    padding: 30px;
+    opacity: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.btn-seccion {
+    display: flex
+;
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    width: 80%;
+    justify-content: center;
+    margin: auto;
+}
+
+.btn-seccion:hover{
+    background-color: black;
+    color: white;
+}
+
+.seccion-1-2{
+    width: 35%;
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+    transition: 1s;
+}
+
+.seccion-1-2:hover{
+    width: 36%;
+}
+
+.seccion-1-2-img{
+    width: 50%;
+    background-image: url(/img/vio.webp);
+    background-size: cover;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.seccion-1-2-texto {
+    width: 50%;
+    justify-content: center;
+    padding: 30px;
+    opacity: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.seccion-2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.seccion-2-1 h1{
+    font-size: 30px;
+}
+
+.seccion-2-2 h1{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.seccion-2-1{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 50px 50px 50px;
+    box-shadow: 0px 0px 20px 20px #0000000f;
+}
+
+.seccion-2-1-titulo{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.seccion-2-2{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 50px 50px 50px;
+    box-shadow: 0px 0px 20px 20px #0000000f;
+}
+
+.seccion-3{
+    width: 45%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.seccion-3-1{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 20px 20px #0000000f;
+}
+
+.seccion-3-1-imagen{
+    width: 100%;
+
+}
+
+.seccion-3-1-texto{
+    width: 100%;
+}
+
+.seccion-3-2{
+    width: 25%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 20px 20px #0000000f;
+}
+
+.seccion-3-3{
+    width: 25%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 20px 20px #0000000f;
+}
+
+.imagen {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    filter: contrast(0) brightness(0);
+    opacity: 75%;
+}
+
+.seccion-3 h3{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.699);
+}
+
+.background {
+    background-image: url(/img/background.png);
+    background-size: cover;
+    background-position: top left;
+    background-attachment: fixed; /* Esto lo hace quedarse fijo al hacer scroll */
+    padding: 50px 0px 100px 0px;
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    margin-bottom: 140px;
+}
+
+.footer {
+    background-color: #1c1c1c;
+    color: white;
+    padding: 40px 20px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 60px;
+  }
+  
+  .footer-container {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .footer-logo img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+  
+  .footer-logo p {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .footer-links {
+    margin-bottom: 20px;
+  }
+  
+  .footer-links a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #00d6d0;
+  }
+  
+  .footer-copy {
+    font-size: 13px;
+    color: #aaa;
+  }
+  
+
+.seccion-4{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    height: 500px;
+}
+
+.seccion-4-1{
+    width: 50%;
+}
+
+.seccion-4-2{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seccion-4-2 h1{
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+.mapa{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px 20px 20px 20px;
+}
+
+
+img.secreto {
+    width: 2px;
+}
+
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+.social a img {
+    width: 20px;  /* Tamaño más pequeño de las imágenes */
+    height: auto;
+    transition: transform 0.3s ease;  /* Efecto al pasar el ratón */
+}
+
+.social a img:hover {
+    transform: scale(1.2);  /* Aumenta ligeramente el tamaño de la imagen al hacer hover */
+}
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+  }
+  
+  .modal-contenido {
+    background-color: #ffffff;
+    display: flex;
+    margin: 11% auto;
+    padding: 0px;
+    border-radius: 10px;
+    width: 550PX;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+  
+  .cerrar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .cerrar:hover {
+    color: black;
+  }
+
+
+  .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 0px 12px;
+}
+
+  .login-container{
+    padding: 50px;
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+  }
+  

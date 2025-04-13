@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem("userData", JSON.stringify(responseData.user));
 
                 // Redirigir
-                setTimeout(() => window.location.href = 'index.html', 1000);
+                setTimeout(() => window.location.href = 'alumno/index.html', 1000);
             } else {
                 mensaje.textContent = responseData.error || 'Error en el inicio de sesión';
                 mensaje.style.color = 'red';

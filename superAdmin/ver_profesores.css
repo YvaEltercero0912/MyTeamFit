@@ -5,14 +5,66 @@ body {
     margin: 0;
   }
   
-  header {
-    background-color: #2c2c2c;
+  .nav-contenedor{
+    width: 100%;
+    background-color: #363636;
+    height: 60px;
+    display: flex;
+  }
+
+  .nav-1 a{
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px 25px;
-    border-bottom: 2px solid #00e0e0;
   }
+
+  .nav-1 {
+    display: flex
+;
+    width: 15%;
+    justify-content: center;
+}
+
+  .nav-2 {
+    width: 65%;
+    gap: 18px;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+
+}
+
+
+.nav-3 {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .logo {
+    width: 60px;
+}
+
+.mtf {
+    width: 150px;
+}
+
+.boton-nav {
+    padding: 10px 20px;
+    gap: 10px;
+    background: transparent;
+    border: 2px solid transparent;
+    color: #fffffff3;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 18px;
+}
+
+.boton-nav:hover{
+    border-bottom: 2px solid #05e4dd;
+    background-color: transparent;
+    color: white;
+}
   
   header img.logo {
     height: 50px;
@@ -74,6 +126,123 @@ body {
     background-color: #e74c3c;
     color: white;
   }
+
+  .modal-contenedor {
+    display: flex;
+    width: 700px;
+    height: 340px;
+}
+
+  .modal-profesor{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 200px;
+  }
+
+  .modal-content {
+    background: #2c2c2c;
+    padding: 30px;
+    color: white;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    border-radius: 0px 20px 20px 0px;
+  }
+
+  .modal-content-2 {
+    background-image: url(/img/vio.webp);
+    background-size: cover;
+    background-position: 50% 0%;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 20px 0px 0px 20px;
+}
+
+  .modal-img{
+    width: 500px;
+    object-fit: cover;
+  }
+
+
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal.hidden {
+    display: none;
+  }
+  
+
+  
+  .modal-content input {
+    padding: 10px;
+    border: 1px solid #05e4dd;
+    border-radius: 5px;
+    background: #1e1e1e;
+    color: white;
+  }
+
+  .modal-content h1 {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    background: #05e4dd;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #mensaje-profesor {
+    text-align: center;
+    color: #4caf50;
+    margin-top: 10px;
+  }
+  
+
+  form#form-crear-profesor {
+    display: flex
+;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   @media screen and (max-width: 768px) {
     table, thead, tbody, th, td, tr {
@@ -114,4 +283,11 @@ body {
     td:nth-child(5)::before { content: "Bloqueo"; }
     td:nth-child(6)::before { content: "Eliminar"; }
   }
+
+
+
+
+
+
+
   

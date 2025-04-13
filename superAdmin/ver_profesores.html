@@ -6,10 +6,28 @@
   <link rel="stylesheet" href="ver_profesores.css" />
 </head>
 <body>
-  <header>
-    <img src="/img/logo.png" alt="Logo de la app" class="logo">
-    <h1>Entrenamiento Pro</h1>
-  </header>
+  <nav class="nav-contenedor">
+
+    <div class="nav-1">
+
+        <a href="admin.html">
+            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
+            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
+          </a>
+
+    </div>
+
+    <div class="nav-2">
+
+      <button class="boton-nav" id="btn-crear-profesor">Crear Profesor</button>
+
+
+    </div>
+
+    <div id="encabezado" class="encabezado">
+    </div>
+
+  </nav>
 
   <div class="container">
     <input type="text" id="buscador" placeholder="Buscar profesor por nombre...">
@@ -29,6 +47,33 @@
       </tbody>
     </table>
   </div>
+
+
+  <div id="modal-profesor" class="modal hidden">
+    <div class="modal-contenedor">
+
+      <div class="modal-content-2">
+
+      </div>
+
+      <div class="modal-content">
+        <img class="logo" src="img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="">
+        <h1>Crear Profesor</h1>
+        <form id="form-crear-profesor">
+          <input type="text" id="nombre" placeholder="Nombre de usuario" required>
+          <input type="password" id="password" placeholder="Contraseña" required>
+          <input type="text" id="dni" placeholder="DNI" required>
+          <button type="submit">Crear</button>
+        </form>
+        <p id="mensaje-profesor"></p>
+      </div>
+
+
+    </div>
+  </div>
+  
+
+  
 
   <script>
     let profesoresOriginal = [];
@@ -141,5 +186,63 @@
       }
     }
   </script>
+
+
+<script>
+  // Abrir modal
+  document.getElementById("btn-crear-profesor").addEventListener("click", () => {
+    document.getElementById("modal-profesor").classList.remove("hidden");
+  });
+
+  // Cerrar modal al hacer clic fuera
+  window.addEventListener("click", function (e) {
+    const modal = document.getElementById("modal-profesor");
+    const content = modal.querySelector(".modal-content");
+    if (e.target === modal && !content.contains(e.target)) {
+      modal.classList.add("hidden");
+      document.getElementById("mensaje-profesor").textContent = "";
+      document.getElementById("form-crear-profesor").reset();
+    }
+  });
+
+  // Enviar formulario
+  document.getElementById("form-crear-profesor").addEventListener("submit", async e => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const password = document.getElementById("password").value;
+    const dni = document.getElementById("dni").value;
+
+    try {
+      const res = await fetch("http://localhost:3000/crear-profesor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, password, dni })
+      });
+
+      const data = await res.json();
+      const mensaje = document.getElementById("mensaje-profesor");
+
+      if (res.ok) {
+        mensaje.textContent = "✅ Profesor creado con éxito.";
+        mensaje.style.color = "#4caf50";
+        document.getElementById("form-crear-profesor").reset();
+      } else {
+        mensaje.textContent = data.error || "❌ Error al crear el profesor";
+        mensaje.style.color = "#f44336";
+      }
+    } catch (err) {
+      console.error("Error al crear profesor:", err);
+      document.getElementById("mensaje-profesor").textContent = "❌ Error del servidor.";
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
 </body>
 </html>

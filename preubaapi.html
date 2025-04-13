@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Sugerencias</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1e1e1e;
+      color: white;
+      padding: 20px;
+    }
+
+    .form-container {
+      position: relative;
+      max-width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #05e4dd;
+      border-radius: 5px;
+      background: #111;
+      color: white;
+    }
+
+    ul.sugerencias {
+      position: absolute;
+      background-color: #2c2c2c;
+      color: white;
+      border: 1px solid #05e4dd;
+      border-radius: 5px;
+      list-style: none;
+      margin: 0;
+      margin-top: 5px;
+      padding: 0;
+      width: 100%;
+      z-index: 9999;
+      display: none;
+    }
+
+    ul.sugerencias li {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    ul.sugerencias li:hover {
+      background: #14c0e5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar ejercicio</h1>
+
+  <div class="form-container">
+    <input type="text" id="ejercicio" placeholder="Ejercicio...">
+    <ul id="sugerencias" class="sugerencias"></ul>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const input = document.getElementById("ejercicio");
+      const sugerencias = document.getElementById("sugerencias");
+      let listaEjercicios = [];
+
+      fetch("https://wger.de/api/v2/exercise/?language=4&limit=100")
+        .then(res => res.json())
+        .then(data => {
+          listaEjercicios = data.results
+            .filter(e => e.name && typeof e.name === "string")
+            .map(e => e.name);
+        })
+        .catch(err => console.error("Error al obtener ejercicios:", err));
+
+      input.addEventListener("input", () => {
+        const valor = input.value.toLowerCase().trim();
+        sugerencias.innerHTML = "";
+
+        if (valor.length < 2) {
+          sugerencias.style.display = "none";
+          return;
+        }
+
+        const filtrados = listaEjercicios
+          .filter(nombre => nombre.toLowerCase().includes(valor))
+          .slice(0, 5);
+
+        if (filtrados.length === 0) {
+          sugerencias.style.display = "none";
+          return;
+        }
+
+        filtrados.forEach(nombre => {
+          const li = document.createElement("li");
+          li.textContent = nombre;
+          li.addEventListener("click", () => {
+            input.value = nombre;
+            sugerencias.style.display = "none";
+          });
+          sugerencias.appendChild(li);
+        });
+
+        sugerencias.style.display = "block";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!sugerencias.contains(e.target) && e.target !== input) {
+          sugerencias.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -176,4 +176,32 @@ body {
   font-size: 15px;
 }
 
-  
+.modalcontent{
+  display: flex;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal-content{
+  border-radius: 0px 20px 20px 0px;
+  padding: 40px;
+}
+
+.modal-content input, .modal-content button {
+  width: 100%;
+  margin: 6px;
+}
+
+
+.modal-content input, .modal-content button {
+  width: 100%;
+}
+
+
+.logos{
+    background-image: url(/img/115-foto.png);
+    background-size: cover;
+    background-position: 50% 0%;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 20px 0px 0px 20px;
+}

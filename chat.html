@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <link rel="stylesheet" href="chat.css">
+  <style>
+    /* Estilos para el chat */
+    #chat-box {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .chat-message {
+      background-color: #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      max-width: 70%;
+      display: inline-block;
+    }
+    .chat-message.profesor {
+      background-color: #28a745;
+      color: white;
+    }
+    .chat-message.alumno {
+      background-color: #007bff;
+      color: white;
+      float: right;
+    }
+    #send-message-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #send-message-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-box"></div>
+
+  <textarea id="message-input" placeholder="Escribe tu mensaje aquí..."></textarea>
+  <button id="send-message-btn">Enviar</button>
+
+  <script src="chat.js"></script>
+</body>
+</html>
