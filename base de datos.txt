@@ -22,10 +22,9 @@ CREATE TABLE IF NOT EXISTS alumnos (
   fecha_inicio DATE,
   fecha_vencimiento DATE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
-
-  FOREIGN KEY (id_profesor) REFERENCES profesores(id)
+  FOREIGN KEY (id_profesor) REFERENCES profesores(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE IF NOT EXISTS planificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -76,24 +75,37 @@ CREATE TABLE IF NOT EXISTS datos_diarios (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (id_alumno) REFERENCES alumnos(id)
 );
-ALTER TABLE planificaciones
-ADD COLUMN tipo ENUM('basico', 'accesorio') DEFAULT 'accesorio';
 
 
-ALTER TABLE planificaciones ADD COLUMN anio INT NOT NULL AFTER id_alumno;
-ALTER TABLE planificaciones ADD COLUMN dia INT NOT NULL AFTER id_alumno;
-ALTER TABLE planificaciones ADD COLUMN nota TEXT AFTER kg;
-ALTER TABLE profesores ADD COLUMN activo BOOLEAN DEFAULT TRUE;
-ALTER TABLE profesores ADD COLUMN bloqueado BOOLEAN DEFAULT 0;
+CREATE TABLE IF NOT EXISTS mensajes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_profesor INT NOT NULL,
+  id_alumno INT NOT NULL,
+  emisor ENUM('profesor', 'alumno') NOT NULL,
+  mensaje TEXT,
+  archivo VARCHAR(255), -- nombre del archivo
+  tipo_archivo ENUM('texto', 'imagen', 'video', 'audio') DEFAULT 'texto',
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_profesor) REFERENCES profesores(id),
+  FOREIGN KEY (id_alumno) REFERENCES alumnos(id)
+);
 
+CREATE TABLE IF NOT EXISTS progreso_ejercicio (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_alumno INT NOT NULL,
+  id_planificacion INT NOT NULL,
+  fecha DATE NOT NULL,
+  repeticiones INT,
+  series INT,
+  kg INT,
+  FOREIGN KEY (id_alumno) REFERENCES alumnos(id),
+  FOREIGN KEY (id_planificacion) REFERENCES planificaciones(id)  -- Referencia a la tabla 'planificaciones'
+);
 
-ALTER TABLE alumnos ADD COLUMN fecha_inscripcion DATE,
-ADD COLUMN fecha_vencimiento DATE;
-
-
-DROP TABLE alumnos;
-
-SHOW TABLES;
+drop table profesores;
+ALTER TABLE alumnos DROP FOREIGN KEY alumnos_ibfk_1;
+DROP TABLE IF EXISTS alumnos;
+DROP TABLE IF EXISTS profesores;
 
 
 DESCRIBE usuarios;
@@ -101,11 +113,14 @@ DESCRIBE planificaciones;
 describe profeores;
 describe datos_alumno;
 describe datos_diarios;
-
-
+describe mensajes;
+describe  progreso_ejercicio;
 
 SELECT * FROM profesores;
 SELECT * FROM alumnos;
 SELECT * FROM planificaciones;
 SELECT * FROM datos_alumno;
 SELECT * FROM datos_diarios;
+SELECT * FROM mensajes
+SELECT * FROM progreso_ejercicio;
+
