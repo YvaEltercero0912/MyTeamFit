@@ -353,23 +353,29 @@ app.delete('/eliminar-planificacion', (req, res) => {
 });
 
 
-  app.delete('/eliminar-usuario/:id', (req, res) => {
-    const { id } = req.params;
-  
-    const sql = 'DELETE FROM alumnos WHERE id = ?';
-    db.query(sql, [id], (err, result) => {
+app.delete('/eliminar-usuario/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Primero, eliminamos las planificaciones relacionadas con el alumno
+  const deletePlanificacionesQuery = 'DELETE FROM planificaciones WHERE id_alumno = ?';
+  db.query(deletePlanificacionesQuery, [id], (err, result) => {
+    if (err) {
+      console.error("Error al eliminar planificaciones:", err);
+      return res.status(500).json({ error: 'Error al eliminar las planificaciones del alumno' });
+    }
+
+    // Ahora eliminamos el alumno
+    const deleteAlumnoQuery = 'DELETE FROM alumnos WHERE id = ?';
+    db.query(deleteAlumnoQuery, [id], (err, result) => {
       if (err) {
-        console.error('❌ Error eliminando alumno:', err);
+        console.error("Error al eliminar alumno:", err);
         return res.status(500).json({ error: 'Error al eliminar alumno' });
       }
-  
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ error: 'Alumno no encontrado' });
-      }
-  
-      res.json({ message: 'Alumno eliminado con éxito' });
+
+      res.status(200).json({ message: 'Alumno y sus planificaciones eliminados correctamente' });
     });
   });
+});
 
   // 📌 EDITAR USUARIO
   app.put('/editar-usuario/:id', (req, res) => {
@@ -639,13 +645,21 @@ app.get('/datos-diarios/:id_alumno', (req, res) => {
 
 // Obtener todos los profesores
 app.get('/profesores', (req, res) => {
-  const sql = 'SELECT id, nombre, dni, cupo_maximo, alumnos_actuales, bloqueado FROM profesores';
+  const sql = "SELECT * FROM profesores";
   db.query(sql, (err, results) => {
     if (err) {
-      console.error("❌ Error al obtener profesores:", err);
-      return res.status(500).json({ error: "Error al obtener profesores" });
+      console.error("Error al obtener los profesores:", err);
+      return res.status(500).json({ error: "Error al obtener los profesores" });
     }
-    res.json(results);
+    
+    console.log(results);  // Verifica que los datos sean un array
+
+    // Verifica si los resultados son un array
+    if (Array.isArray(results)) {
+      res.json(results);  // Devuelve los resultados como un array
+    } else {
+      res.status(500).json({ error: "La respuesta no es un array" });
+    }
   });
 });
 
@@ -672,18 +686,25 @@ app.post('/actualizar-cupo', (req, res) => {
 app.post('/bloquear-profesor', (req, res) => {
   const { id_profesor, bloquear } = req.body;
 
-  if (!id_profesor || typeof bloquear !== 'boolean') {
-    return res.status(400).json({ error: 'Datos inválidos' });
+  // Validar que los parámetros son correctos
+  if (typeof id_profesor !== 'number' || typeof bloquear !== 'boolean') {
+    return res.status(400).json({ error: 'Parámetros inválidos' });
   }
 
+  // SQL para actualizar el estado de bloqueo del profesor
   const sql = 'UPDATE profesores SET bloqueado = ? WHERE id = ?';
-  db.query(sql, [bloquear ? 1 : 0, id_profesor], (err) => {
+
+  db.query(sql, [bloquear, id_profesor], (err, result) => {
     if (err) {
-      console.error("❌ Error al bloquear/desbloquear profesor:", err);
-      return res.status(500).json({ error: 'Error al actualizar estado del profesor' });
+      console.error('❌ Error al bloquear/desbloquear profesor:', err);
+      return res.status(500).json({ error: 'Error al bloquear/desbloquear profesor' });
     }
 
-    res.json({ message: bloquear ? 'Profesor bloqueado' : 'Profesor desbloqueado' });
+    if (result.affectedRows > 0) {
+      res.json({ message: `Profesor ${bloquear ? 'bloqueado' : 'desbloqueado'} con éxito` });
+    } else {
+      res.status(404).json({ error: 'Profesor no encontrado' });
+    }
   });
 });
 
@@ -752,19 +773,17 @@ app.delete('/eliminar-profesor/:id', (req, res) => {
   const sql = 'DELETE FROM profesores WHERE id = ?';
   db.query(sql, [id], (err, result) => {
     if (err) {
-      console.error("❌ Error al eliminar profesor:", err);
-      return res.status(500).json({ error: "Error al eliminar profesor" });
+      console.error('Error al eliminar el profesor:', err);
+      return res.status(500).json({ error: 'Error al eliminar el profesor' });
     }
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Profesor no encontrado" });
+      return res.status(404).json({ error: 'Profesor no encontrado' });
     }
 
-    res.json({ message: "Profesor eliminado correctamente" });
+    res.json({ message: 'Profesor eliminado con éxito' });
   });
 });
-
-
 
 
 

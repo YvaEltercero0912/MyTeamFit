@@ -19,7 +19,7 @@ let usuarioSeleccionado = null;
     const profesor = JSON.parse(sessionStorage.getItem("profesor"));
     if (!profesor || !profesor.id) {
       alert("Sesión de profesor no encontrada");
-      window.location.href = "login.html";  // Redirige al login si no se encuentra sesión
+      window.location.href = "/index.html";  // Redirige al login si no se encuentra sesión
       return;
     }
 
@@ -31,7 +31,7 @@ let usuarioSeleccionado = null;
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
         sessionStorage.removeItem('profesor');  // Elimina la sesión del profesor
-        window.location.href = "login.html";  // Redirige al login
+        window.location.href = "/index.html";  // Redirige al login
       });
     }
   });

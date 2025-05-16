@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const profesor = JSON.parse(sessionStorage.getItem("profesor"));
   if (!profesor || !profesor.id) {
     alert("No se detectó sesión. Redirigiendo al login...");
-    window.location.href = "login_profesor.html";
+    window.location.href = "/index.html";
     return;
   }
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       sessionStorage.removeItem("profesor");
-      window.location.href = "login_profesor.html";
+      window.location.href = "/index.html";
     });
   }
 

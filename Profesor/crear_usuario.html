@@ -116,7 +116,7 @@ a {
     const profesor = JSON.parse(sessionStorage.getItem("profesor"));
     if (!profesor) {
       alert("No hay sesión activa de profesor");
-      window.location.href = "login_profesor.html";
+      window.location.href = "/index.html";
     }
 
     form.addEventListener("submit", async (e) => {

@@ -42,7 +42,7 @@ const profesor = JSON.parse(sessionStorage.getItem("profesor"));
 
 if (!profesor || !profesor.id) {
     alert("No se detectó sesión de profesor.");
-    window.location.href = "login_profesor.html";
+    window.location.href = "/index.html";
 } else {
     fetch(`http://localhost:3000/buscar-usuario?nombre=${encodeURIComponent(nombre)}&id_profesor=${profesor.id}`)
         .then(res => res.json())

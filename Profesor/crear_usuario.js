@@ -11,7 +11,7 @@ document.getElementById('btn-create-user').addEventListener('click', async () =>
   
     if (!profesor || !profesor.id) {
       alert("No se detectó sesión de profesor. Por favor, vuelva a iniciar sesión.");
-      window.location.href = "login_profesor.html";
+      window.location.href = "/index.html";
       return;
     }
   

@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logout");
   const userData = JSON.parse(localStorage.getItem("userData"));
   if (!userData || !userData.nombre || !userData.id) {
-    window.location.href = "login.html";
+    window.location.href = "/login.html";
     return;
   }
 
@@ -69,40 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("userData");
     localStorage.removeItem("user");
-    window.location.href = "login.html";
-  });
-
-  const avatarInput = document.createElement("input");
-  avatarInput.type = "file";
-  avatarInput.accept = "image/*";
-  avatarInput.style.display = "none";
-  document.body.appendChild(avatarInput);
-
-  avatarImg.addEventListener("click", () => avatarInput.click());
-
-  avatarInput.addEventListener("change", async () => {
-    const file = avatarInput.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("foto", file);
-
-    try {
-      const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
-        method: "POST",
-        body: formData
-      });
-      const result = await response.json();
-      if (response.ok) {
-        avatarImg.src = `http://localhost:3000${result.ruta}`;
-        userData.foto = result.ruta;
-        localStorage.setItem("userData", JSON.stringify(userData));
-      } else {
-        alert("Error al subir la imagen: " + result.error);
-      }
-    } catch (error) {
-      console.error("Error al subir imagen:", error);
-    }
+    window.location.href = "/index.html";
   });
 
   const searchButton = document.getElementById("btn-search");
@@ -120,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(`http://localhost:3000/planificacion?id_alumno=${user.id}&anio=${anio}&mes=${mes}&semana=${semana}&dia=${dia}`);
       const data = await res.json();
+      console.log("Datos de la planificación:", data);
 
       if (!Array.isArray(data) || data.length === 0) {
         routineBox.innerHTML = `<p>No hay planificación para ${days[dia]}, semana ${semana}, ${months[mes - 1]} ${anio}.</p>`;

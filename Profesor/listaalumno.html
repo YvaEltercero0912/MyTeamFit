@@ -142,7 +142,7 @@
     const profesor = JSON.parse(sessionStorage.getItem("profesor"));
     if (!profesor) {
       alert("No hay sesión activa de profesor");
-      window.location.href = "login_profesor.html";
+      window.location.href = "/index.html";
     }
     
     form.addEventListener("submit", async (e) => {
@@ -222,7 +222,7 @@ form.reset();
       if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
           sessionStorage.removeItem('profesor');  // Elimina la sesión del profesor
-          window.location.href = "login.html";  // Redirige al login
+          window.location.href = "/index.html";  // Redirige al login
         });
       }
   
@@ -303,26 +303,27 @@ form.reset();
     }
   
     async function eliminarAlumno(id) {
-      if (!confirm("¿Seguro que deseas eliminar este alumno? Esta acción no se puede deshacer.")) return;
-  
-      try {
-        const res = await fetch(`http://localhost:3000/eliminar-usuario/${id}`, {
-          method: "DELETE"
-        });
-  
-        const data = await res.json();
-        if (res.ok) {
-          alert("Alumno eliminado correctamente.");
-          alumnosGlobal = alumnosGlobal.filter(a => a.id !== id);
-          mostrarAlumnos(alumnosGlobal);
-        } else {
-          alert("Error al eliminar: " + data.error);
-        }
-      } catch (err) {
-        console.error("❌ Error al eliminar alumno:", err);
-        alert("Error al eliminar el alumno.");
-      }
+  if (!confirm("¿Seguro que deseas eliminar este alumno? Esta acción no se puede deshacer.")) return;
+
+  try {
+    const res = await fetch(`http://localhost:3000/eliminar-usuario/${id}`, {
+      method: 'DELETE',
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Alumno eliminado correctamente.");
+      alumnosGlobal = alumnosGlobal.filter(a => a.id !== id); // Eliminar el alumno de la lista
+      mostrarAlumnos(alumnosGlobal); // Volver a mostrar la lista de alumnos
+    } else {
+      alert("Error al eliminar: " + data.error);
     }
+  } catch (err) {
+    console.error("❌ Error al eliminar alumno:", err);
+    alert("Error al eliminar el alumno.");
+  }
+}
+
   </script>
 
 
