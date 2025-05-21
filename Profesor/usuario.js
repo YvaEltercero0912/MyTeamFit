@@ -150,8 +150,8 @@ function actualizarLista() {
             <td>${ej.nota || "—"}</td>
             <td>${ej.video ? `<a href="${ej.video}" target="_blank" style="color: #00b8e1;">Ver</a>` : "—"}</td>
             <td>
-                <img src="img/editar.png" title="Editar" onclick="editarEjercicio(${index})" style="width: 20px; cursor: pointer; margin-right: 10px;">
-                <img src="img/eliminar.png" title="Eliminar" onclick="eliminarEjercicio(${index})" style="width: 20px; cursor: pointer;">
+                <img src="/img/editar.png" title="Editar" onclick="editarEjercicio(${index})" style="width: 20px; cursor: pointer; margin-right: 10px;">
+                <img src="/img/eliminar.png" title="Eliminar" onclick="eliminarEjercicio(${index})" style="width: 20px; cursor: pointer;">
             </td>
         `;
         lista.appendChild(tr);

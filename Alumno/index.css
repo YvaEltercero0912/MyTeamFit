@@ -432,19 +432,17 @@ div#menu-toggle {
   
     /* Usuario dentro del menú */
     .user-display {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        margin-bottom: 10px;
-        padding: 9px 31px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 12px;
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #14c0e5;
-    }
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    border-radius: 41px;
+    gap: 10px;
+    width: 235px;
+    justify-content: space-around;
+    align-items: center;
+}
 
     .avatar-icon {
       width: 40px;
@@ -627,6 +625,38 @@ div#menu-toggle {
 
 
 
+ 
+  .pelotita {
+    pointer-events: none;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 6px;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+
+.pelotita.verde {
+  background-color: #4caf50;
+}
+
+.pelotita.naranja {
+  background-color: #ff9800;
+}
+
+.pelotita.rojo {
+  background-color: #f44336;
+}
+
+
+
+.estado-texto {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
 
 
 
@@ -635,34 +665,7 @@ div#menu-toggle {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      .nav-contenedor{
+.nav-contenedor{
         width: 100%;
         background-color: #363636;
         height: 60px;

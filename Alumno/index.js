@@ -1,3 +1,6 @@
+// ============================
+// BLOQUE UNIFICADO Y ACTUALIZADO (usa solo fecha_vencimiento)
+// ============================
 document.addEventListener("DOMContentLoaded", () => {
   const selectYear = document.getElementById("select-year");
   const selectMonth = document.getElementById("select-month");
@@ -43,19 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
   for (let i = 1; i <= 7; i++) {
     const option = document.createElement("option");
     option.value = i;
-    option.textContent = days[i]; // Solo se muestra el nombre del día, no el número
+    option.textContent = days[i];
     selectDia.appendChild(option);
   }
 
-  // Seleccionar el día actual automáticamente
-  const currentDay = new Date().getDay(); // Devuelve un número del 0 (domingo) al 6 (sábado)
-  const dayToSelect = currentDay === 0 ? 7 : currentDay; // Si es domingo, selecciona el lunes
+  const currentDay = new Date().getDay();
+  const dayToSelect = currentDay === 0 ? 7 : currentDay;
   selectDia.value = dayToSelect;
 
   const usernameDisplay = document.getElementById("username");
   const avatarImg = document.getElementById("avatar-img");
   const logoutButton = document.getElementById("logout");
   const userData = JSON.parse(localStorage.getItem("userData"));
+
   if (!userData || !userData.nombre || !userData.id) {
     window.location.href = "/login.html";
     return;
@@ -87,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(`http://localhost:3000/planificacion?id_alumno=${user.id}&anio=${anio}&mes=${mes}&semana=${semana}&dia=${dia}`);
       const data = await res.json();
-      console.log("Datos de la planificación:", data);
 
       if (!Array.isArray(data) || data.length === 0) {
         routineBox.innerHTML = `<p>No hay planificación para ${days[dia]}, semana ${semana}, ${months[mes - 1]} ${anio}.</p>`;
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ordenados.forEach(ej => {
           const videoHTML = ej.video
-            ? `<a href="${ej.video}" target="_blank"><img src="img/play.png" alt="Video" class="icono-play" style="width: 20px;"></a>`
+            ? `<a href="${ej.video}" target="_blank"><img src="/img/play.png" alt="Video" class="icono-play" style="width: 20px;"></a>`
             : "";
           const colorStyle = ej.tipo === "basico" ? "style='color:red'" : "";
           html += `
@@ -141,52 +143,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchButton.addEventListener("click", getRutina);
   getRutina();
+
+  // ============================
+  // ESTADO DE PAGO SEGÚN FECHA
+  // ============================
+
+  const estadoPagoTexto = document.getElementById("estado-pago-texto");
+
+  async function cargarEstadoPago() {
+    try {
+      const res = await fetch(`http://localhost:3000/obtener-estado-pago?id_alumno=${userData.id}`);
+      const data = await res.json();
+
+      if (data && data.fecha_vencimiento) {
+        const fechaVencimiento = new Date(data.fecha_vencimiento);
+        const hoy = new Date();
+
+        fechaVencimiento.setHours(0, 0, 0, 0);
+        hoy.setHours(0, 0, 0, 0);
+
+        const diff = Math.floor((fechaVencimiento - hoy) / (1000 * 60 * 60 * 24));
+        let estado = "verde";
+        let mensaje = "Estás al día";
+
+        if (diff >= 0 && diff <= 3) {
+          estado = "naranja";
+          mensaje = "Faltan 2 días para vencer";
+        }
+        if (diff < 0) {
+          estado = "rojo";
+          mensaje = "Vencido";
+        }
+
+        estadoPagoTexto.innerHTML = `<span class="pelotita ${estado}" title="${mensaje}"></span>`;
+        estadoPagoTexto.classList.remove("estado-verde", "estado-naranja", "estado-rojo");
+      } else {
+        estadoPagoTexto.textContent = "No disponible";
+        estadoPagoTexto.classList.remove("estado-verde", "estado-naranja", "estado-rojo");
+      }
+    } catch (err) {
+      console.error("Error al cargar el estado de pago:", err);
+      estadoPagoTexto.textContent = "Error al verificar";
+      estadoPagoTexto.classList.remove("estado-verde", "estado-naranja", "estado-rojo");
+    }
+  }
+
+  cargarEstadoPago();
 });
 
 
 
+const avatarInput = document.getElementById("avatar-input");
+const avatarImg = document.getElementById("avatar-img");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const avatarImg = document.getElementById("avatar-img");
-  const avatarInput = document.getElementById("avatar-input");
+avatarImg.addEventListener("click", () => avatarInput.click());
 
-  // Permitir que el avatar se cambie al hacer clic en la imagen
-  avatarImg.addEventListener("click", () => avatarInput.click());
+avatarInput.addEventListener("change", async () => {
+  const file = avatarInput.files[0];
+  if (!file) return;
 
-  // Al seleccionar un archivo, cambiar la imagen
-  avatarInput.addEventListener("change", async () => {
-      const file = avatarInput.files[0];
-      if (!file) return; // Si no hay archivo, no hacer nada
-      
-      const formData = new FormData();
-      formData.append("foto", file);
+  const formData = new FormData();
+  formData.append("foto", file);
 
-      try {
-          const userData = JSON.parse(localStorage.getItem("userData"));
-          const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
-              method: "POST",
-              body: formData
-          });
-          const result = await response.json();
-          
-          if (response.ok) {
-              avatarImg.src = `http://localhost:3000${result.ruta}`;
-              userData.foto = result.ruta;
-              localStorage.setItem("userData", JSON.stringify(userData)); // Actualizar foto en localStorage
-          } else {
-              alert("Error al subir la imagen: " + result.error);
-          }
-      } catch (error) {
-          console.error("Error al subir imagen:", error);
-      }
-  });
+  try {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
+      method: "POST",
+      body: formData
+    });
+    const result = await response.json();
 
-  // Función para cargar los datos del usuario desde localStorage
-  const userData = JSON.parse(localStorage.getItem("userData"));
-  if (userData) {
-      usernameDisplay.textContent = userData.nombre;
-      if (userData.foto) {
-          avatarImg.src = `http://localhost:3000${userData.foto}`;
-      }
+    if (response.ok) {
+      avatarImg.src = `http://localhost:3000${result.ruta}`;
+      userData.foto = result.ruta;
+      localStorage.setItem("userData", JSON.stringify(userData));
+    } else {
+      alert("Error al subir la imagen: " + result.error);
+    }
+  } catch (error) {
+    console.error("Error al subir imagen:", error);
   }
 });
