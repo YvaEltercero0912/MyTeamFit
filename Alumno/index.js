@@ -142,3 +142,51 @@ document.addEventListener("DOMContentLoaded", () => {
   searchButton.addEventListener("click", getRutina);
   getRutina();
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const avatarImg = document.getElementById("avatar-img");
+  const avatarInput = document.getElementById("avatar-input");
+
+  // Permitir que el avatar se cambie al hacer clic en la imagen
+  avatarImg.addEventListener("click", () => avatarInput.click());
+
+  // Al seleccionar un archivo, cambiar la imagen
+  avatarInput.addEventListener("change", async () => {
+      const file = avatarInput.files[0];
+      if (!file) return; // Si no hay archivo, no hacer nada
+      
+      const formData = new FormData();
+      formData.append("foto", file);
+
+      try {
+          const userData = JSON.parse(localStorage.getItem("userData"));
+          const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
+              method: "POST",
+              body: formData
+          });
+          const result = await response.json();
+          
+          if (response.ok) {
+              avatarImg.src = `http://localhost:3000${result.ruta}`;
+              userData.foto = result.ruta;
+              localStorage.setItem("userData", JSON.stringify(userData)); // Actualizar foto en localStorage
+          } else {
+              alert("Error al subir la imagen: " + result.error);
+          }
+      } catch (error) {
+          console.error("Error al subir imagen:", error);
+      }
+  });
+
+  // Función para cargar los datos del usuario desde localStorage
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  if (userData) {
+      usernameDisplay.textContent = userData.nombre;
+      if (userData.foto) {
+          avatarImg.src = `http://localhost:3000${userData.foto}`;
+      }
+  }
+});
