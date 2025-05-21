@@ -786,6 +786,44 @@ app.delete('/eliminar-profesor/:id', (req, res) => {
 });
 
 
+app.get('/alumno/:id', (req, res) => {
+  const alumnoId = req.params.id;
+  const sql = "SELECT nombre, fecha_vencimiento FROM alumnos WHERE id = ?";
+
+  db.query(sql, [alumnoId], (err, results) => {
+    if (err) {
+      console.error("Error al obtener datos del alumno:", err);
+      return res.status(500).json({ error: "Error al obtener los datos del alumno" });
+    }
+    res.json(results[0]); // Enviar el alumno con la fecha de vencimiento
+  });
+});
+
+
+
+
+app.get('/obtener-estado-pago', (req, res) => {
+  const { id_alumno } = req.query;
+
+  if (!id_alumno) {
+    return res.status(400).json({ error: "Faltan parámetros" });
+  }
+
+  const sql = `SELECT fecha_vencimiento FROM alumnos WHERE id = ?`;
+  db.query(sql, [id_alumno], (err, results) => {
+    if (err) {
+      console.error('❌ Error al obtener fecha de vencimiento:', err);
+      return res.status(500).json({ error: 'Error al buscar fecha de vencimiento' });
+    }
+
+    if (results.length > 0) {
+      return res.json({ fecha_vencimiento: results[0].fecha_vencimiento });
+    } else {
+      return res.status(404).json({ error: "Alumno no encontrado" });
+    }
+  });
+});
+
 
 
 // 📌 Iniciar servidor
