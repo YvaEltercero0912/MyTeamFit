@@ -52,10 +52,16 @@
 <h1>Historial de Planificaciones</h1>
 
   <div class="filtros">
-    <input type="text" id="buscar-nombre" placeholder="Buscar usuario...">
+
+    <div class="inputs">
+
+      <input type="text" id="buscar-nombre" placeholder="Buscar usuario...">
     <button onclick="buscarUsuario()">
-      <img style="width: 20px;" src="img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="">
+      <img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="">
     </button>
+
+    </div>
+
 
     <select id="filtro-anio"></select>
     <select id="filtro-mes">
@@ -83,7 +89,7 @@
     </select>
 
     <button onclick="buscarPlanificacion()">
-      <img style="width: 20px;" src="img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="">
+      <img style="width: 20px;" src="/img/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="">
     </button>
   </div>
 
@@ -98,6 +104,8 @@
 
 <!-- MODAL -->
 <div id="modal-create-user" class="modal hidden">
+
+  
   <div class="modalcontent">
       <div class="logos">
         

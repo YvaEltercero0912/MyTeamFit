@@ -91,15 +91,17 @@ let usuarioSeleccionado = null;
       }
 
       let html = `
-        <div class="planif-header">
-          <h2>Planificación de ${usuarioSeleccionado.nombre} - ${diasSemana[dia]} / Semana ${semana} - ${getMesTexto(mes)} ${anio}</h2>
-          <button class="btn-eliminar-planif" onclick="eliminarTodaPlanificacion(${usuarioSeleccionado.id}, ${anio}, ${mes}, ${semana}, ${dia})">
-            <img style="width: 20px" src="/img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Eliminar">
-          </button>
-        </div>
 
-        <table class="tabla-rutina">
-          <thead>
+        <div class="titulo-tabla-principal"> 
+      <div class="planif-header">
+          <h2>Planificación de ${usuarioSeleccionado.nombre} - ${diasSemana[dia]} / Semana ${semana} - ${getMesTexto(mes)} ${anio}</h2>
+     </div>
+    </div>
+
+    <div class="tabla-contenedor">
+
+    <table class="tabla-rutina">
+          <thead class="titulo-tabla">
             <tr>
               <th>Ejercicio</th>
               <th>Series</th>
@@ -110,6 +112,12 @@ let usuarioSeleccionado = null;
             </tr>
           </thead>
           <tbody>
+    </div>
+
+
+          <button class="btn-eliminar-planif" onclick="eliminarTodaPlanificacion(${usuarioSeleccionado.id}, ${anio}, ${mes}, ${semana}, ${dia})">
+            <img style="width: 20px" src="/img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Eliminar">
+          </button>
       `;
 
       const ordenados = [
