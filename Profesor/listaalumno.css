@@ -258,3 +258,8 @@ h1 {
     object-fit: cover;
     border-radius: 20px 0px 0px 20px;
 }
+
+
+
+.vencido { color: red; font-weight: bold; }
+.por-vencer { color: orange; font-weight: bold; }

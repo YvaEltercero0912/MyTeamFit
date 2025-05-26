@@ -324,6 +324,122 @@ form.reset();
   }
 }
 
+// listaalumnos.js - Carga, resalta vencidos y pronto a vencer con refresco automático
+
+// Función para cargar y mostrar la lista de alumnos
+function cargarAlumnos() {
+  const lista = document.getElementById("lista-alumnos");
+  if (!lista) {
+    console.error("No se encontró #lista-alumnos");
+    return;
+  }
+
+  const hoy = new Date();
+  hoy.setHours(0,0,0,0);
+
+  fetch(`http://localhost:3000/alumnos-profesor/${JSON.parse(sessionStorage.getItem('profesor')).id}`)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+      return res.json();
+    })
+    .then(alumnos => {
+      // Cabecera de la tabla-excel
+      lista.innerHTML = `
+        <div class="tabla-excel">
+          <div class="celda encabezado">Nombre</div>
+          <div class="celda encabezado">Fecha inicio</div>
+          <div class="celda encabezado">Fecha vencimiento</div>
+          <div class="celda encabezado">Acciones</div>
+        </div>
+      `;
+      const tabla = lista.querySelector(".tabla-excel");
+
+      alumnos.forEach(al => {
+        const venc = new Date(al.fecha_vencimiento);
+        venc.setHours(0,0,0,0);
+
+        const diffMs = venc - hoy;
+        const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        let clase = '';
+        if (diffDias < 0) {
+          clase = 'vencido';
+        } else if (diffDias <= 3) {
+          clase = 'por-vencer';
+        }
+
+        tabla.innerHTML += `
+          <div class="celda ${clase}">${al.nombre}</div>
+          <div class="celda">
+            <input type="date" id="inicio-${al.id}" value="${new Date(al.fecha_inicio).toISOString().split('T')[0]}">
+          </div>
+          <div class="celda">
+            <input type="date" id="vencimiento-${al.id}" value="${new Date(al.fecha_vencimiento).toISOString().split('T')[0]}">
+          </div>
+          <div class="celda">
+            <button class="guardar" onclick="guardarFechas(${al.id})">Guardar</button>
+            <button class="btn-eliminar" onclick="eliminarAlumno(${al.id})">Eliminar</button>
+          </div>
+        `;
+      });
+    })
+    .catch(err => console.error('Error al cargar alumnos:', err));
+}
+
+// Llamada inicial al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  cargarAlumnos();
+});
+
+// Función para guardar fechas y luego recargar la lista
+function guardarFechas(id) {
+  const fecha_inicio = document.getElementById(`inicio-${id}`).value;
+  const fecha_vencimiento = document.getElementById(`vencimiento-${id}`).value;
+  if (!fecha_inicio || !fecha_vencimiento) {
+    alert("Debe completar ambas fechas.");
+    return;
+  }
+
+  fetch("http://localhost:3000/guardar-fechas-alumno", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_alumno: id, fecha_inicio, fecha_vencimiento })
+  })
+    .then(res => {
+      if (!res.ok) throw new Error(`Error HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(() => {
+      cargarAlumnos(); // Refresca la lista al guardar
+    })
+    .catch(err => {
+      console.error('Error al guardar fechas:', err);
+      alert('Error al guardar fechas.');
+    });
+}
+
+// Función para eliminar alumno y luego recargar la lista
+function eliminarAlumno(id) {
+  if (!confirm("¿Seguro que deseas eliminar este alumno?")) return;
+  fetch(`http://localhost:3000/eliminar-usuario/${id}`, { method: 'DELETE' })
+    .then(res => {
+      if (!res.ok) throw new Error(`Error HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(() => {
+      cargarAlumnos(); // Refresca la lista al eliminar
+    })
+    .catch(err => {
+      console.error('Error al eliminar alumno:', err);
+      alert('Error al eliminar el alumno.');
+    });
+}
+
+// CSS recomendado en tu .css:
+// .vencido { color: red; font-weight: bold; }
+// .por-vencer { color: orange; font-weight: bold; }
+
+
   </script>
 
 

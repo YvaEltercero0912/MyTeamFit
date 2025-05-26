@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="usuario.css">
     <script defer src="usuario.js"></script>
-    
+    <script defer src="listadeejercicios.js"></script>
 </head>
 
 <body>
@@ -67,7 +67,10 @@
         </div>
   
         <form id="form-planificacion">
-          <input type="text" id="ejercicio" placeholder="Ejercicio" />
+          <div style="position: relative; width: 100%; max-width: 400px;">
+          <input type="text" id="ejercicio" placeholder="Ejercicio" autocomplete="off" />
+          <ul id="sugerencias" class="sugerencias-lista"></ul>
+          </div>
   
           <!-- Radio para tipo de ejercicio -->
           <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">

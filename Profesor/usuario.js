@@ -204,3 +204,20 @@ document.getElementById("logout-btn").addEventListener("click", () => {
       console.error("Error al cerrar sesión:", err);
     });
 });
+
+//notifiacion
+
+document.addEventListener("DOMContentLoaded", () => {
+  const idAlumno = sessionStorage.getItem("id_alumno"); // o donde guardes el ID
+
+  if (idAlumno) {
+    fetch(`http://localhost:3000/estado-vencimiento/${idAlumno}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.vencido) {
+          document.getElementById("notificacion-vencido").style.display = "block";
+        }
+      })
+      .catch(err => console.error("Error al verificar vencimiento:", err));
+  }
+});

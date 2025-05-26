@@ -224,3 +224,46 @@ avatarInput.addEventListener("change", async () => {
     console.error("Error al subir imagen:", error);
   }
 });
+
+
+//noti
+
+document.addEventListener("DOMContentLoaded", () => {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  if (!userData || !userData.id) {
+    console.warn("No se encontró userData.id en localStorage");
+    return;
+  }
+
+  fetch(`http://localhost:3000/estado-vencimiento/${userData.id}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log("➡ Datos recibidos:", data); // 👈 MUY IMPORTANTE
+
+      const notificacion = document.getElementById("notificacion-vencido");
+      if (!notificacion || !data.fecha_vencimiento) return;
+
+      const fechaVenc = new Date(data.fecha_vencimiento);
+      const hoy = new Date();
+      fechaVenc.setHours(0, 0, 0, 0);
+      hoy.setHours(0, 0, 0, 0);
+
+      const diferenciaDias = Math.floor((fechaVenc - hoy) / (1000 * 60 * 60 * 24));
+
+      if (diferenciaDias < 0) {
+        notificacion.textContent = "❌ Tu mensualidad está vencida. Por favor, contacta a tu profesor.";
+        notificacion.style.display = "block";
+        notificacion.style.backgroundColor = "red";
+      } else if (diferenciaDias <= 3) {
+        notificacion.textContent = `⚠ Tu mensualidad vence en ${diferenciaDias} día${diferenciaDias !== 1 ? 's' : ''}.`;
+        notificacion.style.display = "block";
+        notificacion.style.backgroundColor = "orange";
+      } else {
+        notificacion.style.display = "none";
+      }
+    })
+    .catch(err => {
+      console.error("Error al verificar vencimiento:", err);
+    });
+});

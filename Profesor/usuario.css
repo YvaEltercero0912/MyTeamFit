@@ -203,3 +203,30 @@ border-bottom-right-radius: 15px;
       border-radius: 20px 0px 0px 20px;
   }
   
+
+  .sugerencias-lista {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #05e4dd;
+  border-radius: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 2px 0 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+.sugerencias-lista li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #00dcd5;
+}
