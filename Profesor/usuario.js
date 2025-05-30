@@ -198,7 +198,7 @@ document.getElementById("logout-btn").addEventListener("click", () => {
   })
     .then(() => {
       sessionStorage.removeItem("profesor");
-      window.location.href = "login_profesor.html";
+      window.location.href = "/index.html";
     })
     .catch((err) => {
       console.error("Error al cerrar sesión:", err);

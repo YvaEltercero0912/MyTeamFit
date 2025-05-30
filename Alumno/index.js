@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   if (!userData || !userData.nombre || !userData.id) {
-    window.location.href = "/login.html";
+    window.location.href = "/index.html";
     return;
   }
 
@@ -267,3 +267,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error al verificar vencimiento:", err);
     });
 });
+
+
+
+
+
+
+
+
+
+

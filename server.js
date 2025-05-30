@@ -826,6 +826,43 @@ app.get('/obtener-estado-pago', (req, res) => {
 
 
 
+//notifiacion 
+
+app.get('/estado-vencimiento/:id_alumno', (req, res) => {
+  const id = req.params.id_alumno;
+
+  const sql = 'SELECT fecha_vencimiento FROM alumnos WHERE id = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: 'Error en la base de datos' });
+
+    if (result.length === 0) return res.status(404).json({ error: 'Alumno no encontrado' });
+
+    const hoy = new Date();
+    const vencimiento = new Date(result[0].fecha_vencimiento);
+
+    const vencido = hoy > vencimiento;
+    res.json({ vencido });
+  });
+});
+
+
+
+
+app.get('/listar-alumnos', (req, res) => {
+  const sql = 'SELECT id, nombre, fecha_vencimiento FROM alumnos';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error al listar alumnos:', err);
+      return res.status(500).json({ error: 'Error de base de datos' });
+    }
+    res.json(results);
+  });
+});
+
+
+
+
+
 // 📌 Iniciar servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

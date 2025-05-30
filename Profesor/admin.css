@@ -190,6 +190,7 @@ button.crear {
     text-align: center;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .modalcontent{
@@ -212,6 +213,18 @@ button.crear {
   width: 100%;
 }
 
+.inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+p {
+    color: white;
+    font-size: 30px;
+    margin-top: 19px;
+}
 
 .logos{
     background-image: url(/img/115-foto.png);
