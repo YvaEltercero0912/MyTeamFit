@@ -1,39 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tabata Personalizado</title>
-  <link rel="stylesheet" href="cronometro.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Tabata Timer</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabata Personalizado</title>
+    <link rel="stylesheet" href="cronometro.css" />
+  </head>
+  <body>
+    <nav class="nav-contenedor">
+      <!-- Botón hamburguesa -->
+      <div class="nav-0">
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span> </span>
+        </button>
+      </div>
 
-    <div class="config">
-      <label>⏱ Tiempo de ejercicio (seg): <input type="number" id="ejercicio" value="20" /></label>
-      <label>🛑 Descanso (seg): <input type="number" id="descanso" value="10" /></label>
-      <label>🔁 Transición (seg): <input type="number" id="transicion" value="5" /></label>
-      <label>🔄 Rondas: <input type="number" id="rondas" value="8" /></label>
+      <div class="nav-1">
+        <a
+          style="display: flex; justify-content: center; align-items: center"
+          href="/Alumno/index.html"
+        >
+          <img
+            class="logo"
+            src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png"
+            alt="Logo"
+          />
+          <img
+            class="mtf"
+            src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png"
+            alt="Logo 2"
+          />
+        </a>
+      </div>
+
+      <!-- Menú desplegable -->
+      <div class="nav-2 mobile-menu">
+        <!-- Dropdown: Datos del alumno -->
+        <div class="dropdown">
+          <button class="boton-nav dropdown-toggle">Datos del alumno</button>
+          <ul class="dropdown-menu">
+            <li><a href="binvenido.html">Bienvenido</a></li>
+            <li><a href="datosDiarios.html">Datos alumno</a></li>
+          </ul>
+        </div>
+
+        <!-- Dropdown: Calculadora -->
+        <div class="dropdown">
+          <button class="boton-nav dropdown-toggle">Calculadora</button>
+          <ul class="dropdown-menu">
+            <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+            <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+            <li><a href="#">Calorías</a></li>
+          </ul>
+        </div>
+
+        <!-- Botones sin dropdown -->
+        <button
+          class="boton-nav"
+          onclick="window.location.href='cronometro.html'"
+        >
+          Cronómetro
+        </button>
+        <button class="boton-nav" onclick="window.location.href='#'">
+          Marcas personales
+        </button>
+        <button class="boton-nav" onclick="window.location.href='#'">
+          Nutrición
+        </button>
+
+        <div class="user-display">
+          <img
+            id="avatar-img"
+            src="/img/avatar (1).png"
+            alt="Avatar"
+            class="avatar-icon"
+          />
+          <span id="username">Usuario</span>
+          <button id="logout" class="logout-btn">
+            <img
+              src="/img/salida.png"
+              alt="Salir"
+              style="width: 20px; height: 20px"
+            />
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Tabata Timer</h1>
+
+      <div class="config">
+        <label
+          >⏱ Tiempo de ejercicio (seg):
+          <input type="number" id="ejercicio" value="20"
+        /></label>
+        <label
+          >🛑 Descanso (seg): <input type="number" id="descanso" value="10"
+        /></label>
+        <label
+          >🔁 Transición (seg): <input type="number" id="transicion" value="5"
+        /></label>
+        <label>🔄 Rondas: <input type="number" id="rondas" value="8" /></label>
+      </div>
+
+      <div class="display">
+        <h2 id="estado">Preparado</h2>
+        <h1 id="tiempo">00:00</h1>
+        <p>Ronda <span id="ronda">0</span></p>
+      </div>
+
+      <div class="botones">
+        <button id="iniciar">▶ Iniciar</button>
+        <button id="reiniciar">🔁 Reiniciar</button>
+      </div>
     </div>
 
-    <div class="display">
-      <h2 id="estado">Preparado</h2>
-      <h1 id="tiempo">00:00</h1>
-      <p>Ronda <span id="ronda">0</span></p>
-    </div>
+    <!-- 🔊 Sonidos -->
+    <audio id="beep3" src="sounds/beep3.mp3"></audio>
+    <audio id="cambio" src="sounds/cambio.mp3"></audio>
 
-    <div class="botones">
-      <button id="iniciar">▶ Iniciar</button>
-      <button id="reiniciar">🔁 Reiniciar</button>
-    </div>
-  </div>
-
-  <!-- 🔊 Sonidos -->
-  <audio id="beep3" src="sounds/beep3.mp3"></audio>
-  <audio id="cambio" src="sounds/cambio.mp3"></audio>
-
-  <script src="cronometro.js"></script>
-</body>
+    <script src="cronometro.js"></script>
+  </body>
 </html>
-

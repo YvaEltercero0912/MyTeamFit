@@ -1,639 +1,651 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Rutinas</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <script defer src="index.js"></script>
-    <link rel="stylesheet" href="calculadoraMB.css">
-  <style>
-   
-
-    h1 {
-      text-align: center;
-      padding: 30px 20px 10px;
-      color: #14c0e5;
-      font-size: 21px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      background-color: #222;
-      border-radius: 10px;
-      padding: 30px 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-  
-
-    label {
-      display: block;
-      margin-top: 10px;
-      color: #ddd;
-    }
-
-
-    .gender {
-      display: flex;
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .gender input {
-      width: auto;
-    }
-
-
-    .results {
-      margin-top: 20px;
-      background-color: #333;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .results p {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
-
-    .user-display {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 6px 10px;
-    border-radius: 30px;
-    gap: 10px;
-    width: 200px;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.avatar-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .logout-btn {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .logout-btn img:hover {
-            transform: scale(1.1);
-        }
-
-        .user-display #username {
-            font-weight: bold;
-            color: white;
-        }
-
-        .routine-box {
-            margin-top: 20px;
-            padding: 20px;
-            background: #222;
-            color: white;
-            border-radius: 10px;
-        }
-
-        .ejercicio-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #333;
-            border-radius: 6px;
-        }
-        .info-basal {
-          margin-top: 40px;
-    padding: 16px;
-    background-color: #2e2e2e;
-    border: 1px solid #14c0e5;
-    border-radius: 6px;
-    color: white;
-    width: 80%;
-    margin: auto;
-    margin-top: 102px;
-    }
-
-    .info-basal h2 {
-      color: #14c0e5;
-      margin-bottom: 10px;
-    }
-
-    .info-basal p {
-      margin-bottom: 10px;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    @media screen and (max-width: 768px) {
-    /* Estilo general del header */
-    header {
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      background-color: #111;
-      border-bottom: 2px solid #14c0e5;
-    }
-
-    .container {
-        max-width: 356px;
-        margin: 20px auto;
-        background-color: #222;
-        border-radius: 10px;
-        padding: 30px 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        margin-top: 60px;
-    }
-
-    .fill {
-        font-size: 16px;
-        padding: 10px;
-        width: 150px;
-        border: 2px solid var(--color-fill);
-        border-radius: 5px;
-        background: #111111;
-        color: #ffffff;
-        cursor: pointer;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-  
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-  
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-      z-index: 1100;
-    }
-  
-    .menu-toggle img {
-      width: 30px;
-      filter: invert(1);
-    }
-  
-    .menu-toggle.hidden {
-      display: none;
-    }
-  
-    
-        .logo-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: auto; 
-        }
-    
-  
-    .logo {
-      width: 70px;
-    }
-  
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 250px;
-        background-color: #222;
-        padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
-        gap: 20px;
-        border-right: 2px solid #14c0e5;
-        z-index: 1050;
-        transition: left 0.3s ease;
-        margin-top: 0;
+    <link rel="stylesheet" href="calculadoraMB.css" />
+    <style>
+      h1 {
+        text-align: center;
+        padding: 30px 20px 10px;
+        color: #14c0e5;
+        font-size: 21px;
       }
-  
-    .nav-links.active {
-      display: flex;
-    }
-  
-    .nav-links li {
-      list-style: none;
-    }
-  
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-  
-    .dropdown-menu {
-      position: static;
-      width: 100%;
-      border-radius: 0;
-      background: none;
-    }
-  
-    .dropdown-menu li {
-      text-align: left;
-      padding-left: 10px;
-    }
-  
-    /* Usuario dentro del menú */
-    .user-display {
+
+      label {
+        display: block;
+        margin-top: 10px;
+        color: #ddd;
+      }
+
+      .gender {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        margin-bottom: 10px;
-        padding: 9px 31px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 12px;
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #14c0e5;
-    }
+        gap: 15px;
+        margin-top: 10px;
+      }
 
-    .avatar-icon {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-  
-    #username {
-      font-size: 15px;
-      font-weight: bold;
-      color: white;
-      white-space: nowrap;
-    }
-  
-    .logout-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-  
-    .logout-btn img {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s;
-    }
-  
-    .logout-btn img:hover {
-      transform: scale(1.1);
-    }
+      .gender input {
+        width: auto;
+      }
 
-    nav {
-        display: flex;
-        width: 100%;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
+      .results {
+        margin-top: 20px;
+        background-color: #333;
+        padding: 15px;
+        border-radius: 10px;
+      }
 
+      .results p {
+        margin: 10px 0;
+        font-size: 1.1em;
+      }
 
-    .nav-1{
-        width: 65%;
-        display: flex;
-        justify-content: center;
-    }
+      .avatar-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+      }
 
-    .nav-2{
-        width: 20%;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
+      .logout-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
 
-    .logo2{
-        width: 100px;
-        display: flex;
-    }
-    .main-txt{
-        display: flex;
-        width: 90%;
-        justify-content: center;
-    }
+      .logout-btn img:hover {
+        transform: scale(1.1);
+      }
 
-    .routine-box {
+      .user-display #username {
+        font-weight: bold;
+        color: white;
+      }
+
+      .routine-box {
+        margin-top: 20px;
         padding: 20px;
         background: #222;
         color: white;
         border-radius: 10px;
+      }
+
+      .ejercicio-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #333;
+        border-radius: 6px;
+      }
+      .info-basal {
+        margin-top: 40px;
+        padding: 16px;
+        background-color: #2e2e2e;
+        border: 1px solid #14c0e5;
+        border-radius: 6px;
+        color: white;
         width: 80%;
         margin: auto;
-        margin-top: 15px;
-    }
+        margin-top: 102px;
+      }
 
-    div#menu-toggle {
-        display: flex;
-    }
+      .info-basal h2 {
+        color: #14c0e5;
+        margin-bottom: 10px;
+      }
 
-    .dropdown-menu {
-  display: none;
-  flex-direction: column;
-}
+      .info-basal p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        color: #ddd;
+      }
 
-.dropdown-menu.active {
-  display: flex;
-}
+      @media screen and (max-width: 768px) {
+        /* Estilo general del header */
+        header {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          background-color: #111;
+          border-bottom: 2px solid #14c0e5;
+        }
 
-input, select {
-    width: 94%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #14c0e5;
-    border-radius: 5px;
-    background-color: #1e1e1e;
-    color: white;
-}
+        .fill {
+          font-size: 16px;
+          padding: 10px;
+          width: 150px;
+          border: 2px solid var(--color-fill);
+          border-radius: 5px;
+          background: #111111;
+          color: #ffffff;
+          cursor: pointer;
+          outline: none;
+          transition: all 0.3s ease;
+        }
 
-}
+        .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 10px 20px;
+          box-sizing: border-box;
+        }
 
- 
+        .menu-toggle {
+          display: block;
+          cursor: pointer;
+          z-index: 1100;
+        }
 
-  </style>
-</head>
+        .menu-toggle img {
+          width: 30px;
+          filter: invert(1);
+        }
 
-<nav class="nav-contenedor">
+        .menu-toggle.hidden {
+          display: none;
+        }
 
-  <div class="nav-1">
-
-      <a style="display: flex
-      ;
+        .logo-container {
+          display: inline-flex;
+          align-items: center;
           justify-content: center;
-          align-items: center;" href="/Alumno/index.html">
-          <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-          <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
-        </a>
+          width: auto;
+        }
 
-  </div>
+        .logo {
+          width: 70px;
+        }
 
-  <div class="nav-2">
-    <!-- Botón con dropdown: Datos del alumno -->
-    <button class="boton-nav dropdown">
-      Datos del alumno
-      <ul class="dropdown-menu">
-        <li><a href="binvenido.html">Bienvenido</a></li>
-        <li><a href="datosDiarios.html">Datos alumno</a></li>
-      </ul>
-    </button>
-  
-    <!-- Botón con dropdown: Calculadora -->
-    <button class="boton-nav dropdown">
-      Calculadora
-      <ul class="dropdown-menu">
-        <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
-        <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
-        <li><a href="#">Calorías</a></li>
-      </ul>
-    </button>
-  
-    <!-- Botones sin dropdown -->
-    <button class="boton-nav" onclick="window.location.href='cronometro.html'">
-      Cronómetro
-    </button>
-    <button class="boton-nav" onclick="window.location.href='#'">
-      Marcas personales
-    </button>
-    <button class="boton-nav" onclick="window.location.href='#'">
-      Nutrición
-    </button>
-  </div>
-  
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 250px;
+          background-color: #222;
+          padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
+          gap: 20px;
+          border-right: 2px solid #14c0e5;
+          z-index: 1050;
+          transition: left 0.3s ease;
+          margin-top: 0;
+        }
 
-  <div class="nav-3">
+        .nav-links.active {
+          display: flex;
+        }
 
-      <!-- Aquí se coloca el bloque del usuario -->
-        <div class="user-display">
-          <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
-          <span id="username">Usuario</span>
-          <button id="logout" class="logout-btn">
-            <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
-          </button>
-        </div>
+        .nav-links li {
+          list-style: none;
+        }
 
-  </div>
+        .nav-links a {
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+        }
 
-</nav>
+        .dropdown-menu {
+          position: static;
+          width: 100%;
+          border-radius: 0;
+          background: none;
+        }
 
+        .dropdown-menu li {
+          text-align: left;
+          padding-left: 10px;
+        }
 
+        /* Usuario dentro del menú */
+        .user-display {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin-bottom: 10px;
+          padding: 9px 31px;
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 12px;
+          width: 100%;
+          box-sizing: border-box;
+          border-bottom: 1px solid #14c0e5;
+        }
 
-<body>
+        .avatar-icon {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
 
-  <h1>CALCULAR METABOLISMO BASAL</h1>
+        #username {
+          font-size: 15px;
+          font-weight: bold;
+          color: white;
+          white-space: nowrap;
+        }
 
-  <div class="container">
-    <label>Sexo:</label>
-    <div class="gender">
-      <label><input type="radio" name="sexo" value="hombre" checked> Hombre</label>
-      <label><input type="radio" name="sexo" value="mujer"> Mujer</label>
+        .logout-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .logout-btn img {
+          width: 20px;
+          height: 20px;
+          transition: transform 0.3s;
+        }
+
+        .logout-btn img:hover {
+          transform: scale(1.1);
+        }
+
+        nav {
+          display: flex;
+          width: 100%;
+          flex-direction: row-reverse;
+          justify-content: flex-end;
+        }
+
+        .nav-1 {
+          width: 65%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .nav-2 {
+          align-items: center;
+          justify-content: center;
+          display: flex;
+        }
+
+        .logo2 {
+          width: 100px;
+          display: flex;
+        }
+        .main-txt {
+          display: flex;
+          width: 90%;
+          justify-content: center;
+        }
+
+        .routine-box {
+          padding: 20px;
+          background: #222;
+          color: white;
+          border-radius: 10px;
+          width: 80%;
+          margin: auto;
+          margin-top: 15px;
+        }
+
+        div#menu-toggle {
+          display: flex;
+        }
+
+        .dropdown-menu {
+          display: none;
+          flex-direction: column;
+        }
+
+        .dropdown-menu.active {
+          display: flex;
+        }
+
+        input,
+        select {
+          width: 94%;
+          padding: 10px;
+          margin-top: 5px;
+          border: 1px solid #14c0e5;
+          border-radius: 5px;
+          background-color: #1e1e1e;
+          color: white;
+        }
+      }
+    </style>
+  </head>
+
+  <nav class="nav-contenedor">
+    <!-- Botón hamburguesa -->
+    <div class="nav-0">
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span> </span>
+      </button>
     </div>
 
-    <label for="peso">Peso (kg):</label>
-    <input type="number" id="peso">
+    <div class="nav-1">
+      <a
+        style="display: flex; justify-content: center; align-items: center"
+        href="/Alumno/index.html"
+      >
+        <img
+          class="logo"
+          src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png"
+          alt="Logo"
+        />
+        <img
+          class="mtf"
+          src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png"
+          alt="Logo 2"
+        />
+      </a>
+    </div>
 
-    <label for="altura">Estatura (cm):</label>
-    <input type="number" id="altura">
+    <!-- Menú desplegable -->
+    <div class="nav-2 mobile-menu">
+      <!-- Dropdown: Datos del alumno -->
+      <div class="dropdown">
+        <button class="boton-nav dropdown-toggle">Datos del alumno</button>
+        <ul class="dropdown-menu">
+          <li><a href="binvenido.html">Bienvenido</a></li>
+          <li><a href="datosDiarios.html">Datos alumno</a></li>
+        </ul>
+      </div>
 
-    <label for="edad">Edad:</label>
-    <input type="number" id="edad">
+      <!-- Dropdown: Calculadora -->
+      <div class="dropdown">
+        <button class="boton-nav dropdown-toggle">Calculadora</button>
+        <ul class="dropdown-menu">
+          <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+          <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+          <li><a href="#">Calorías</a></li>
+        </ul>
+      </div>
 
-    <label for="actividad">Nivel de actividad:</label>
-    <select id="actividad">
-      <option value="1.2">Sedentario</option>
-      <option value="1.375">Actividad ligera</option>
-      <option value="1.55">Actividad moderada</option>
-      <option value="1.725">Muy activo</option>
-      <option value="1.9">Atleta</option>
-    </select>
+      <!-- Botones sin dropdown -->
+      <button
+        class="boton-nav"
+        onclick="window.location.href='cronometro.html'"
+      >
+        Cronómetro
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Marcas personales
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Nutrición
+      </button>
 
-    <button onclick="calcularMetabolismo()">CALCULAR</button>
+      <div class="user-display">
+        <img
+          id="avatar-img"
+          src="/img/avatar (1).png"
+          alt="Avatar"
+          class="avatar-icon"
+        />
+        <span id="username">Usuario</span>
+        <button id="logout" class="logout-btn">
+          <img
+            src="/img/salida.png"
+            alt="Salir"
+            style="width: 20px; height: 20px"
+          />
+        </button>
+      </div>
+    </div>
+  </nav>
 
-    <div class="results" id="resultado"></div>
-  </div>
+  <body>
+    <h1>CALCULAR METABOLISMO BASAL</h1>
 
-  <div class="info-basal">
-    <h2>¿Qué es el Metabolismo Basal?</h2>
-    <p>
-      El <strong>Metabolismo Basal</strong> (MB) es la cantidad mínima de energía (calorías) que tu cuerpo necesita 
-      para mantener las funciones vitales cuando estás en reposo. Esto incluye respirar, hacer circular la sangre, 
-      regular la temperatura corporal, mantener las funciones cerebrales y más.
-    </p>
-    <p>
-      Conocer tu MB es clave para saber cuántas calorías necesitas al día para mantener tu peso, 
-      adelgazar o ganar masa muscular.
-    </p>
-    <p>
-      La fórmula utilizada aquí es la de <strong>Harris-Benedict</strong>, una de las más utilizadas y confiables.
-    </p>
-    <p>
-      💡 <em>Tip:</em> Para perder peso, se recomienda un déficit calórico (consumir menos de lo que tu cuerpo necesita). 
-      Para ganar peso o músculo, es necesario un superávit (consumir más).
-    </p>
-  </div>
+    <div class="seccion-1">
+      <label>Sexo:</label>
+      <div class="gender">
+        <label
+          ><input type="radio" name="sexo" value="hombre" checked />
+          Hombre</label
+        >
+        <label><input type="radio" name="sexo" value="mujer" /> Mujer</label>
+      </div>
 
-  <script>
-    function calcularMetabolismo() {
-      const peso = parseFloat(document.getElementById('peso').value);
-      const altura = parseFloat(document.getElementById('altura').value);
-      const edad = parseInt(document.getElementById('edad').value);
-      const actividad = parseFloat(document.getElementById('actividad').value);
-      const sexo = document.querySelector('input[name="sexo"]:checked').value;
+      <label for="peso">Peso (kg):</label>
+      <input type="number" id="peso" />
 
-      if (isNaN(peso) || isNaN(altura) || isNaN(edad)) {
-        alert("Por favor, completa todos los campos correctamente.");
-        return;
-      }
+      <label for="altura">Estatura (cm):</label>
+      <input type="number" id="altura" />
 
-      let bmr;
-      if (sexo === "hombre") {
-        bmr = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * edad);
-      } else {
-        bmr = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * edad);
-      }
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" />
 
-      const mantenimiento = bmr * actividad;
-      const adelgazar = mantenimiento - 500;
-      const subir = mantenimiento + 500;
+      <label for="actividad">Nivel de actividad:</label>
+      <select id="actividad">
+        <option value="1.2">Sedentario</option>
+        <option value="1.375">Actividad ligera</option>
+        <option value="1.55">Actividad moderada</option>
+        <option value="1.725">Muy activo</option>
+        <option value="1.9">Atleta</option>
+      </select>
 
-      document.getElementById('resultado').innerHTML = `
+      <button onclick="calcularMetabolismo()">CALCULAR</button>
+
+      <div class="results" id="resultado"></div>
+    </div>
+
+    <div class="info-basal">
+      <h2>¿Qué es el Metabolismo Basal?</h2>
+      <p>
+        El <strong>Metabolismo Basal</strong> (MB) es la cantidad mínima de
+        energía (calorías) que tu cuerpo necesita para mantener las funciones
+        vitales cuando estás en reposo. Esto incluye respirar, hacer circular la
+        sangre, regular la temperatura corporal, mantener las funciones
+        cerebrales y más.
+      </p>
+      <p>
+        Conocer tu MB es clave para saber cuántas calorías necesitas al día para
+        mantener tu peso, adelgazar o ganar masa muscular.
+      </p>
+      <p>
+        La fórmula utilizada aquí es la de <strong>Harris-Benedict</strong>, una
+        de las más utilizadas y confiables.
+      </p>
+      <p>
+        💡 <em>Tip:</em> Para perder peso, se recomienda un déficit calórico
+        (consumir menos de lo que tu cuerpo necesita). Para ganar peso o
+        músculo, es necesario un superávit (consumir más).
+      </p>
+    </div>
+
+    <script>
+      function calcularMetabolismo() {
+        const peso = parseFloat(document.getElementById("peso").value);
+        const altura = parseFloat(document.getElementById("altura").value);
+        const edad = parseInt(document.getElementById("edad").value);
+        const actividad = parseFloat(
+          document.getElementById("actividad").value
+        );
+        const sexo = document.querySelector('input[name="sexo"]:checked').value;
+
+        if (isNaN(peso) || isNaN(altura) || isNaN(edad)) {
+          alert("Por favor, completa todos los campos correctamente.");
+          return;
+        }
+
+        let bmr;
+        if (sexo === "hombre") {
+          bmr = 88.36 + 13.4 * peso + 4.8 * altura - 5.7 * edad;
+        } else {
+          bmr = 447.6 + 9.2 * peso + 3.1 * altura - 4.3 * edad;
+        }
+
+        const mantenimiento = bmr * actividad;
+        const adelgazar = mantenimiento - 500;
+        const subir = mantenimiento + 500;
+
+        document.getElementById("resultado").innerHTML = `
         <p><strong>Metabolismo basal:</strong> ${Math.round(bmr)} kcal</p>
-        <p><strong>Calorías para mantener el peso:</strong> ${Math.round(mantenimiento)} kcal</p>
+        <p><strong>Calorías para mantener el peso:</strong> ${Math.round(
+          mantenimiento
+        )} kcal</p>
         <p><strong>Para adelgazar:</strong> ${Math.round(adelgazar)} kcal</p>
         <p><strong>Para subir de peso:</strong> ${Math.round(subir)} kcal</p>
       `;
-    }
+      }
 
-    document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.nombre) {
+          document.getElementById("username").textContent = userData.nombre;
+        }
+        if (userData && userData.foto) {
+          document.getElementById(
+            "avatar-img"
+          ).src = `http://localhost:3000${userData.foto}`;
+        }
+        const username = localStorage.getItem("user") || "Usuario";
+        document.getElementById("username").textContent = username;
+
+        const logoutBtn = document.getElementById("logout");
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("userData");
+          window.location.href = "/index.html";
+        });
+
+        const avatarInput = document.createElement("input");
+        avatarInput.type = "file";
+        avatarInput.accept = "image/*";
+        avatarInput.style.display = "none";
+        document.body.appendChild(avatarInput);
+
+        document.getElementById("avatar-img").addEventListener("click", () => {
+          avatarInput.click();
+        });
+
+        avatarInput.addEventListener("change", async () => {
+          const file = avatarInput.files[0];
+          if (!file) return;
+
+          const formData = new FormData();
+          formData.append("foto", file);
+
+          try {
             const userData = JSON.parse(localStorage.getItem("userData"));
-            if (userData && userData.nombre) {
-                document.getElementById("username").textContent = userData.nombre;
+            if (!userData || !userData.id)
+              throw new Error("ID de usuario no encontrado");
+
+            const response = await fetch(
+              `http://localhost:3000/subir-foto/${userData.id}`,
+              {
+                method: "POST",
+                body: formData,
+              }
+            );
+
+            const result = await response.json();
+            if (response.ok) {
+              document.getElementById(
+                "avatar-img"
+              ).src = `http://localhost:3000${result.ruta}`;
+              userData.foto = result.ruta;
+              localStorage.setItem("userData", JSON.stringify(userData));
+            } else {
+              alert("Error al subir la imagen: " + result.error);
             }
-            if (userData && userData.foto) {
-                document.getElementById("avatar-img").src = `http://localhost:3000${userData.foto}`;
-            }
-            const username = localStorage.getItem("user") || "Usuario";
-            document.getElementById("username").textContent = username;
+          } catch (error) {
+            console.error("Error al subir imagen:", error);
+          }
+        });
 
-            const logoutBtn = document.getElementById("logout");
-            logoutBtn.addEventListener("click", () => {
-                localStorage.removeItem("user");
-                localStorage.removeItem("userData");
-                window.location.href = "/index.html";
-            });
+        const selectMonth = document.getElementById("select-month");
+        const selectWeek = document.getElementById("select-week");
+        const selectYear = document.getElementById("select-year");
+        const searchButton = document.getElementById("btn-search");
+        const routineBox = document.querySelector(".routine-box");
 
-            const avatarInput = document.createElement("input");
-            avatarInput.type = "file";
-            avatarInput.accept = "image/*";
-            avatarInput.style.display = "none";
-            document.body.appendChild(avatarInput);
+        const currentYear = new Date().getFullYear();
+        for (let y = 2025; y <= currentYear + 10; y++) {
+          const opt = document.createElement("option");
+          opt.value = y;
+          opt.textContent = y;
+          selectYear.appendChild(opt);
+        }
+        selectYear.value = currentYear;
 
-            document.getElementById("avatar-img").addEventListener("click", () => {
-                avatarInput.click();
-            });
+        const meses = [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
+        ];
+        meses.forEach((mes, i) => {
+          const opt = document.createElement("option");
+          opt.value = i + 1;
+          opt.textContent = mes;
+          selectMonth.appendChild(opt);
+        });
+        selectMonth.value = new Date().getMonth() + 1;
 
-            avatarInput.addEventListener("change", async () => {
-                const file = avatarInput.files[0];
-                if (!file) return;
+        for (let i = 1; i <= 4; i++) {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = "Semana " + i;
+          selectWeek.appendChild(opt);
+        }
 
-                const formData = new FormData();
-                formData.append("foto", file);
+        async function getRutina() {
+          const user = JSON.parse(localStorage.getItem("userData"));
+          const mes = selectMonth.value;
+          const semana = selectWeek.value;
+          const anio = selectYear.value;
 
-                try {
-                    const userData = JSON.parse(localStorage.getItem("userData"));
-                    if (!userData || !userData.id) throw new Error("ID de usuario no encontrado");
+          if (!user || !user.id) return;
 
-                    const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
-                        method: "POST",
-                        body: formData
-                    });
+          try {
+            const res = await fetch(
+              `http://localhost:3000/planificacion?id_alumno=${user.id}&mes=${mes}&semana=${semana}`
+            );
+            const data = await res.json();
 
-                    const result = await response.json();
-                    if (response.ok) {
-                        document.getElementById("avatar-img").src = `http://localhost:3000${result.ruta}`;
-                        userData.foto = result.ruta;
-                        localStorage.setItem("userData", JSON.stringify(userData));
-                    } else {
-                        alert("Error al subir la imagen: " + result.error);
-                    }
-                } catch (error) {
-                    console.error("Error al subir imagen:", error);
-                }
-            });
-
-            const selectMonth = document.getElementById("select-month");
-            const selectWeek = document.getElementById("select-week");
-            const selectYear = document.getElementById("select-year");
-            const searchButton = document.getElementById("btn-search");
-            const routineBox = document.querySelector(".routine-box");
-
-            const currentYear = new Date().getFullYear();
-            for (let y = 2025; y <= currentYear + 10; y++) {
-                const opt = document.createElement("option");
-                opt.value = y;
-                opt.textContent = y;
-                selectYear.appendChild(opt);
-            }
-            selectYear.value = currentYear;
-
-            const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-            meses.forEach((mes, i) => {
-                const opt = document.createElement("option");
-                opt.value = i + 1;
-                opt.textContent = mes;
-                selectMonth.appendChild(opt);
-            });
-            selectMonth.value = new Date().getMonth() + 1;
-
-            for (let i = 1; i <= 4; i++) {
-                const opt = document.createElement("option");
-                opt.value = i;
-                opt.textContent = "Semana " + i;
-                selectWeek.appendChild(opt);
-            }
-
-            async function getRutina() {
-                const user = JSON.parse(localStorage.getItem("userData"));
-                const mes = selectMonth.value;
-                const semana = selectWeek.value;
-                const anio = selectYear.value;
-
-                if (!user || !user.id) return;
-
-                try {
-                    const res = await fetch(`http://localhost:3000/planificacion?id_alumno=${user.id}&mes=${mes}&semana=${semana}`);
-                    const data = await res.json();
-
-                    if (!Array.isArray(data) || data.length === 0) {
-                        routineBox.innerHTML = `<p>No hay planificación para ${meses[mes - 1]} ${anio}, semana ${semana}.</p>`;
-                    } else {
-                        let html = `<h3>Planificación: ${meses[mes - 1]} ${anio}, Semana ${semana}</h3>`;
-                        data.forEach(ej => {
-                            html += `<div class="ejercicio-item">
+            if (!Array.isArray(data) || data.length === 0) {
+              routineBox.innerHTML = `<p>No hay planificación para ${
+                meses[mes - 1]
+              } ${anio}, semana ${semana}.</p>`;
+            } else {
+              let html = `<h3>Planificación: ${
+                meses[mes - 1]
+              } ${anio}, Semana ${semana}</h3>`;
+              data.forEach((ej) => {
+                html += `<div class="ejercicio-item">
                                 <p><strong>${ej.ejercicio}</strong></p>
                                 <p>Series: ${ej.series}, Reps: ${ej.repes}, Kg: ${ej.kg}</p>
                                 <p><a href="${ej.video}" target="_blank">Video explicativo</a></p>
                             </div>`;
-                        });
-                        routineBox.innerHTML = html;
-                    }
-                } catch (err) {
-                    console.error("Error al obtener rutina:", err);
-                    routineBox.innerHTML = `<p>Error al cargar la rutina.</p>`;
-                }
+              });
+              routineBox.innerHTML = html;
             }
+          } catch (err) {
+            console.error("Error al obtener rutina:", err);
+            routineBox.innerHTML = `<p>Error al cargar la rutina.</p>`;
+          }
+        }
 
-            searchButton.addEventListener("click", getRutina);
-            getRutina();
-        });
-  </script>
+        searchButton.addEventListener("click", getRutina);
+        getRutina();
+      });
+    </script>
 
-</body>
+    <script src="./menu.js"></script>
+  </body>
 </html>

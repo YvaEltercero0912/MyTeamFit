@@ -1,163 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panel de Rutinas</title>
-  <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="bienvenido.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet" />
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-  <nav class="nav-contenedor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Rutinas</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="bienvenido.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="nav-contenedor">
+      <!-- Botón hamburguesa -->
+      <div class="nav-0">
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span> </span>
+        </button>
+      </div>
 
-    <div class="nav-1">
+      <div class="nav-1">
+        <a
+          style="display: flex; justify-content: center; align-items: center"
+          href="/Alumno/index.html"
+        >
+          <img
+            class="logo"
+            src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png"
+            alt="Logo"
+          />
+          <img
+            class="mtf"
+            src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png"
+            alt="Logo 2"
+          />
+        </a>
+      </div>
 
-        <a style="display: flex
-        ;
-            justify-content: center;
-            align-items: center;" href="/Alumno/index.html">
-            <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-            <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
-          </a>
+      <!-- Menú desplegable -->
+      <div class="nav-2 mobile-menu">
+        <!-- Dropdown: Datos del alumno -->
+        <div class="dropdown">
+          <button class="boton-nav dropdown-toggle">Datos del alumno</button>
+          <ul class="dropdown-menu">
+            <li><a href="binvenido.html">Bienvenido</a></li>
+            <li><a href="datosDiarios.html">Datos alumno</a></li>
+          </ul>
+        </div>
 
-    </div>
+        <!-- Dropdown: Calculadora -->
+        <div class="dropdown">
+          <button class="boton-nav dropdown-toggle">Calculadora</button>
+          <ul class="dropdown-menu">
+            <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+            <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+            <li><a href="#">Calorías</a></li>
+          </ul>
+        </div>
 
-    <div class="nav-2">
-      <!-- Botón con dropdown: Datos del alumno -->
-      <button class="boton-nav dropdown">
-        Datos del alumno
-        <ul class="dropdown-menu">
-          <li><a href="binvenido.html">Bienvenido</a></li>
-          <li><a href="datosDiarios.html">Datos alumno</a></li>
-        </ul>
-      </button>
-    
-      <!-- Botón con dropdown: Calculadora -->
-      <button class="boton-nav dropdown">
-        Calculadora
-        <ul class="dropdown-menu">
-          <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
-          <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
-          <li><a href="#">Calorías</a></li>
-        </ul>
-      </button>
-    
-      <!-- Botones sin dropdown -->
-      <button class="boton-nav" onclick="window.location.href='cronometro.html'">
-        Cronómetro
-      </button>
-      <button class="boton-nav" onclick="window.location.href='#'">
-        Marcas personales
-      </button>
-      <button class="boton-nav" onclick="window.location.href='#'">
-        Nutrición
-      </button>
-    </div>
-    
+        <!-- Botones sin dropdown -->
+        <button
+          class="boton-nav"
+          onclick="window.location.href='cronometro.html'"
+        >
+          Cronómetro
+        </button>
+        <button class="boton-nav" onclick="window.location.href='#'">
+          Marcas personales
+        </button>
+        <button class="boton-nav" onclick="window.location.href='#'">
+          Nutrición
+        </button>
 
-    <div class="nav-3">
+        <div class="user-display">
+          <img
+            id="avatar-img"
+            src="/img/avatar (1).png"
+            alt="Avatar"
+            class="avatar-icon"
+          />
+          <span id="username">Usuario</span>
+          <button id="logout" class="logout-btn">
+            <img
+              src="/img/salida.png"
+              alt="Salir"
+              style="width: 20px; height: 20px"
+            />
+          </button>
+        </div>
+      </div>
+    </nav>
 
-        <!-- Aquí se coloca el bloque del usuario -->
-          <div class="user-display">
-            <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
-            <span id="username">Usuario</span>
-            <button id="logout" class="logout-btn">
-              <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
-            </button>
-          </div>
+    <main>
+      <h1 class="form-title">Cargar datos personales</h1>
+      <form id="form-datos" class="form-container">
+        <input type="text" id="coach" placeholder="Coach" required />
+        <input type="text" id="objetivo" placeholder="Objetivo" required />
 
-    </div>
+        <select id="sexo" required>
+          <option value="">Seleccione sexo</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
 
-  </nav>
+        <input type="text" id="rms" placeholder="RMS" />
+        <input type="text" id="modalidad" placeholder="Modalidad (opcional)" />
+        <input type="text" id="profesion" placeholder="Profesión" />
+        <textarea
+          id="lesiones"
+          placeholder="Lesiones y/o patologías"
+        ></textarea>
 
-  <main>
-    <h1 class="form-title">Cargar datos personales</h1>
-    <form id="form-datos" class="form-container">
-      <input type="text" id="coach" placeholder="Coach" required>
-      <input type="text" id="objetivo" placeholder="Objetivo" required>
-  
-      <select id="sexo" required>
-        <option value="">Seleccione sexo</option>
-        <option value="Masculino">Masculino</option>
-        <option value="Femenino">Femenino</option>
-        <option value="Otro">Otro</option>
-      </select>
-  
-      <input type="text" id="rms" placeholder="RMS">
-      <input type="text" id="modalidad" placeholder="Modalidad (opcional)">
-      <input type="text" id="profesion" placeholder="Profesión">
-      <textarea id="lesiones" placeholder="Lesiones y/o patologías"></textarea>
-  
-      <button type="submit">Guardar datos</button>
-    </form>
-  </main>
-  
+        <button type="submit">Guardar datos</button>
+      </form>
+    </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const username = document.getElementById("username");
-      const avatar = document.getElementById("avatar-img");
-      const logout = document.getElementById("logout");
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const username = document.getElementById("username");
+        const avatar = document.getElementById("avatar-img");
+        const logout = document.getElementById("logout");
 
-      const userData = JSON.parse(localStorage.getItem("userData"));
+        const userData = JSON.parse(localStorage.getItem("userData"));
 
-      if (!userData || !userData.id || !userData.nombre) {
-        window.location.href = "login.html";
-        return;
-      }
-
-      // Mostrar nombre y foto del usuario logueado
-      username.textContent = userData.nombre;
-      if (userData.foto) {
-        avatar.src = "http://localhost:3000" + userData.foto;
-      }
-
-      // Cerrar sesión
-      logout.addEventListener("click", () => {
-        localStorage.removeItem("userData");
-        window.location.href = "/index.html";
-      });
-
-      // Enviar datos del formulario
-      const form = document.getElementById("form-datos");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const body = {
-          id_alumno: userData.id,
-          coach: document.getElementById("coach").value,
-          objetivo: document.getElementById("objetivo").value,
-          sexo: document.getElementById("sexo").value,
-          rms: document.getElementById("rms").value,
-          modalidad: document.getElementById("modalidad").value,
-          profesion: document.getElementById("profesion").value,
-          lesiones: document.getElementById("lesiones").value,
-        };
-
-        try {
-          const res = await fetch("http://localhost:3000/guardar-datos-alumno", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-          });
-
-          const result = await res.json();
-          if (res.ok) {
-            alert("Datos guardados correctamente");
-            form.reset();
-          } else {
-            alert("Error: " + result.error);
-          }
-        } catch (error) {
-          console.error("Error al enviar datos:", error);
-          alert("Error inesperado");
+        if (!userData || !userData.id || !userData.nombre) {
+          window.location.href = "login.html";
+          return;
         }
+
+        // Mostrar nombre y foto del usuario logueado
+        username.textContent = userData.nombre;
+        if (userData.foto) {
+          avatar.src = "http://localhost:3000" + userData.foto;
+        }
+
+        // Cerrar sesión
+        logout.addEventListener("click", () => {
+          localStorage.removeItem("userData");
+          window.location.href = "/index.html";
+        });
+
+        // Enviar datos del formulario
+        const form = document.getElementById("form-datos");
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const body = {
+            id_alumno: userData.id,
+            coach: document.getElementById("coach").value,
+            objetivo: document.getElementById("objetivo").value,
+            sexo: document.getElementById("sexo").value,
+            rms: document.getElementById("rms").value,
+            modalidad: document.getElementById("modalidad").value,
+            profesion: document.getElementById("profesion").value,
+            lesiones: document.getElementById("lesiones").value,
+          };
+
+          try {
+            const res = await fetch(
+              "http://localhost:3000/guardar-datos-alumno",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+              }
+            );
+
+            const result = await res.json();
+            if (res.ok) {
+              alert("Datos guardados correctamente");
+              form.reset();
+            } else {
+              alert("Error: " + result.error);
+            }
+          } catch (error) {
+            console.error("Error al enviar datos:", error);
+            alert("Error inesperado");
+          }
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+
+    <script src="./menu.js"></script>
+  </body>
 </html>

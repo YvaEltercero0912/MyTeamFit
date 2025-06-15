@@ -1,675 +1,990 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Rutinas</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <script defer src="index.js"></script>
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #181818;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-      padding: 30px 20px 10px;
-      color: #14c0e5;
-      font-size: 21px;
-    }
-
-    .container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 30px 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin-top: 60px;
-}
-
-    .input-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .input-group input {
-      flex: 1;
-      min-width: 160px;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #14c0e5;
-      background-color: #1e1e1e;
-      color: white;
-    }
-
-    .input-group button {
-      padding: 12px 24px;
-      font-weight: bold;
-      background-color: #14c0e5;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .input-group button:hover {
-      background-color: #0da2c3;
-    }
-
-    .results h2 {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 1.4em;
-      color: #14c0e5;
-    }
-
-    .rep-max {
-      text-align: center;
-      font-size: 1.3em;
-      margin-top: 20px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .percent-table {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      text-align: center;
-      margin-top: 25px;
-      gap: 15px;
-    }
-
-    .percent-table div {
-      background-color: #2e2e2e;
-      border: 1px solid #14c0e5;
-      padding: 10px;
-      border-radius: 6px;
-    }
-
-
-    
-    .info-section {
-      margin-top: 40px;
-    padding: 16px;
-    background-color: #2e2e2e;
-    border: 1px solid #14c0e5;
-    border-radius: 6px;
-    color: white;
-    width: 80%;
-    margin: auto;
-    margin-top: 102px;
-}
-
-  .info-section h2 {
-    margin-bottom: 15px;
-    color: #14c0e5;
-    font-size: 1.5em;
-  }
-
-  .info-section p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-
-  /* Dropdown */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 60%;
-    left: 0;
-    background: #333;
-    padding: 10px 0;
-    list-style: none;
-    border-radius: 8px;
-    min-width: 160px;
-    z-index: 1000;
-}
-
-.dropdown-menu li {
-    padding: 8px 16px;
-}
-
-.dropdown-menu li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-menu li:hover {
-    background-color: #444;
-}
-
-/* Mostrar el menú al pasar el mouse */
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.user-display {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 6px 10px;
-    border-radius: 30px;
-    gap: 10px;
-    width: 200px;
-    justify-content: space-around;
-    align-items: center;
-}
-
-        .avatar-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .logout-btn {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .logout-btn img:hover {
-            transform: scale(1.1);
-        }
-
-        .user-display #username {
-            font-weight: bold;
-            color: white;
-        }
-
-        .routine-box {
-            margin-top: 20px;
-            padding: 20px;
-            background: #222;
-            color: white;
-            border-radius: 10px;
-        }
-
-        .ejercicio-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #333;
-            border-radius: 6px;
-        }
-        @media screen and (max-width: 768px) {
-    /* Estilo general del header */
-    header {
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      background-color: #111;
-      border-bottom: 2px solid #14c0e5;
-    }
-
-    .container {
-    max-width: 312px;
-    margin: 20px auto;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 30px 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin-top: 60px;
-}
-
-    .fill {
-        font-size: 16px;
-        padding: 10px;
-        width: 150px;
-        border: 2px solid var(--color-fill);
-        border-radius: 5px;
-        background: #111111;
-        color: #ffffff;
-        cursor: pointer;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-  
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-  
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-      z-index: 1100;
-    }
-  
-    .menu-toggle img {
-      width: 30px;
-      filter: invert(1);
-    }
-  
-    .menu-toggle.hidden {
-      display: none;
-    }
-  
-    
-        .logo-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: auto; 
-        }
-    
-  
-    .logo {
-      width: 70px;
-    }
-  
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 250px;
-        background-color: #222;
-        padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
-        gap: 20px;
-        border-right: 2px solid #14c0e5;
-        z-index: 1050;
-        transition: left 0.3s ease;
-        margin-top: 0;
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #181818;
+        color: #fff;
+        margin: 0;
+        padding: 0;
       }
-  
-    .nav-links.active {
-      display: flex;
-    }
-  
-    .nav-links li {
-      list-style: none;
-    }
-  
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-  
-    .dropdown-menu {
-      position: static;
-      width: 100%;
-      border-radius: 0;
-      background: none;
-    }
-  
-    .dropdown-menu li {
-      text-align: left;
-      padding-left: 10px;
-    }
-  
-    /* Usuario dentro del menú */
-    .user-display {
+
+      h1 {
+        text-align: center;
+        padding: 30px 20px 10px;
+        color: #14c0e5;
+        font-size: 21px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #222;
+        border-radius: 10px;
+        padding: 30px 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        margin-top: 60px;
+      }
+
+      .input-group {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        flex-wrap: wrap;
         gap: 10px;
-        margin-bottom: 10px;
-        padding: 9px 31px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 12px;
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #14c0e5;
-    }
-
-    .avatar-icon {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-  
-    #username {
-      font-size: 15px;
-      font-weight: bold;
-      color: white;
-      white-space: nowrap;
-    }
-  
-    .logout-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-  
-    .logout-btn img {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s;
-    }
-  
-    .logout-btn img:hover {
-      transform: scale(1.1);
-    }
-
-    nav {
-        display: flex;
-        width: 100%;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-    }
-
-
-    .nav-1{
-        width: 65%;
-        display: flex;
         justify-content: center;
-    }
+        margin-bottom: 20px;
+      }
 
-    .nav-2{
-        width: 20%;
+      .input-group input {
+        flex: 1;
+        min-width: 160px;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #14c0e5;
+        background-color: #1e1e1e;
+        color: white;
+      }
+
+      .input-group button {
+        padding: 12px 24px;
+        font-weight: bold;
+        background-color: #14c0e5;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .input-group button:hover {
+        background-color: #0da2c3;
+      }
+
+      .results h2 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.4em;
+        color: #14c0e5;
+      }
+
+      .rep-max {
+        text-align: center;
+        font-size: 1.3em;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .percent-table {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        text-align: center;
+        margin-top: 25px;
+        gap: 15px;
+      }
+
+      .percent-table div {
+        background-color: #2e2e2e;
+        border: 1px solid #14c0e5;
+        padding: 10px;
+        border-radius: 6px;
+      }
+
+      .info-section {
+        margin-top: 40px;
+        padding: 16px;
+        background-color: #2e2e2e;
+        border: 1px solid #14c0e5;
+        border-radius: 6px;
+        color: white;
+        width: 80%;
+        margin: auto;
+        margin-top: 102px;
+      }
+
+      .info-section h2 {
+        margin-bottom: 15px;
+        color: #14c0e5;
+        font-size: 1.5em;
+      }
+
+      .info-section p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Dropdown */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        background: #333;
+        padding: 10px 0;
+        list-style: none;
+        border-radius: 8px;
+        min-width: 160px;
+        z-index: 1000;
+      }
+
+      .dropdown-menu li {
+        padding: 8px 16px;
+      }
+
+      .dropdown-menu li a {
+        color: white;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-menu li:hover {
+        background-color: #444;
+      }
+
+      /* Mostrar el menú al pasar el mouse */
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .user-display {
+        position: absolute;
+        display: flex;
         align-items: center;
-        justify-content: center;
-        display: flex;
-    }
+        background: rgba(0, 0, 0, 0.4);
+        padding: 6px 10px;
+        border-radius: 30px;
+        gap: 10px;
+        width: 200px;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-    .logo2{
-        width: 100px;
-        display: flex;
-    }
-    .main-txt{
-        display: flex;
-        width: 90%;
-        justify-content: center;
-    }
+      .avatar-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+      }
 
-    .routine-box {
+      .logout-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .logout-btn img:hover {
+        transform: scale(1.1);
+      }
+
+      .user-display #username {
+        font-weight: bold;
+        color: white;
+      }
+
+      .routine-box {
+        margin-top: 20px;
         padding: 20px;
         background: #222;
         color: white;
         border-radius: 10px;
-        width: 80%;
-        margin: auto;
-        margin-top: 15px;
-    }
-
-    div#menu-toggle {
-        display: flex;
-    }
-
-    .dropdown-menu {
-  display: none;
-  flex-direction: column;
-}
-
-.dropdown-menu.active {
-  display: flex;
-}
-  }
-
-  
-  </style>
-</head>
-
-<nav class="nav-contenedor">
-
-  <div class="nav-1">
-
-      <a style="display: flex
-      ;
-          justify-content: center;
-          align-items: center;" href="/Alumno/index.html">
-          <img class="logo" src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png" alt="Logo">
-          <img class="mtf" src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png" alt="Logo 2">
-        </a>
-
-  </div>
-
-  <div class="nav-2">
-    <!-- Botón con dropdown: Datos del alumno -->
-    <button class="boton-nav dropdown">
-      Datos del alumno
-      <ul class="dropdown-menu">
-        <li><a href="binvenido.html">Bienvenido</a></li>
-        <li><a href="datosDiarios.html">Datos alumno</a></li>
-      </ul>
-    </button>
-  
-    <!-- Botón con dropdown: Calculadora -->
-    <button class="boton-nav dropdown">
-      Calculadora
-      <ul class="dropdown-menu">
-        <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
-        <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
-        <li><a href="#">Calorías</a></li>
-      </ul>
-    </button>
-  
-    <!-- Botones sin dropdown -->
-    <button class="boton-nav" onclick="window.location.href='cronometro.html'">
-      Cronómetro
-    </button>
-    <button class="boton-nav" onclick="window.location.href='#'">
-      Marcas personales
-    </button>
-    <button class="boton-nav" onclick="window.location.href='#'">
-      Nutrición
-    </button>
-  </div>
-  
-
-  <div class="nav-3">
-
-      <!-- Aquí se coloca el bloque del usuario -->
-        <div class="user-display">
-          <img id="avatar-img" src="/img/avatar (1).png" alt="Avatar" class="avatar-icon">
-          <span id="username">Usuario</span>
-          <button id="logout" class="logout-btn">
-            <img src="/img/salida.png" alt="Salir" style="width: 20px; height: 20px;">
-          </button>
-        </div>
-
-  </div>
-
-</nav>
-
-
-
-
-<body>
-  <h1>CALCULADORA REPETICIÓN MÁXIMA</h1>
-
-  <div class="container">
-    <div class="input-group">
-      <input type="number" id="peso" placeholder="Peso levantado (kg)">
-      <input type="number" id="reps" placeholder="Repeticiones (1-10)" min="1" max="10">
-      <button onclick="calcular1RM()">CALCULAR</button>
-    </div>
-
-    <div class="results">
-      <div id="rep-max" class="rep-max"></div>
-      <h2>REPETICIÓN MÁXIMA ESTIMADA</h2>
-      <div class="percent-table" id="resultados"></div>
-    </div>
-  </div>
-
-
-  <div class="info-section">
-    <h2>¿Qué es el 1RM y para qué sirve?</h2>
-    <p>
-      El 1RM, o "repetición máxima", representa el peso máximo que una persona puede levantar en un solo esfuerzo, manteniendo una buena técnica. 
-      Conocer tu 1RM te ayuda a establecer objetivos de entrenamiento claros, calcular intensidades adecuadas para cada sesión y medir tu progreso a lo largo del tiempo. 
-      Además, sirve como base para estructurar rutinas de fuerza y potencia de forma eficiente, optimizando resultados y reduciendo el riesgo de lesiones.
-    </p>
-  </div>
-  
-
-  <script>
-    function calcular1RM() {
-      const peso = parseFloat(document.getElementById('peso').value);
-      const reps = parseInt(document.getElementById('reps').value);
-
-      if (isNaN(peso) || isNaN(reps) || reps < 1 || reps > 10) {
-        alert('Por favor, ingresa un peso válido y repeticiones entre 1 y 10.');
-        return;
       }
 
-      const repMax = peso * (1 + reps / 30);
-      document.getElementById('rep-max').textContent = `1RM estimado: ${repMax.toFixed(1)} kg`;
+      .ejercicio-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #333;
+        border-radius: 6px;
+      }
+      @media screen and (max-width: 768px) {
+        /* Estilo general del header */
+        header {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          background-color: #111;
+          border-bottom: 2px solid #14c0e5;
+        }
 
-      const porcentajes = [95, 90, 85, 80, 75, 70, 65, 60, 55, 50];
+        .container {
+          max-width: 312px;
+          margin: 20px auto;
+          background-color: #222;
+          border-radius: 10px;
+          padding: 30px 20px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          margin-top: 60px;
+        }
 
-      const resultadosHTML = porcentajes.map(p => {
-        const valor = (repMax * (p / 100)).toFixed(1);
-        return `<div><strong>${p}%</strong><br>${valor} kg</div>`;
-      }).join('');
+        .fill {
+          font-size: 16px;
+          padding: 10px;
+          width: 150px;
+          border: 2px solid var(--color-fill);
+          border-radius: 5px;
+          background: #111111;
+          color: #ffffff;
+          cursor: pointer;
+          outline: none;
+          transition: all 0.3s ease;
+        }
 
-      document.getElementById('resultados').innerHTML = resultadosHTML;
-    }
+        .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 10px 20px;
+          box-sizing: border-box;
+        }
 
+        .menu-toggle {
+          display: block;
+          cursor: pointer;
+          z-index: 1100;
+        }
 
+        .menu-toggle img {
+          width: 30px;
+          filter: invert(1);
+        }
 
+        .menu-toggle.hidden {
+          display: none;
+        }
 
-    document.addEventListener("DOMContentLoaded", () => {
+        .logo-container {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: auto;
+        }
+
+        .logo {
+          width: 70px;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 250px;
+          background-color: #222;
+          padding: 100px 20px 20px 20px; /* ⬅️ este padding superior es la clave */
+          gap: 20px;
+          border-right: 2px solid #14c0e5;
+          z-index: 1050;
+          transition: left 0.3s ease;
+          margin-top: 0;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          list-style: none;
+        }
+
+        .nav-links a {
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .dropdown-menu {
+          position: static;
+          width: 100%;
+          border-radius: 0;
+          background: none;
+        }
+
+        .dropdown-menu li {
+          text-align: left;
+          padding-left: 10px;
+        }
+
+        /* Usuario dentro del menú */
+        .user-display {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin-bottom: 10px;
+          padding: 9px 31px;
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 12px;
+          width: 100%;
+          box-sizing: border-box;
+          border-bottom: 1px solid #14c0e5;
+        }
+
+        .avatar-icon {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+
+        #username {
+          font-size: 15px;
+          font-weight: bold;
+          color: white;
+          white-space: nowrap;
+        }
+
+        .logout-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .logout-btn img {
+          width: 20px;
+          height: 20px;
+          transition: transform 0.3s;
+        }
+
+        .logout-btn img:hover {
+          transform: scale(1.1);
+        }
+
+        nav {
+          display: flex;
+          width: 100%;
+          flex-direction: row-reverse;
+          justify-content: flex-end;
+        }
+
+        .nav-1 {
+          width: 65%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .nav-2 {
+          width: 20%;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+        }
+
+        .logo2 {
+          width: 100px;
+          display: flex;
+        }
+        .main-txt {
+          display: flex;
+          width: 90%;
+          justify-content: center;
+        }
+
+        .routine-box {
+          padding: 20px;
+          background: #222;
+          color: white;
+          border-radius: 10px;
+          width: 80%;
+          margin: auto;
+          margin-top: 15px;
+        }
+
+        div#menu-toggle {
+          display: flex;
+        }
+
+        .dropdown-menu {
+          display: none;
+          flex-direction: column;
+        }
+
+        .dropdown-menu.active {
+          display: flex;
+        }
+      }
+
+      .nav-2 {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+      }
+
+      .user-display {
+        position: relative;
+      }
+
+      h1 {
+        width: 50%;
+        margin: auto;
+      }
+
+      input,
+      select {
+        width: 40%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #14c0e5;
+        border-radius: 5px;
+        background-color: #1e1e1e;
+        color: white;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .form-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #ffffff;
+      }
+
+      .form-container {
+        background-color: #1f1f1f;
+        padding: 25px 23px;
+        border-radius: 16px;
+        box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+        max-width: 370px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .form-container select option {
+        background-color: #2a2a2a;
+        color: #fff;
+      }
+
+      .form-container button {
+        background-color: #00ffff;
+        color: #000;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .form-container button:hover {
+        background-color: #00cccc;
+      }
+
+      select#sexo {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 100%;
+      }
+
+      .form-container input,
+      .form-container select,
+      .form-container textarea {
+        background-color: #2a2a2a;
+        border: 1px solid #00ffff;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 1rem;
+        color: #fff;
+        outline: none;
+        width: 93%;
+        resize: none;
+      }
+
+      .nav-contenedor {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #000000;
+      }
+
+      /* Botón hamburguesa */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+      }
+
+      .hamburger span {
+        width: 100%;
+        height: 3px;
+        background: #333;
+        transition: all 0.3s ease;
+      }
+
+      /* Menú móvil */
+      .nav-2 {
+        display: flex;
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-2 {
+          display: none;
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100vh;
+          width: 250px;
+          background: #1a1a1a;
+          flex-direction: column;
+          padding: 2rem;
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          z-index: 9;
+        }
+
+        .nav-2.active {
+          display: flex;
+          transform: translateX(0);
+        }
+
+        /* Estilos dropdown en móvil */
+        .dropdown {
+          width: 100%;
+        }
+
+        .boton-nav {
+          width: 100%;
+          text-align: left;
+          padding: 1rem;
+        }
+
+        .dropdown-menu {
+          position: static;
+          background: #f5f5f5;
+          padding-left: 1rem;
+          display: none;
+        }
+
+        .dropdown.active .dropdown-menu {
+          display: block;
+        }
+      }
+
+      /* Dropdown desktop */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: none;
+        z-index: 10;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu li {
+        padding: 0.5rem 1rem;
+      }
+
+      .dropdown-menu li a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+      }
+
+      .boton-nav {
+        background: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      /* Animación hamburguesa */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      form#form-datos {
+        width: 100%;
+        margin: auto;
+      }
+
+      @media (max-width: 440px) {
+        .nav-0 {
+          width: 25%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .nav-1 {
+          width: 75%;
+          display: flex;
+          justify-content: start;
+        }
+
+        .user-display {
+          position: relative;
+          display: flex;
+          background: rgba(0, 0, 0, 0.4);
+          padding: 6px 10px;
+          border-radius: 41px;
+          gap: 10px;
+          width: 235px;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        form#form-datos {
+          width: 90%;
+          margin: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <nav class="nav-contenedor">
+    <!-- Botón hamburguesa -->
+    <div class="nav-0">
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span> </span>
+      </button>
+    </div>
+
+    <div class="nav-1">
+      <a
+        style="display: flex; justify-content: center; align-items: center"
+        href="/Alumno/index.html"
+      >
+        <img
+          class="logo"
+          src="/img/Imagen_de_WhatsApp_2025-04-01_a_las_15.40.31_4eb2783a.png"
+          alt="Logo"
+        />
+        <img
+          class="mtf"
+          src="/img/ChatGPT Image 1 abr 2025, 04_01_58 p.m..png"
+          alt="Logo 2"
+        />
+      </a>
+    </div>
+
+    <!-- Menú desplegable -->
+    <div class="nav-2 mobile-menu">
+      <!-- Dropdown: Datos del alumno -->
+      <div class="dropdown">
+        <button class="boton-nav dropdown-toggle">Datos del alumno</button>
+        <ul class="dropdown-menu">
+          <li><a href="binvenido.html">Bienvenido</a></li>
+          <li><a href="datosDiarios.html">Datos alumno</a></li>
+        </ul>
+      </div>
+
+      <!-- Dropdown: Calculadora -->
+      <div class="dropdown">
+        <button class="boton-nav dropdown-toggle">Calculadora</button>
+        <ul class="dropdown-menu">
+          <li><a href="calculadoraRp.html">Calcular RP máxima</a></li>
+          <li><a href="calculadoraMB.html">Calcular Metabolismo basal</a></li>
+          <li><a href="#">Calorías</a></li>
+        </ul>
+      </div>
+
+      <!-- Botones sin dropdown -->
+      <button
+        class="boton-nav"
+        onclick="window.location.href='cronometro.html'"
+      >
+        Cronómetro
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Marcas personales
+      </button>
+      <button class="boton-nav" onclick="window.location.href='#'">
+        Nutrición
+      </button>
+
+      <div class="user-display">
+        <img
+          id="avatar-img"
+          src="/img/avatar (1).png"
+          alt="Avatar"
+          class="avatar-icon"
+        />
+        <span id="username">Usuario</span>
+        <button id="logout" class="logout-btn">
+          <img
+            src="/img/salida.png"
+            alt="Salir"
+            style="width: 20px; height: 20px"
+          />
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <body>
+    <h1>CALCULADORA REPETICIÓN MÁXIMA</h1>
+
+    <div class="container">
+      <div class="input-group">
+        <input type="number" id="peso" placeholder="Peso levantado (kg)" />
+        <input
+          type="number"
+          id="reps"
+          placeholder="Repeticiones (1-10)"
+          min="1"
+          max="10"
+        />
+        <button onclick="calcular1RM()">CALCULAR</button>
+      </div>
+
+      <div class="results">
+        <div id="rep-max" class="rep-max"></div>
+        <h2>REPETICIÓN MÁXIMA ESTIMADA</h2>
+        <div class="percent-table" id="resultados"></div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>¿Qué es el 1RM y para qué sirve?</h2>
+      <p>
+        El 1RM, o "repetición máxima", representa el peso máximo que una persona
+        puede levantar en un solo esfuerzo, manteniendo una buena técnica.
+        Conocer tu 1RM te ayuda a establecer objetivos de entrenamiento claros,
+        calcular intensidades adecuadas para cada sesión y medir tu progreso a
+        lo largo del tiempo. Además, sirve como base para estructurar rutinas de
+        fuerza y potencia de forma eficiente, optimizando resultados y
+        reduciendo el riesgo de lesiones.
+      </p>
+    </div>
+
+    <script>
+      function calcular1RM() {
+        const peso = parseFloat(document.getElementById("peso").value);
+        const reps = parseInt(document.getElementById("reps").value);
+
+        if (isNaN(peso) || isNaN(reps) || reps < 1 || reps > 10) {
+          alert(
+            "Por favor, ingresa un peso válido y repeticiones entre 1 y 10."
+          );
+          return;
+        }
+
+        const repMax = peso * (1 + reps / 30);
+        document.getElementById(
+          "rep-max"
+        ).textContent = `1RM estimado: ${repMax.toFixed(1)} kg`;
+
+        const porcentajes = [95, 90, 85, 80, 75, 70, 65, 60, 55, 50];
+
+        const resultadosHTML = porcentajes
+          .map((p) => {
+            const valor = (repMax * (p / 100)).toFixed(1);
+            return `<div><strong>${p}%</strong><br>${valor} kg</div>`;
+          })
+          .join("");
+
+        document.getElementById("resultados").innerHTML = resultadosHTML;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.nombre) {
+          document.getElementById("username").textContent = userData.nombre;
+        }
+        if (userData && userData.foto) {
+          document.getElementById(
+            "avatar-img"
+          ).src = `http://localhost:3000${userData.foto}`;
+        }
+        const username = localStorage.getItem("user") || "Usuario";
+        document.getElementById("username").textContent = username;
+
+        const logoutBtn = document.getElementById("logout");
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("userData");
+          window.location.href = "/index.html";
+        });
+
+        const avatarInput = document.createElement("input");
+        avatarInput.type = "file";
+        avatarInput.accept = "image/*";
+        avatarInput.style.display = "none";
+        document.body.appendChild(avatarInput);
+
+        document.getElementById("avatar-img").addEventListener("click", () => {
+          avatarInput.click();
+        });
+
+        avatarInput.addEventListener("change", async () => {
+          const file = avatarInput.files[0];
+          if (!file) return;
+
+          const formData = new FormData();
+          formData.append("foto", file);
+
+          try {
             const userData = JSON.parse(localStorage.getItem("userData"));
-            if (userData && userData.nombre) {
-                document.getElementById("username").textContent = userData.nombre;
+            if (!userData || !userData.id)
+              throw new Error("ID de usuario no encontrado");
+
+            const response = await fetch(
+              `http://localhost:3000/subir-foto/${userData.id}`,
+              {
+                method: "POST",
+                body: formData,
+              }
+            );
+
+            const result = await response.json();
+            if (response.ok) {
+              document.getElementById(
+                "avatar-img"
+              ).src = `http://localhost:3000${result.ruta}`;
+              userData.foto = result.ruta;
+              localStorage.setItem("userData", JSON.stringify(userData));
+            } else {
+              alert("Error al subir la imagen: " + result.error);
             }
-            if (userData && userData.foto) {
-                document.getElementById("avatar-img").src = `http://localhost:3000${userData.foto}`;
-            }
-            const username = localStorage.getItem("user") || "Usuario";
-            document.getElementById("username").textContent = username;
+          } catch (error) {
+            console.error("Error al subir imagen:", error);
+          }
+        });
 
-            const logoutBtn = document.getElementById("logout");
-            logoutBtn.addEventListener("click", () => {
-                localStorage.removeItem("user");
-                localStorage.removeItem("userData");
-                window.location.href = "/index.html";
-            });
+        const selectMonth = document.getElementById("select-month");
+        const selectWeek = document.getElementById("select-week");
+        const selectYear = document.getElementById("select-year");
+        const searchButton = document.getElementById("btn-search");
+        const routineBox = document.querySelector(".routine-box");
 
-            const avatarInput = document.createElement("input");
-            avatarInput.type = "file";
-            avatarInput.accept = "image/*";
-            avatarInput.style.display = "none";
-            document.body.appendChild(avatarInput);
+        const currentYear = new Date().getFullYear();
+        for (let y = 2025; y <= currentYear + 10; y++) {
+          const opt = document.createElement("option");
+          opt.value = y;
+          opt.textContent = y;
+          selectYear.appendChild(opt);
+        }
+        selectYear.value = currentYear;
 
-            document.getElementById("avatar-img").addEventListener("click", () => {
-                avatarInput.click();
-            });
+        const meses = [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
+        ];
+        meses.forEach((mes, i) => {
+          const opt = document.createElement("option");
+          opt.value = i + 1;
+          opt.textContent = mes;
+          selectMonth.appendChild(opt);
+        });
+        selectMonth.value = new Date().getMonth() + 1;
 
-            avatarInput.addEventListener("change", async () => {
-                const file = avatarInput.files[0];
-                if (!file) return;
+        for (let i = 1; i <= 4; i++) {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = "Semana " + i;
+          selectWeek.appendChild(opt);
+        }
 
-                const formData = new FormData();
-                formData.append("foto", file);
+        async function getRutina() {
+          const user = JSON.parse(localStorage.getItem("userData"));
+          const mes = selectMonth.value;
+          const semana = selectWeek.value;
+          const anio = selectYear.value;
 
-                try {
-                    const userData = JSON.parse(localStorage.getItem("userData"));
-                    if (!userData || !userData.id) throw new Error("ID de usuario no encontrado");
+          if (!user || !user.id) return;
 
-                    const response = await fetch(`http://localhost:3000/subir-foto/${userData.id}`, {
-                        method: "POST",
-                        body: formData
-                    });
+          try {
+            const res = await fetch(
+              `http://localhost:3000/planificacion?id_alumno=${user.id}&mes=${mes}&semana=${semana}`
+            );
+            const data = await res.json();
 
-                    const result = await response.json();
-                    if (response.ok) {
-                        document.getElementById("avatar-img").src = `http://localhost:3000${result.ruta}`;
-                        userData.foto = result.ruta;
-                        localStorage.setItem("userData", JSON.stringify(userData));
-                    } else {
-                        alert("Error al subir la imagen: " + result.error);
-                    }
-                } catch (error) {
-                    console.error("Error al subir imagen:", error);
-                }
-            });
-
-            const selectMonth = document.getElementById("select-month");
-            const selectWeek = document.getElementById("select-week");
-            const selectYear = document.getElementById("select-year");
-            const searchButton = document.getElementById("btn-search");
-            const routineBox = document.querySelector(".routine-box");
-
-            const currentYear = new Date().getFullYear();
-            for (let y = 2025; y <= currentYear + 10; y++) {
-                const opt = document.createElement("option");
-                opt.value = y;
-                opt.textContent = y;
-                selectYear.appendChild(opt);
-            }
-            selectYear.value = currentYear;
-
-            const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-            meses.forEach((mes, i) => {
-                const opt = document.createElement("option");
-                opt.value = i + 1;
-                opt.textContent = mes;
-                selectMonth.appendChild(opt);
-            });
-            selectMonth.value = new Date().getMonth() + 1;
-
-            for (let i = 1; i <= 4; i++) {
-                const opt = document.createElement("option");
-                opt.value = i;
-                opt.textContent = "Semana " + i;
-                selectWeek.appendChild(opt);
-            }
-
-            async function getRutina() {
-                const user = JSON.parse(localStorage.getItem("userData"));
-                const mes = selectMonth.value;
-                const semana = selectWeek.value;
-                const anio = selectYear.value;
-
-                if (!user || !user.id) return;
-
-                try {
-                    const res = await fetch(`http://localhost:3000/planificacion?id_alumno=${user.id}&mes=${mes}&semana=${semana}`);
-                    const data = await res.json();
-
-                    if (!Array.isArray(data) || data.length === 0) {
-                        routineBox.innerHTML = `<p>No hay planificación para ${meses[mes - 1]} ${anio}, semana ${semana}.</p>`;
-                    } else {
-                        let html = `<h3>Planificación: ${meses[mes - 1]} ${anio}, Semana ${semana}</h3>`;
-                        data.forEach(ej => {
-                            html += `<div class="ejercicio-item">
+            if (!Array.isArray(data) || data.length === 0) {
+              routineBox.innerHTML = `<p>No hay planificación para ${
+                meses[mes - 1]
+              } ${anio}, semana ${semana}.</p>`;
+            } else {
+              let html = `<h3>Planificación: ${
+                meses[mes - 1]
+              } ${anio}, Semana ${semana}</h3>`;
+              data.forEach((ej) => {
+                html += `<div class="ejercicio-item">
                                 <p><strong>${ej.ejercicio}</strong></p>
                                 <p>Series: ${ej.series}, Reps: ${ej.repes}, Kg: ${ej.kg}</p>
                                 <p><a href="${ej.video}" target="_blank">Video explicativo</a></p>
                             </div>`;
-                        });
-                        routineBox.innerHTML = html;
-                    }
-                } catch (err) {
-                    console.error("Error al obtener rutina:", err);
-                    routineBox.innerHTML = `<p>Error al cargar la rutina.</p>`;
-                }
+              });
+              routineBox.innerHTML = html;
             }
+          } catch (err) {
+            console.error("Error al obtener rutina:", err);
+            routineBox.innerHTML = `<p>Error al cargar la rutina.</p>`;
+          }
+        }
 
-            searchButton.addEventListener("click", getRutina);
-            getRutina();
-        });
-  </script>
-</body>
+        searchButton.addEventListener("click", getRutina);
+        getRutina();
+      });
+    </script>
+
+    <script src="./menu.js"></script>
+  </body>
 </html>
